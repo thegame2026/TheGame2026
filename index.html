@@ -552,7 +552,7 @@
 
     <div class="nav-logo active" data-page="home"> 
 
-        THE GAME <span>2026</span> <small>V1.0.2</small>
+        THE GAME <span>2026</span> <small>V1.1.0</small>
 
     </div>
 
@@ -562,6 +562,10 @@
 
         <button data-page="home" class="active">
             HOME
+        </button>
+
+        <button data-page="convergence-system"> 
+            CONVERGENCE 
         </button>
 
         <button data-page="story">
@@ -754,6 +758,752 @@
         </span>
 
         <p id="system-log-text">The island remains under observation. Halloween 2026 has not begun.</p>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     CONVERGENCE SYSTEM
+     ===================================================== -->
+
+<section id="convergence-system" class="page">
+
+    <div class="convergence-page">
+
+        <!-- HEADER -->
+        <div class="section-header convergence-header">
+
+            <span class="section-label">
+                SYSTEM / CONVERGENCE
+            </span>
+
+            <h1>
+                THE CONVERGENCE
+            </h1>
+
+            <p>
+                THE BOUNDARY BETWEEN WORLDS HAS NOT YET COLLAPSED.
+            </p>
+
+        </div>
+
+
+        <!-- MAIN STATUS -->
+        <div class="convergence-main-panel">
+
+            <div class="convergence-main-top">
+
+                <div>
+
+                    <span class="convergence-mini-label">
+                        CONVERGENCE LEVEL
+                    </span>
+
+                    <div class="convergence-number">
+                        <span id="convergence-level">0</span>
+                        <span class="convergence-percent">%</span>
+                    </div>
+
+                </div>
+
+
+                <div class="convergence-state">
+
+                    <strong id="convergence-state">
+                        PRE-CONVERGENCE
+                    </strong>
+
+                    <span
+                        class="convergence-state-description"
+                        id="convergence-description"
+                    >
+                        THE CONVERGENCE HAS NOT BEGUN.
+                        THE ISLAND IS ALREADY UNDER THE CONTROL
+                        OF THE HALLOW KING.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONVERGENCE BAR -->
+            <div class="convergence-bar-container">
+
+                <div class="convergence-bar">
+
+                    <div
+                        class="convergence-fill"
+                        id="convergence-fill"
+                        style="width: 0%;"
+                    ></div>
+
+                    <span
+                        class="convergence-marker marker-25"
+                    ></span>
+
+                    <span
+                        class="convergence-marker marker-50"
+                    ></span>
+
+                    <span
+                        class="convergence-marker marker-75"
+                    ></span>
+
+                </div>
+
+
+                <div class="convergence-bar-labels">
+
+                    <span>
+                        PRE-CONVERGENCE
+                    </span>
+
+                    <span>
+                        CONVERGENCE
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- WORLD STATUS -->
+        <div class="convergence-section">
+
+            <div class="convergence-section-title">
+
+                <span>
+                    SYSTEM / WORLD STATUS
+                </span>
+
+                <h2>
+                    CURRENT CONDITION
+                </h2>
+
+            </div>
+
+
+            <div class="convergence-world-grid">
+
+
+                <!-- ISLAND -->
+                <div class="convergence-system-card">
+
+                    <div class="system-card-header">
+
+                        <span class="system-card-index">
+                            WORLD / 01
+                        </span>
+
+                        <span class="system-card-status danger">
+                            CRITICAL
+                        </span>
+
+                    </div>
+
+                    <h2>
+                        THE ISLAND
+                    </h2>
+
+                    <p>
+                        THE ISLAND HAS BEEN TAKEN OVER BY THE
+                        HALLOW KING. THE OLD SEAL SYSTEM HAS
+                        COLLAPSED AND THE ISLAND IS NO LONGER
+                        STABLE.
+                    </p>
+
+
+                    <div class="system-stat">
+
+                        <div class="system-stat-top">
+
+                            <span>
+                                ISLAND STABILITY
+                            </span>
+
+                            <strong id="island-stability">
+                                CRITICAL
+                            </strong>
+
+                        </div>
+
+                        <div class="small-progress">
+
+                            <div id="island-stability-bar" style="width: 15%;"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="system-stat">
+
+                        <div class="system-stat-top">
+
+                            <span>
+                                HALLOW KING CONTROL
+                            </span>
+
+                            <strong>
+                                100%
+                            </strong>
+
+                        </div>
+
+                        <div class="small-progress">
+
+                            <div style="width: 100%;"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HALLOWED REALM -->
+                <div class="convergence-system-card hallowed-card">
+
+                    <div class="system-card-header">
+
+                        <span class="system-card-index">
+                            WORLD / 02
+                        </span>
+
+                        <span class="system-card-status danger">
+                            BREACHES ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h2>
+                        THE HALLOWED REALM
+                    </h2>
+
+                    <p>
+                        CRACKS INTO THE HALLOWED REALM HAVE APPEARED
+                        ACROSS THE ISLAND. THE BOUNDARY REMAINS INTACT,
+                        BUT ITS INTEGRITY IS NO LONGER CERTAIN.
+                    </p>
+
+
+                    <div class="system-stat">
+
+                        <div class="system-stat-top">
+
+                            <span>
+                                REALM INFLUENCE
+                            </span>
+
+                            <strong id="'realm-influence">
+                                HIGH
+                            </strong>
+
+                        </div>
+
+                        <div class="small-progress">
+
+                            <div id="realm-influence-bar" style="width: 80%;"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="system-stat">
+
+                        <div class="system-stat-top">
+
+                            <span>
+                                CONVERGENCE
+                            </span>
+
+                            <strong id="realm-convergence">
+                                0%
+                            </strong>
+
+                        </div>
+
+                        <div class="small-progress">
+
+                            <div id="realm-convergence-bar" style="width: 0%;"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- EFFECTS -->
+        <div class="convergence-section">
+
+            <div class="convergence-section-title">
+
+                <span>
+                    SYSTEM / EFFECTS
+                </span>
+
+                <h2>
+                    ACTIVE CONDITIONS
+                </h2>
+
+            </div>
+
+
+            <div class="effects-grid">
+
+
+                <!-- HALLOW KING -->
+                <div class="effect-card">
+
+                    <div class="effect-top">
+
+                        <span class="effect-location">
+                            ISLAND
+                        </span>
+
+                        <span class="effect-status warning">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        HALLOW KING CONTROL
+                    </h3>
+
+                    <p>
+                        THE HALLOW KING HAS TAKEN CONTROL OF
+                        THE ISLAND. HIS INFLUENCE IS NO LONGER
+                        CONTAINED BY THE OLD SEAL SYSTEM.
+                    </p>
+
+                </div>
+
+
+                <!-- CATHEDRAL BEACON -->
+                <div class="effect-card">
+
+                    <div class="effect-top">
+
+                        <span class="effect-location">
+                            CATHEDRAL
+                        </span>
+
+                        <span class="effect-status warning">
+                            DESTROYED
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        CATHEDRAL BEACON
+                    </h3>
+
+                    <p>
+                        THE CATHEDRAL BEACON HAS BEEN DESTROYED.
+                        THE BARRIER THAT ONCE HELPED CONTAIN
+                        THE HALLOW KING HAS FAILED.
+                    </p>
+
+                </div>
+
+
+                <!-- REALM CRACKS -->
+                <div class="effect-card">
+
+                    <div class="effect-top">
+
+                        <span class="effect-location">
+                            ISLAND
+                        </span>
+
+                        <span class="effect-status warning">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        HALLOWED CRACKS
+                    </h3>
+
+                    <p>
+                        CRACKS CONNECTING THE ISLAND TO THE
+                        HALLOWED REALM ARE NOW PRESENT.
+                        THEIR ORIGIN AND PURPOSE REMAIN UNKNOWN.
+                    </p>
+
+                </div>
+
+
+                <!-- SEAL SYSTEM -->
+                <div class="effect-card">
+
+                    <div class="effect-top">
+
+                        <span class="effect-location">
+                            SEAL SYSTEM
+                        </span>
+
+                        <span class="effect-status offline">
+                            OFFLINE
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        SEAL NETWORK
+                    </h3>
+
+                    <p>
+                        THE SEAL SYSTEM HAS BEEN DESTROYED.
+                        NO FUNCTIONAL SEAL NETWORK REMAINS
+                        TO PROTECT THE ISLAND.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROGRESSION -->
+        <div class="convergence-section">
+
+            <div class="convergence-section-title">
+
+                <span>
+                    SYSTEM / PROGRESSION
+                </span>
+
+                <h2>
+                    CONVERGENCE PROGRESSION
+                </h2>
+
+            </div>
+
+
+            <div class="stage-list">
+
+
+                <!-- STAGE 01 -->
+                <div class="convergence-stage active">
+
+                    <span class="stage-number">
+                        01
+                    </span>
+
+                    <div class="stage-content">
+
+                        <div class="stage-heading">
+
+                            <h3>
+                                PRE-CONVERGENCE
+                            </h3>
+
+                            <span>
+                                CURRENT
+                            </span>
+
+                        </div>
+
+                        <p>
+                            THE ISLAND IS COMPROMISED AND UNDER
+                            THE HALLOW KING'S CONTROL, BUT THE
+                            TWO WORLDS HAVE NOT YET BEGUN TO MERGE.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STAGE 02 -->
+                <div class="convergence-stage">
+
+                    <span class="stage-number">
+                        02
+                    </span>
+
+                    <div class="stage-content">
+
+                        <div class="stage-heading">
+
+                            <h3>
+                                DISTURBANCE
+                            </h3>
+
+                            <span>
+                                PENDING
+                            </span>
+
+                        </div>
+
+                        <p>
+                            THE BOUNDARY BETWEEN THE TWO WORLDS
+                            BEGINS TO SHOW SIGNIFICANT INSTABILITY.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STAGE 03 -->
+                <div class="convergence-stage">
+
+                    <span class="stage-number">
+                        03
+                    </span>
+
+                    <div class="stage-content">
+
+                        <div class="stage-heading">
+
+                            <h3>
+                                BREACH
+                            </h3>
+
+                            <span>
+                                PENDING
+                            </span>
+
+                        </div>
+
+                        <p>
+                            CONNECTIONS BETWEEN THE ISLAND AND
+                            THE HALLOWED REALM BEGIN TO WIDEN.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STAGE 04 -->
+                <div class="convergence-stage">
+
+                    <span class="stage-number">
+                        04
+                    </span>
+
+                    <div class="stage-content">
+
+                        <div class="stage-heading">
+
+                            <h3>
+                                COLLAPSE
+                            </h3>
+
+                            <span>
+                                PENDING
+                            </span>
+
+                        </div>
+
+                        <p>
+                            THE BOUNDARY BEGINS TO FAIL AS THE
+                            TWO WORLDS MOVE TOWARD DIRECT OVERLAP.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STAGE 05 -->
+                <div class="convergence-stage classified-stage">
+
+                    <span class="stage-number">
+                        05
+                    </span>
+
+                    <div class="stage-content">
+
+                        <div class="stage-heading">
+
+                            <h3>
+                                CONVERGENCE
+                            </h3>
+
+                            <span>
+                                CLASSIFIED
+                            </span>
+
+                        </div>
+
+                        <p>
+                            THE FINAL STATE OF THE TWO WORLDS
+                            REMAINS CLASSIFIED.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONNECTIONS -->
+        <div class="convergence-section">
+
+            <div class="convergence-section-title">
+
+                <span>
+                    SYSTEM / CONNECTIONS
+                </span>
+
+                <h2>
+                    KNOWN CONNECTIONS
+                </h2>
+
+            </div>
+
+
+            <div class="location-grid">
+
+
+                <!-- FOUNTAIN -->
+                <div class="connection-card">
+
+                    <span>
+                        LOCATION / 01
+                    </span>
+
+                    <h3>
+                        FOUNTAIN
+                    </h3>
+
+                    <p>
+                        STRONGEST KNOWN CONNECTION
+                        TO THE HALLOWED REALM.
+                    </p>
+
+                    <div class="connection-line">
+
+                        <div style="width: 100%;"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CATHEDRAL -->
+                <div class="connection-card">
+
+                    <span>
+                        LOCATION / 02
+                    </span>
+
+                    <h3>
+                        CATHEDRAL
+                    </h3>
+
+                    <p>
+                        FORMER PRISON OF THE HALLOW KING.
+                        BEACON DESTROYED.
+                    </p>
+
+                    <div class="connection-line">
+
+                        <div style="width: 90%;"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CASTLE -->
+                <div class="connection-card">
+
+                    <span>
+                        LOCATION / 03
+                    </span>
+
+                    <h3>
+                        CASTLE
+                    </h3>
+
+                    <p>
+                        STRUCTURE PULLED FROM THE HALLOWED
+                        REALM ONTO THE ISLAND.
+                    </p>
+
+                    <div class="connection-line">
+
+                        <div style="width: 75%;"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CRIMSON FOREST -->
+                <div class="connection-card">
+
+                    <span>
+                        LOCATION / 04
+                    </span>
+
+                    <h3>
+                        CRIMSON FOREST
+                    </h3>
+
+                    <p>
+                        ASSOCIATED WITH THE CRIMSON LORD
+                        AND THE HALLOW KING'S RETURN.
+                    </p>
+
+                    <div class="connection-line">
+
+                        <div style="width: 60%;"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- WARNING -->
+        <div class="convergence-warning">
+
+            <span class="warning-label">
+                SYSTEM WARNING
+            </span>
+
+            <h2>
+                THE CONVERGENCE HAS NOT BEGUN.
+            </h2>
+
+            <p>
+                THE ISLAND HAS ALREADY FALLEN UNDER THE
+                HALLOW KING'S CONTROL. THE CATHEDRAL BEACON
+                IS DESTROYED, THE SEAL SYSTEM HAS FAILED,
+                AND CRACKS TO THE HALLOWED REALM ARE ACTIVE.
+            </p>
+
+            <p>
+                THE BOUNDARY STILL EXISTS.
+                FOR NOW.
+            </p>
+
+        </div>
 
     </div>
 
@@ -2332,114 +3082,179 @@
 
 <!-- =====================================================
      ISLAND
-     STATIC ISLAND ARCHIVE
+     PHASE 3 — ISLAND EXPLORER
      ===================================================== -->
 
 <section id="island" class="page">
 
-    <div class="section-header">
 
-        <span class="section-label">
-            THE ISLAND / VISUAL ARCHIVE
+<div class="section-header">
+
+    <span class="section-label">
+        THE ISLAND / EXPLORER
+    </span>
+
+    <h1>
+        ISLAND
+    </h1>
+
+    <p>
+        EXPLORE THE KNOWN LOCATIONS OF THE ISLAND.
+    </p>
+
+</div>
+
+
+<!-- =================================================
+     ISLAND OVERVIEW
+     ================================================= -->
+
+<div class="island-visual">
+
+    <div class="island-visual-header">
+
+        <div>
+            <span>
+                ISLAND EXPLORER
+            </span>
+
+            <h2>
+                THE ISLAND
+            </h2>
+        </div>
+
+        <div class="island-visual-status">
+            HALLOWEEN 2026
+        </div>
+
+    </div>
+
+
+    <div class="island-main-picture">
+
+        <img
+            src="island-map.jpg"
+            alt="The Game 2026 Island">
+
+    </div>
+
+
+    <div class="island-description">
+
+        <span>
+            EXPLORER RECORD
         </span>
 
-        <h1>
-            ISLAND
-        </h1>
-
         <p>
-            THE ISLAND OF THE GAME 2026.
+            The central location of The Game 2026.
+            Explore the island and investigate its
+            known locations.
         </p>
 
     </div>
 
-
-    <!-- =================================================
-         OFFICIAL ISLAND IMAGE
-         ================================================= -->
-
-    <div class="island-visual">
-
-        <div class="island-visual-header">
-
-            <div>
-                <span>
-                    OFFICIAL ISLAND
-                </span>
-
-                <h2>
-                    THE ISLAND
-                </h2>
-            </div>
-
-            <div class="island-visual-status">
-                HALLOWEEN 2026
-            </div>
-
-        </div>
+</div>
 
 
-        <div class="island-main-picture">
+<!-- =================================================
+     EXPLORER STATUS
+     ================================================= -->
 
-            <img
-                src="island-map.jpg"
-                alt="The Game 2026 Island">
+<div class="island-explorer-status">
 
-        </div>
+    <div class="island-status-item">
 
+        <small>
+            LOCATIONS DISCOVERED
+        </small>
 
-        <div class="island-description">
-
-            <span>
-                ISLAND RECORD
-            </span>
-
-            <p>
-                The central location of The Game 2026.
-                Explore the locations below to view the
-                individual areas of the island.
-            </p>
-
-        </div>
+        <strong id="island-discovered-count">
+            0 / 7
+        </strong>
 
     </div>
 
 
-    <!-- =================================================
-         LOCATIONS
-         ================================================= -->
+    <div class="island-status-item">
 
-    <div class="island-spots">
+        <small>
+            EXPLORER STATUS
+        </small>
 
-        <div class="island-spots-header">
+        <strong id="island-explorer-state">
+            INITIALIZING
+        </strong>
 
-            <div>
+    </div>
 
-                <span class="section-label">
-                    LOCATION ARCHIVE
-                </span>
 
-                <h2>
-                    ISLAND LOCATIONS
-                </h2>
+    <div class="island-status-item">
 
-            </div>
+        <small>
+            ISLAND CONDITION
+        </small>
 
-            <span class="island-spots-count">
-                06 LOCATIONS
+        <strong id="island-explorer-condition">
+            CRITICAL
+        </strong>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     LOCATION ARCHIVE
+     ================================================= -->
+
+<div class="island-spots">
+
+    <div class="island-spots-header">
+
+        <div>
+
+            <span class="section-label">
+                EXPLORER DATABASE
             </span>
+
+            <h2>
+                ISLAND LOCATIONS
+            </h2>
 
         </div>
 
+        <span
+            class="island-spots-count"
+            id="island-location-count"
+        >
+            07 LOCATIONS
+        </span>
 
-        <div class="island-spots-grid">
+    </div>
 
 
-            <!-- =========================================
-                 LOCATION 01
-                 ========================================= -->
+    <div
+        class="island-spots-grid"
+        id="island-explorer-grid"
+    >
 
-            <article class="island-spot">
+
+        <!-- =========================================
+             LOCATION 01
+             ========================================= -->
+
+        <article
+            class="island-spot island-explorer-location"
+            data-location="cathedral"
+            data-location-id="001"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Cathedral archive"
+            >
 
                 <div class="island-spot-image">
 
@@ -2453,6 +3268,7 @@
 
                 </div>
 
+
                 <div class="island-spot-info">
 
                     <small>
@@ -2464,21 +3280,46 @@
                     </h3>
 
                     <p>
-                        The prison where the Hallow King was
-                        held and one of the most important
-                        locations on the island.
+                        The prison where the Hallow King
+                        was held and one of the most
+                        important locations on the island.
                     </p>
+
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
 
                 </div>
 
-            </article>
+            </button>
+
+        </article>
 
 
-            <!-- =========================================
-                 LOCATION 02
-                 ========================================= -->
+        <!-- =========================================
+             LOCATION 02
+             ========================================= -->
 
-            <article class="island-spot">
+        <article
+            class="island-spot island-explorer-location"
+            data-location="volcano"
+            data-location-id="002"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Volcano archive"
+            >
 
                 <div class="island-spot-image">
 
@@ -2492,6 +3333,7 @@
 
                 </div>
 
+
                 <div class="island-spot-info">
 
                     <small>
@@ -2503,20 +3345,46 @@
                     </h3>
 
                     <p>
-                        The location that replaced the former
-                        Forest Beacon during the Summer storyline.
+                        The location that replaced the
+                        former Forest Beacon during the
+                        Summer storyline.
                     </p>
+
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
 
                 </div>
 
-            </article>
+            </button>
+
+        </article>
 
 
-            <!-- =========================================
-                 LOCATION 03
-                 ========================================= -->
+        <!-- =========================================
+             LOCATION 03
+             ========================================= -->
 
-            <article class="island-spot">
+        <article
+            class="island-spot island-explorer-location"
+            data-location="fountain"
+            data-location-id="003"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Fountain archive"
+            >
 
                 <div class="island-spot-image">
 
@@ -2530,6 +3398,7 @@
 
                 </div>
 
+
                 <div class="island-spot-info">
 
                     <small>
@@ -2541,20 +3410,46 @@
                     </h3>
 
                     <p>
-                        The strongest known connection between
-                        the island and the Hallowed Realm.
+                        The strongest known connection
+                        between the island and the
+                        Hallowed Realm.
                     </p>
+
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
 
                 </div>
 
-            </article>
+            </button>
+
+        </article>
 
 
-            <!-- =========================================
-                 LOCATION 04
-                 ========================================= -->
+        <!-- =========================================
+             LOCATION 04
+             ========================================= -->
 
-            <article class="island-spot">
+        <article
+            class="island-spot island-explorer-location"
+            data-location="crimson-forest"
+            data-location-id="004"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Crimson Forest archive"
+            >
 
                 <div class="island-spot-image">
 
@@ -2567,6 +3462,7 @@
                     </span>
 
                 </div>
+
 
                 <div class="island-spot-info">
 
@@ -2583,16 +3479,41 @@
                         appeared during Summer 2026.
                     </p>
 
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
+
                 </div>
 
-            </article>
+            </button>
+
+        </article>
 
 
-            <!-- =========================================
-                 LOCATION 05
-                 ========================================= -->
+        <!-- =========================================
+             LOCATION 05
+             ========================================= -->
 
-            <article class="island-spot">
+        <article
+            class="island-spot island-explorer-location"
+            data-location="sealkeeper-tower"
+            data-location-id="005"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Sealkeeper Tower archive"
+            >
 
                 <div class="island-spot-image">
 
@@ -2606,6 +3527,7 @@
 
                 </div>
 
+
                 <div class="island-spot-info">
 
                     <small>
@@ -2617,20 +3539,45 @@
                     </h3>
 
                     <p>
-                        The tower associated with the last
-                        remaining Sealkeeper.
+                        The tower associated with the
+                        last remaining Sealkeeper.
                     </p>
+
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
 
                 </div>
 
-            </article>
+            </button>
+
+        </article>
 
 
-            <!-- =========================================
-                 LOCATION 06
-                 ========================================= -->
+        <!-- =========================================
+             LOCATION 06
+             ========================================= -->
 
-            <article class="island-spot">
+        <article
+            class="island-spot island-explorer-location"
+            data-location="haunted-house"
+            data-location-id="006"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Haunted House archive"
+            >
 
                 <div class="island-spot-image">
 
@@ -2643,6 +3590,7 @@
                     </span>
 
                 </div>
+
 
                 <div class="island-spot-info">
 
@@ -2659,29 +3607,54 @@
                         during Halloween 2026.
                     </p>
 
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
+
                 </div>
 
-            </article>
+            </button>
+
+        </article>
 
 
-            <!-- =========================================
-                 LOCATION 07
-                 COPY THIS ENTIRE CARD FOR MORE
-                 ========================================= -->
+        <!-- =========================================
+             LOCATION 07
+             ========================================= -->
 
-            <article class="island-spot">
+        <article
+            class="island-spot island-explorer-location"
+            data-location="sealkeeper-fortress"
+            data-location-id="007"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Fortress of the Sealkeeper archive"
+            >
 
                 <div class="island-spot-image">
 
                     <img
                         src="location-07.jpg"
-                        alt="Location 07">
+                        alt="The Fortress of the Sealkeeper">
 
                     <span>
                         07
                     </span>
 
                 </div>
+
 
                 <div class="island-spot-info">
 
@@ -2694,19 +3667,145 @@
                     </h3>
 
                     <p>
-                        The last place where the Sealkeeper is safe from The Hallow King.
+                        The last place where the Sealkeeper
+                        is safe from the Hallow King.
                     </p>
+
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
 
                 </div>
 
-            </article>
+            </button>
 
+        </article>
+
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     LOCATION RECORD
+     ================================================= -->
+
+<div
+    id="island-location-record"
+    class="island-location-record"
+    aria-hidden="true"
+>
+
+    <div class="island-record-header">
+
+        <div>
+
+            <span id="island-record-label">
+                LOCATION RECORD
+            </span>
+
+            <h2 id="island-record-title">
+                LOCATION
+            </h2>
+
+        </div>
+
+
+        <button
+            id="island-record-close"
+            type="button"
+            aria-label="Close location record"
+        >
+            CLOSE
+        </button>
+
+    </div>
+
+
+    <div class="island-record-content">
+
+        <div class="island-record-image">
+
+            <img
+                id="island-record-image"
+                src=""
+                alt=""
+            >
+
+        </div>
+
+
+        <div class="island-record-information">
+
+            <div class="island-record-status">
+
+                <span>
+                    STATUS
+                </span>
+
+                <strong id="island-record-status">
+                    ARCHIVED
+                </strong>
+
+            </div>
+
+
+            <div class="island-record-section">
+
+                <span>
+                    DESCRIPTION
+                </span>
+
+                <p id="island-record-description">
+                    No record selected.
+                </p>
+
+            </div>
+
+
+            <div class="island-record-section">
+
+                <span>
+                    ARCHIVE NOTE
+                </span>
+
+                <p id="island-record-note">
+                    No additional information available.
+                </p>
+
+            </div>
+
+
+            <div class="island-record-section">
+
+                <span>
+                    LOCATION ID
+                </span>
+
+                <p id="island-record-id">
+                    ---
+                </p>
+
+            </div>
 
         </div>
 
     </div>
 
+</div>
+
+
 </section>
+
 
 <!-- =====================================================
      ARCHIVE
