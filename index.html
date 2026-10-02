@@ -1,0 +1,5271 @@
+<html lang="en"><head>
+
+    <link rel="icon" href="mainlogo.png">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>THE GAME 2026 — Official Website</title>
+
+    <meta name="description" content="The official website of The Game 2026. Discover the story, events, quests, characters, island, and everything surrounding The Game.">
+
+    <meta property="og:title" content="THE GAME 2026 — Official Website">
+    <meta property="og:description" content="The official website of The Game 2026. Discover the story, events, quests, characters, island, and everything surrounding The Game.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thegame2026.github.io/TheGame2026/">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="previous-events.css">
+
+</head>
+
+
+
+<body>
+    
+    <!-- =====================================================
+     THE GAME 2026 — FINALE / QUEST 10 OVERRIDE
+     ===================================================== -->
+
+<style>
+
+#convergence .finale-coming-soon {
+    width: min(850px, calc(100% - 40px));
+    margin: 70px auto 100px;
+    padding: 70px 40px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    background: var(--c-panel);
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-sm);
+
+    position: relative;
+    overflow: hidden;
+}
+
+#convergence .finale-coming-soon::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: var(--c-crimson);
+}
+
+#convergence .finale-label {
+    display: block;
+
+    margin-bottom: 18px;
+
+    color: var(--c-crimson-bright);
+
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .2em;
+    text-transform: uppercase;
+}
+
+#convergence .finale-coming-soon h2 {
+    margin: 0;
+
+    color: var(--c-white);
+
+    font-size: clamp(34px, 6vw, 58px);
+    font-weight: 700;
+
+    line-height: 1;
+    letter-spacing: -.04em;
+}
+
+#convergence .finale-coming-soon p {
+    max-width: 520px;
+
+    margin: 24px auto 0;
+
+    color: var(--c-text-dim);
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+#convergence .finale-status {
+    display: inline-block;
+
+    margin-top: 30px;
+    padding: 9px 15px;
+
+    color: var(--c-text-faint);
+
+    background: transparent;
+
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-xs);
+
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    #convergence .finale-coming-soon {
+        width: calc(100% - 24px);
+        margin: 45px auto 70px;
+        padding: 50px 22px;
+    }
+
+}
+
+</style>
+
+
+<script>
+
+(function () {
+
+    function lockFinale() {
+
+        const finale = document.getElementById("convergence");
+
+        if (!finale) return;
+
+
+        /* Don't duplicate the replacement */
+
+        if (finale.querySelector(".finale-coming-soon")) {
+            return;
+        }
+
+
+        /* Hide the original Finale contents */
+
+        Array.from(finale.children).forEach(function (child) {
+            child.style.display = "none";
+        });
+
+
+        /* Create locked Finale */
+
+        const box = document.createElement("div");
+
+        box.className = "finale-coming-soon";
+
+        box.innerHTML = `
+            <span class="finale-label">
+                QUEST 10 / FINAL EVENT
+            </span>
+
+            <h2>
+                COMING SOON
+            </h2>
+
+            <p>
+                The final chapter of The Game 2026
+                has not yet been revealed.
+            </p>
+
+            <span class="finale-status">
+                CLASSIFIED / LOCKED
+            </span>
+        `;
+
+        finale.appendChild(box);
+
+    }
+
+
+    /* Run after the page has loaded */
+
+    if (document.readyState === "loading") {
+
+        document.addEventListener("DOMContentLoaded", lockFinale);
+
+    } else {
+
+        lockFinale();
+
+    }
+
+
+    /* Re-check when navigating between pages */
+
+    document.addEventListener("click", function () {
+
+        setTimeout(lockFinale, 100);
+
+    }, true);
+
+})();
+
+</script>
+
+<script>
+/* =========================================================
+   ARCHIVE OVERRIDE
+   ========================================================= */
+
+(function () {
+
+    const archiveData = {
+        "seal-system": ["HISTORY", "THE SEAL SYSTEM", "The seven Seal Statues were destroyed during Summer 2026. The Seal system no longer exists during Halloween 2026."],
+        "killer-bunny-history": ["HISTORY", "THE KILLER BUNNY", "During Easter 2026, the Killer Bunny entered through the Fountain and targeted the Forest Beacon."],
+        "crimson-lord-history": ["HISTORY", "THE CRIMSON LORD", "During Summer 2026, the Crimson Lord appeared within the Crimson Forest."],
+        "awakening": ["HISTORY", "THE AWAKENING", "The Crimson Lord woke the Hallow King, setting the stage for Halloween 2026."],
+        "hallow-king": ["ENTITY", "THE HALLOW KING", "The Hallow King is the ruler of the Hallowed Realm. During Halloween 2026, he seeks to merge both worlds."],
+        "killer-bunny": ["ENTITY", "KILLER BUNNY", "A supernatural antagonist first encountered during Easter 2026."],
+        "crimson-lord": ["ENTITY", "CRIMSON LORD", "A supernatural entity associated with the Crimson Forest."],
+        "captain-rowan": ["CHARACTER", "CAPTAIN ROWAN", "An established quest character involved in The Game 2026 storyline."],
+        "sealkeeper": ["CHARACTER", "THE SEALKEEPER", "The last known Sealkeeper, holding knowledge about the island's forgotten history."],
+        "fountain": ["LOCATION", "THE FOUNTAIN", "The Fountain has the strongest known connection between the island and the Hallowed Realm."],
+        "cathedral": ["LOCATION", "CATHEDRAL", "The Cathedral was the prison of the Hallow King."],
+        "crimson-forest": ["LOCATION", "CRIMSON FOREST", "The Crimson Forest became associated with the Crimson Lord during Summer 2026."],
+        "volcano": ["LOCATION", "VOLCANO", "The Volcano occupies the western portion of the island."],
+        "sealkeeper-tower": ["LOCATION", "SEALKEEPER TOWER", "The tower associated with the last known Sealkeeper."],
+        "haunted-house": ["LOCATION", "HAUNTED HOUSE", "An established location on the island."],
+        "hallowed-convergence": ["FINALE", "THE HALLOWED CONVERGENCE", "Quest 10 and the Halloween 2026 finale. The players must activate and defend the three Severing Anchors, sever the Hallow King's connection to the world, and survive the final confrontation."],
+        "severing-anchors": ["FINALE", "THE SEVERING ANCHORS", "Three Severing Anchors are established during Quest 9 and used during Quest 10 to sever the Hallow King's connection to the world."]
+    };
+
+
+    function setupArchive() {
+
+        const viewer = document.getElementById("archive-viewer");
+
+        if (!viewer) return;
+
+        const title = document.getElementById("archive-document-title");
+        const category = document.getElementById("archive-document-category");
+        const content = document.getElementById("archive-document-content");
+
+
+        /* =====================================================
+           CREATE CLOSE BUTTON IF IT DOESN'T EXIST
+           ===================================================== */
+
+        let close = document.getElementById("archive-close");
+
+        if (!close) {
+
+            const header =
+                viewer.querySelector(".archive-viewer-header");
+
+            close = document.createElement("button");
+
+            close.id = "archive-close";
+            close.type = "button";
+            close.textContent = "CLOSE";
+
+            if (header) {
+                header.appendChild(close);
+            } else {
+                viewer.insertBefore(close, viewer.firstChild);
+            }
+        }
+
+
+        /* =====================================================
+           OPEN CARDS
+           ===================================================== */
+
+        document.querySelectorAll(".archive-file").forEach(card => {
+
+            if (card.dataset.archiveOverride)
+                return;
+
+            card.dataset.archiveOverride = "true";
+
+            card.addEventListener("click", function (e) {
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                const id = this.dataset.archive;
+                const data = archiveData[id];
+
+                if (!data) return;
+
+                if (title)
+                    title.textContent = data[1];
+
+                if (category)
+                    category.textContent = data[0];
+
+                if (content)
+                    content.textContent = data[2];
+
+                viewer.classList.add("visible");
+
+                viewer.style.display = "block";
+                viewer.style.visibility = "visible";
+                viewer.style.opacity = "1";
+                viewer.style.pointerEvents = "auto";
+
+            });
+
+        });
+
+
+        /* =====================================================
+           CLOSE
+           ===================================================== */
+
+        close.onclick = function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            viewer.classList.remove("visible");
+
+            viewer.style.display = "none";
+            viewer.style.visibility = "hidden";
+            viewer.style.opacity = "0";
+            viewer.style.pointerEvents = "none";
+
+        };
+
+
+        /* =====================================================
+           START CLOSED
+           ===================================================== */
+
+        viewer.classList.remove("visible");
+
+        viewer.style.display = "none";
+        viewer.style.visibility = "hidden";
+        viewer.style.opacity = "0";
+        viewer.style.pointerEvents = "none";
+
+    }
+
+
+    /* Run immediately */
+    setupArchive();
+
+
+    /* Run again after navigation changes page visibility */
+    setTimeout(setupArchive, 300);
+    setTimeout(setupArchive, 1000);
+
+})();
+</script>
+
+<!-- =====================================================
+     CORRUPTED PUMPKIN
+     ===================================================== -->
+
+<div id="game-pumpkin" class="game-pumpkin" aria-hidden="true">
+
+    <div class="pumpkin-glow"></div>
+
+    <div class="pumpkin">
+
+        <div class="pumpkin-ridge ridge-left"></div>
+        <div class="pumpkin-ridge ridge-center"></div>
+        <div class="pumpkin-ridge ridge-right"></div>
+
+        <div class="pumpkin-face">
+
+            <div class="pumpkin-eye eye-left"></div>
+            <div class="pumpkin-eye eye-right"></div>
+
+            <div class="pumpkin-mouth">
+                <span></span>
+                <span></span>
+                <span></span>
+
+    <script>
+    // your existing JavaScript
+    // ...
+    
+</script>
+
+</script>
+                <span></span>
+            </div>
+
+        </div>
+
+        <div class="pumpkin-stem"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CONVERGENCE CORRUPTION SYSTEM
+     ===================================================== -->
+
+<div id="convergence-corruption" style="--corruption: 0;">
+
+    <div id="corruption-vignette"></div>
+
+    <div id="hallowed-message">
+
+        <div class="hallowed-message-line">
+            CONNECTION ESTABLISHED
+        </div>
+
+        <div class="hallowed-message-main">
+            HALLOWED REALM
+        </div>
+
+        <div class="hallowed-message-status">
+            CONNECTION:
+            <span>STABLE</span>
+        </div>
+
+    </div>
+
+
+    <div id="convergence-final">
+
+        <div class="final-glow"></div>
+
+        <div class="final-eyes">
+            <div></div>
+            <div></div>
+        </div>
+
+        <div class="final-title">
+            THE CONVERGENCE
+        </div>
+
+        <div class="final-subtitle">
+            CONNECTION ESTABLISHED
+        </div>
+
+        <div class="final-data">
+            HALLOWED REALM: CONNECTED<br>
+            SEVERING PROTOCOL: REQUIRED
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SYSTEM TRANSMISSION
+     ===================================================== -->
+
+<div id="system-transmission" class="system-transmission">
+
+    <div class="transmission-top">
+
+        <span class="transmission-label">
+            INCOMING TRANSMISSION
+        </span>
+
+        <button id="transmission-close" aria-label="Close transmission">
+            ×
+        </button>
+
+    </div>
+
+    <div class="transmission-line"></div>
+
+    <div id="transmission-message" class="transmission-message">
+        —
+    </div>
+
+    <div class="transmission-source">
+        SOURCE:
+        <span id="transmission-source">
+            UNKNOWN
+        </span>
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     HALLOWEEN PARTICLE ATMOSPHERE
+     ===================================================== -->
+
+<div id="particle-layer" aria-hidden="true">
+<span class="particle" style="left: 69.9822%; animation-delay: 8.55604s; animation-duration: 18.9295s;"></span><span class="particle" style="left: 79.6416%; animation-delay: 7.67732s; animation-duration: 13.2993s;"></span><span class="particle" style="left: 43.2274%; animation-delay: 4.85114s; animation-duration: 17.4448s;"></span><span class="particle" style="left: 16.4964%; animation-delay: 9.80489s; animation-duration: 10.2718s;"></span><span class="particle" style="left: 84.5305%; animation-delay: 8.15843s; animation-duration: 8.22967s;"></span><span class="particle" style="left: 81.3378%; animation-delay: 0.612205s; animation-duration: 9.69629s;"></span><span class="particle" style="left: 53.8755%; animation-delay: 7.7342s; animation-duration: 9.32687s;"></span><span class="particle" style="left: 66.0884%; animation-delay: 0.264011s; animation-duration: 14.8756s;"></span><span class="particle" style="left: 30.4105%; animation-delay: 9.2584s; animation-duration: 8.92033s;"></span><span class="particle" style="left: 45.7317%; animation-delay: 1.04723s; animation-duration: 11.9911s;"></span><span class="particle" style="left: 95.6894%; animation-delay: 1.23702s; animation-duration: 14.2263s;"></span><span class="particle" style="left: 19.3364%; animation-delay: 9.86199s; animation-duration: 10.0364s;"></span><span class="particle" style="left: 44.1644%; animation-delay: 2.14673s; animation-duration: 9.8797s;"></span><span class="particle" style="left: 51.2826%; animation-delay: 7.55201s; animation-duration: 13.2212s;"></span><span class="particle" style="left: 63.7584%; animation-delay: 3.72539s; animation-duration: 11.0865s;"></span><span class="particle" style="left: 16.8541%; animation-delay: 1.00442s; animation-duration: 8.49273s;"></span><span class="particle" style="left: 77.5914%; animation-delay: 0.685052s; animation-duration: 17.8773s;"></span><span class="particle" style="left: 21.9598%; animation-delay: 1.16484s; animation-duration: 17.0532s;"></span><span class="particle" style="left: 61.124%; animation-delay: 4.65128s; animation-duration: 13.7217s;"></span><span class="particle" style="left: 27.8906%; animation-delay: 0.474885s; animation-duration: 17.11s;"></span><span class="particle" style="left: 81.682%; animation-delay: 6.69101s; animation-duration: 19.5054s;"></span><span class="particle" style="left: 16.6999%; animation-delay: 0.186676s; animation-duration: 14.0531s;"></span><span class="particle" style="left: 19.0536%; animation-delay: 4.39176s; animation-duration: 14.3705s;"></span><span class="particle" style="left: 64.2839%; animation-delay: 4.64005s; animation-duration: 18.4679s;"></span><span class="particle" style="left: 17.5142%; animation-delay: 4.95404s; animation-duration: 18.9296s;"></span><span class="particle" style="left: 17.5456%; animation-delay: 3.35286s; animation-duration: 19.7341s;"></span><span class="particle" style="left: 57.2348%; animation-delay: 4.93821s; animation-duration: 16.1943s;"></span><span class="particle" style="left: 76.7632%; animation-delay: 1.03359s; animation-duration: 14.0177s;"></span><span class="particle" style="left: 14.0904%; animation-delay: 5.00859s; animation-duration: 13.1897s;"></span><span class="particle" style="left: 1.9475%; animation-delay: 5.74496s; animation-duration: 13.8945s;"></span><span class="particle" style="left: 27.2666%; animation-delay: 6.11114s; animation-duration: 17.893s;"></span><span class="particle" style="left: 3.24955%; animation-delay: 0.951657s; animation-duration: 9.10452s;"></span><span class="particle" style="left: 78.5144%; animation-delay: 8.1353s; animation-duration: 13.2342s;"></span><span class="particle" style="left: 90.8577%; animation-delay: 2.0525s; animation-duration: 16.5205s;"></span><span class="particle" style="left: 44.5381%; animation-delay: 9.03374s; animation-duration: 19.6969s;"></span></div>
+
+
+<!-- =====================================================
+     HALLOW KING / JACK-O'-LANTERN
+     ===================================================== -->
+
+<div id="hallow-king-face" aria-hidden="true">
+
+    <div class="hk-pumpkin">
+
+        <div class="hk-groove groove-left"></div>
+        <div class="hk-groove groove-center"></div>
+        <div class="hk-groove groove-right"></div>
+
+        <div class="hk-eye hk-eye-left"></div>
+        <div class="hk-eye hk-eye-right"></div>
+
+        <div class="hk-nose"></div>
+
+        <div class="hk-mouth">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     BACKGROUND MUSIC
+     ===================================================== -->
+
+<audio id="background-music" src="music.mp3" loop="" preload="auto">
+</audio>
+
+
+<!-- =====================================================
+     NAVIGATION
+     ===================================================== -->
+
+<header class="navbar"> 
+
+    <div class="nav-logo active" data-page="home"> 
+
+        THE GAME <span>2026</span> <small>V1.2.0</small>
+
+    </div>
+
+
+
+    <nav>
+
+       
+<button data-page="home" class="active">
+    HOME
+</button>
+
+<button data-page="convergence-system">
+    CONVERGENCE
+</button>
+
+<button data-page="next-event" class="next-event-btn">
+    <span class="next-event-light"></span>
+    NEXT EVENT
+</button>
+
+<button data-page="story">
+    STORY
+</button>
+
+<button data-page="countdown">
+    COUNTDOWN
+</button>
+
+<button data-page="quests">
+    QUESTS
+</button>
+
+<button data-page="events">
+    EVENTS
+</button>
+
+<button data-page="characters">
+    CHARACTERS
+</button>
+
+<button data-page="island">
+    ISLAND
+</button>
+
+<button data-page="archive">
+    ARCHIVE
+</button>
+
+<button data-page="previous-events">
+    PREVIOUS EVENTS
+</button>
+
+<button data-page="media">
+    MEDIA
+</button>
+
+<button data-page="convergence">
+    FINALE
+</button>
+
+<button data-page="credits">
+    CREDITS
+</button>
+
+
+
+    </nav>
+
+</header>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Game 2026 — Halloween Edition</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="hero" id="hero">
+
+    <!-- Atmospheric layers -->
+    <div class="noise"></div>
+    <div class="vignette"></div>
+    <div class="fog fog-one"></div>
+    <div class="fog fog-two"></div>
+
+    <div class="particles" id="particles"></div>
+
+    <!-- Distant world -->
+    <div class="horizon"></div>
+
+    <div class="cathedral">
+        <div class="tower tower-left"></div>
+        <div class="tower tower-center"></div>
+        <div class="tower tower-right"></div>
+
+        <div class="cathedral-body">
+            <div class="window window-one"></div>
+            <div class="window window-two"></div>
+            <div class="window window-three"></div>
+        </div>
+    </div>
+
+    <!-- The watcher -->
+    <div class="watcher">
+        <div class="watcher-eyes"></div>
+        <div class="watcher-mouth"></div>
+    </div>
+
+    <!-- Main content -->
+    <section class="hero-content">
+
+        <div class="eyebrow">
+            BLACKMAGICCRAFT × THE GAME 2026
+        </div>
+
+        <div class="pretitle">
+            HALLOWEEN EDITION
+        </div>
+
+        <h1>
+            <span>THE GAME</span>
+            <strong>IS COMING</strong>
+        </h1>
+
+        <p class="description">
+            Ten quests. One month. One convergence.
+            The Hallowed Realm is waiting.
+        </p>
+
+        <div class="event-date">
+            <span>SATURDAY</span>
+            <strong>03 OCTOBER 2026</strong>
+            <span>14:00 CEST</span>
+        </div>
+
+        <!-- Countdown -->
+        <div class="countdown" id="countdown">
+
+            <div class="time-unit">
+                <span class="number" id="days">00</span>
+                <span class="label">DAYS</span>
+            </div>
+
+            <div class="separator">:</div>
+
+            <div class="time-unit">
+                <span class="number" id="hours">00</span>
+                <span class="label">HOURS</span>
+            </div>
+
+            <div class="separator">:</div>
+
+            <div class="time-unit">
+                <span class="number" id="minutes">00</span>
+                <span class="label">MINUTES</span>
+            </div>
+
+            <div class="separator">:</div>
+
+            <div class="time-unit">
+                <span class="number" id="seconds">00</span>
+                <span class="label">SECONDS</span>
+            </div>
+
+        </div>
+
+        <div class="status" id="status">
+            THE GATE REMAINS SEALED
+        </div>
+
+    </section>
+
+    <!-- Bottom information -->
+    <div class="hero-bottom">
+
+        <div class="bottom-left">
+            <span class="line"></span>
+            <span>THE HALLOW KING HAS RETURNED</span>
+        </div>
+
+        <div class="bottom-right">
+            <span>QUEST 01</span>
+            <span>10.03.2026</span>
+        </div>
+
+    </div>
+
+    <!-- Corruption effects -->
+    <div class="corruption-rift"></div>
+    <div class="corruption-flash"></div>
+    <div class="scanlines"></div>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+</section>
+
+<!-- =====================================================
+     CONVERGENCE SYSTEM
+     ===================================================== -->
+
+<section id="convergence-system" class="page">
+
+    <div class="convergence-page">
+
+        <!-- HEADER -->
+        <div class="section-header convergence-header">
+
+            <span class="section-label">
+                SYSTEM / CONVERGENCE
+            </span>
+
+            <h1>
+                THE CONVERGENCE
+            </h1>
+
+            <p>
+                THE BOUNDARY BETWEEN WORLDS HAS NOT YET COLLAPSED.
+            </p>
+
+        </div>
+
+
+        <!-- MAIN STATUS -->
+        <div class="convergence-main-panel">
+
+            <div class="convergence-main-top">
+
+                <div>
+
+                    <span class="convergence-mini-label">
+                        CONVERGENCE LEVEL
+                    </span>
+
+                    <div class="convergence-number">
+                        <span id="convergence-level">0</span>
+                        <span class="convergence-percent">%</span>
+                    </div>
+
+                </div>
+
+
+                <div class="convergence-state">
+
+                    <strong id="convergence-state">
+                        PRE-CONVERGENCE
+                    </strong>
+
+                    <span
+                        class="convergence-state-description"
+                        id="convergence-description"
+                    >
+                        THE CONVERGENCE HAS NOT BEGUN.
+                        THE ISLAND IS ALREADY UNDER THE CONTROL
+                        OF THE HALLOW KING.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONVERGENCE BAR -->
+            <div class="convergence-bar-container">
+
+                <div class="convergence-bar">
+
+                    <div
+                        class="convergence-fill"
+                        id="convergence-fill"
+                        style="width: 0%;"
+                    ></div>
+
+                    <span
+                        class="convergence-marker marker-25"
+                    ></span>
+
+                    <span
+                        class="convergence-marker marker-50"
+                    ></span>
+
+                    <span
+                        class="convergence-marker marker-75"
+                    ></span>
+
+                </div>
+
+
+                <div class="convergence-bar-labels">
+
+                    <span>
+                        PRE-CONVERGENCE
+                    </span>
+
+                    <span>
+                        CONVERGENCE
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- WORLD STATUS -->
+        <div class="convergence-section">
+
+            <div class="convergence-section-title">
+
+                <span>
+                    SYSTEM / WORLD STATUS
+                </span>
+
+                <h2>
+                    CURRENT CONDITION
+                </h2>
+
+            </div>
+
+
+            <div class="convergence-world-grid">
+
+
+                <!-- ISLAND -->
+                <div class="convergence-system-card">
+
+                    <div class="system-card-header">
+
+                        <span class="system-card-index">
+                            WORLD / 01
+                        </span>
+
+                        <span class="system-card-status danger">
+                            CRITICAL
+                        </span>
+
+                    </div>
+
+                    <h2>
+                        THE ISLAND
+                    </h2>
+
+                    <p>
+                        THE ISLAND HAS BEEN TAKEN OVER BY THE
+                        HALLOW KING. THE OLD SEAL SYSTEM HAS
+                        COLLAPSED AND THE ISLAND IS NO LONGER
+                        STABLE.
+                    </p>
+
+
+                    <div class="system-stat">
+
+                        <div class="system-stat-top">
+
+                            <span>
+                                ISLAND STABILITY
+                            </span>
+
+                            <strong id="island-stability">
+                                CRITICAL
+                            </strong>
+
+                        </div>
+
+                        <div class="small-progress">
+
+                            <div id="island-stability-bar" style="width: 15%;"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="system-stat">
+
+                        <div class="system-stat-top">
+
+                            <span>
+                                HALLOW KING CONTROL
+                            </span>
+
+                            <strong>
+                                100%
+                            </strong>
+
+                        </div>
+
+                        <div class="small-progress">
+
+                            <div style="width: 100%;"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HALLOWED REALM -->
+                <div class="convergence-system-card hallowed-card">
+
+                    <div class="system-card-header">
+
+                        <span class="system-card-index">
+                            WORLD / 02
+                        </span>
+
+                        <span class="system-card-status danger">
+                            BREACHES ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h2>
+                        THE HALLOWED REALM
+                    </h2>
+
+                    <p>
+                        CRACKS INTO THE HALLOWED REALM HAVE APPEARED
+                        ACROSS THE ISLAND. THE BOUNDARY REMAINS INTACT,
+                        BUT ITS INTEGRITY IS NO LONGER CERTAIN.
+                    </p>
+
+
+                    <div class="system-stat">
+
+                        <div class="system-stat-top">
+
+                            <span>
+                                REALM INFLUENCE
+                            </span>
+
+                            <strong id="'realm-influence">
+                                HIGH
+                            </strong>
+
+                        </div>
+
+                        <div class="small-progress">
+
+                            <div id="realm-influence-bar" style="width: 80%;"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="system-stat">
+
+                        <div class="system-stat-top">
+
+                            <span>
+                                CONVERGENCE
+                            </span>
+
+                            <strong id="realm-convergence">
+                                0%
+                            </strong>
+
+                        </div>
+
+                        <div class="small-progress">
+
+                            <div id="realm-convergence-bar" style="width: 0%;"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- EFFECTS -->
+        <div class="convergence-section">
+
+            <div class="convergence-section-title">
+
+                <span>
+                    SYSTEM / EFFECTS
+                </span>
+
+                <h2>
+                    ACTIVE CONDITIONS
+                </h2>
+
+            </div>
+
+
+            <div class="effects-grid">
+
+
+                <!-- HALLOW KING -->
+                <div class="effect-card">
+
+                    <div class="effect-top">
+
+                        <span class="effect-location">
+                            ISLAND
+                        </span>
+
+                        <span class="effect-status warning">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        HALLOW KING CONTROL
+                    </h3>
+
+                    <p>
+                        THE HALLOW KING HAS TAKEN CONTROL OF
+                        THE ISLAND. HIS INFLUENCE IS NO LONGER
+                        CONTAINED BY THE OLD SEAL SYSTEM.
+                    </p>
+
+                </div>
+
+
+                <!-- CATHEDRAL BEACON -->
+                <div class="effect-card">
+
+                    <div class="effect-top">
+
+                        <span class="effect-location">
+                            CATHEDRAL
+                        </span>
+
+                        <span class="effect-status warning">
+                            DESTROYED
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        CATHEDRAL BEACON
+                    </h3>
+
+                    <p>
+                        THE CATHEDRAL BEACON HAS BEEN DESTROYED.
+                        THE BARRIER THAT ONCE HELPED CONTAIN
+                        THE HALLOW KING HAS FAILED.
+                    </p>
+
+                </div>
+
+
+                <!-- REALM CRACKS -->
+                <div class="effect-card">
+
+                    <div class="effect-top">
+
+                        <span class="effect-location">
+                            ISLAND
+                        </span>
+
+                        <span class="effect-status warning">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        HALLOWED CRACKS
+                    </h3>
+
+                    <p>
+                        CRACKS CONNECTING THE ISLAND TO THE
+                        HALLOWED REALM ARE NOW PRESENT.
+                        THEIR ORIGIN AND PURPOSE REMAIN UNKNOWN.
+                    </p>
+
+                </div>
+
+
+                <!-- SEAL SYSTEM -->
+                <div class="effect-card">
+
+                    <div class="effect-top">
+
+                        <span class="effect-location">
+                            SEAL SYSTEM
+                        </span>
+
+                        <span class="effect-status offline">
+                            OFFLINE
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        SEAL NETWORK
+                    </h3>
+
+                    <p>
+                        THE SEAL SYSTEM HAS BEEN DESTROYED.
+                        NO FUNCTIONAL SEAL NETWORK REMAINS
+                        TO PROTECT THE ISLAND.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROGRESSION -->
+        <div class="convergence-section">
+
+            <div class="convergence-section-title">
+
+                <span>
+                    SYSTEM / PROGRESSION
+                </span>
+
+                <h2>
+                    CONVERGENCE PROGRESSION
+                </h2>
+
+            </div>
+
+
+            <div class="stage-list">
+
+
+                <!-- STAGE 01 -->
+                <div class="convergence-stage active">
+
+                    <span class="stage-number">
+                        01
+                    </span>
+
+                    <div class="stage-content">
+
+                        <div class="stage-heading">
+
+                            <h3>
+                                PRE-CONVERGENCE
+                            </h3>
+
+                            <span>
+                                CURRENT
+                            </span>
+
+                        </div>
+
+                        <p>
+                            THE ISLAND IS COMPROMISED AND UNDER
+                            THE HALLOW KING'S CONTROL, BUT THE
+                            TWO WORLDS HAVE NOT YET BEGUN TO MERGE.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STAGE 02 -->
+                <div class="convergence-stage">
+
+                    <span class="stage-number">
+                        02
+                    </span>
+
+                    <div class="stage-content">
+
+                        <div class="stage-heading">
+
+                            <h3>
+                                DISTURBANCE
+                            </h3>
+
+                            <span>
+                                PENDING
+                            </span>
+
+                        </div>
+
+                        <p>
+                            THE BOUNDARY BETWEEN THE TWO WORLDS
+                            BEGINS TO SHOW SIGNIFICANT INSTABILITY.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STAGE 03 -->
+                <div class="convergence-stage">
+
+                    <span class="stage-number">
+                        03
+                    </span>
+
+                    <div class="stage-content">
+
+                        <div class="stage-heading">
+
+                            <h3>
+                                BREACH
+                            </h3>
+
+                            <span>
+                                PENDING
+                            </span>
+
+                        </div>
+
+                        <p>
+                            CONNECTIONS BETWEEN THE ISLAND AND
+                            THE HALLOWED REALM BEGIN TO WIDEN.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STAGE 04 -->
+                <div class="convergence-stage">
+
+                    <span class="stage-number">
+                        04
+                    </span>
+
+                    <div class="stage-content">
+
+                        <div class="stage-heading">
+
+                            <h3>
+                                COLLAPSE
+                            </h3>
+
+                            <span>
+                                PENDING
+                            </span>
+
+                        </div>
+
+                        <p>
+                            THE BOUNDARY BEGINS TO FAIL AS THE
+                            TWO WORLDS MOVE TOWARD DIRECT OVERLAP.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STAGE 05 -->
+                <div class="convergence-stage classified-stage">
+
+                    <span class="stage-number">
+                        05
+                    </span>
+
+                    <div class="stage-content">
+
+                        <div class="stage-heading">
+
+                            <h3>
+                                CONVERGENCE
+                            </h3>
+
+                            <span>
+                                CLASSIFIED
+                            </span>
+
+                        </div>
+
+                        <p>
+                            THE FINAL STATE OF THE TWO WORLDS
+                            REMAINS CLASSIFIED.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONNECTIONS -->
+        <div class="convergence-section">
+
+            <div class="convergence-section-title">
+
+                <span>
+                    SYSTEM / CONNECTIONS
+                </span>
+
+                <h2>
+                    KNOWN CONNECTIONS
+                </h2>
+
+            </div>
+
+
+            <div class="location-grid">
+
+
+                <!-- FOUNTAIN -->
+                <div class="connection-card">
+
+                    <span>
+                        LOCATION / 01
+                    </span>
+
+                    <h3>
+                        FOUNTAIN
+                    </h3>
+
+                    <p>
+                        STRONGEST KNOWN CONNECTION
+                        TO THE HALLOWED REALM.
+                    </p>
+
+                    <div class="connection-line">
+
+                        <div style="width: 100%;"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CATHEDRAL -->
+                <div class="connection-card">
+
+                    <span>
+                        LOCATION / 02
+                    </span>
+
+                    <h3>
+                        CATHEDRAL
+                    </h3>
+
+                    <p>
+                        FORMER PRISON OF THE HALLOW KING.
+                        BEACON DESTROYED.
+                    </p>
+
+                    <div class="connection-line">
+
+                        <div style="width: 90%;"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CASTLE -->
+                <div class="connection-card">
+
+                    <span>
+                        LOCATION / 03
+                    </span>
+
+                    <h3>
+                        CASTLE
+                    </h3>
+
+                    <p>
+                        STRUCTURE PULLED FROM THE HALLOWED
+                        REALM ONTO THE ISLAND.
+                    </p>
+
+                    <div class="connection-line">
+
+                        <div style="width: 75%;"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CRIMSON FOREST -->
+                <div class="connection-card">
+
+                    <span>
+                        LOCATION / 04
+                    </span>
+
+                    <h3>
+                        CRIMSON FOREST
+                    </h3>
+
+                    <p>
+                        ASSOCIATED WITH THE CRIMSON LORD
+                        AND THE HALLOW KING'S RETURN.
+                    </p>
+
+                    <div class="connection-line">
+
+                        <div style="width: 60%;"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- WARNING -->
+        <div class="convergence-warning">
+
+            <span class="warning-label">
+                SYSTEM WARNING
+            </span>
+
+            <h2>
+                THE CONVERGENCE HAS NOT BEGUN.
+            </h2>
+
+            <p>
+                THE ISLAND HAS ALREADY FALLEN UNDER THE
+                HALLOW KING'S CONTROL. THE CATHEDRAL BEACON
+                IS DESTROYED, THE SEAL SYSTEM HAS FAILED,
+                AND CRACKS TO THE HALLOWED REALM ARE ACTIVE.
+            </p>
+
+            <p>
+                THE BOUNDARY STILL EXISTS.
+                FOR NOW.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STORY
+     ===================================================== -->
+
+<section id="story" class="page">
+
+    <div class="section-header">
+
+        <span class="section-label">
+            ARCHIVE / STORY
+        </span>
+
+        <h1>
+            STORY
+        </h1>
+
+        <p>
+            THE ESTABLISHED HISTORY OF THE GAME.
+        </p>
+
+    </div>
+
+
+    <div class="story-content">
+
+        <!-- THE GAME -->
+
+        <p>
+            The Game is an ongoing multiplayer event taking place
+            on an island.
+        </p>
+
+        <p>
+            Across its different editions, players have encountered
+            strange events, supernatural entities, ancient structures
+            and increasingly dangerous threats.
+        </p>
+
+        <p>
+            The story currently spans four major chapters:
+            Halloween 2025, Easter 2026, Summer 2026 and
+            Halloween 2026.
+        </p>
+
+
+        <!-- HALLOWEEN 2025 -->
+
+        <div class="story-warning">
+            HALLOWEEN 2025 — THE FIRST ENCOUNTER.
+        </div>
+
+        <p>
+            During Halloween 2025, the players encountered the
+            Hallow King.
+        </p>
+
+        <p>
+            This was the first established appearance of the Hallow
+            King within The Game.
+        </p>
+
+        <p>
+            No deeper lore is currently established for the events
+            of Halloween 2025.
+        </p>
+
+        <p>
+            His origin, the history of the Hallowed Realm and the
+            events that would follow were not established during
+            this chapter.
+        </p>
+
+
+        <!-- EASTER 2026 -->
+
+        <div class="story-warning">
+            EASTER 2026 — THE FOUNTAIN.
+        </div>
+
+        <p>
+            During Easter 2026, the island encountered another
+            supernatural threat.
+        </p>
+
+        <p>
+            The Killer Bunny entered the island through the Fountain.
+        </p>
+
+        <p>
+            The Fountain has the strongest known connection between
+            the island and the Hallowed Realm.
+        </p>
+
+        <p>
+            After entering the island, the Killer Bunny targeted
+            the Forest Beacon.
+        </p>
+
+        <p>
+            The Forest Beacon would later be changed into the
+            Volcano.
+        </p>
+
+        <p>
+            By Halloween 2026, the Forest Beacon no longer exists
+            as a beacon.
+        </p>
+
+
+        <!-- SUMMER 2026 -->
+
+        <div class="story-warning">
+            SUMMER 2026 — THE FALL OF THE SEALS.
+        </div>
+
+        <p>
+            During Summer 2026, the Crimson Lord appeared within
+            the Crimson Forest.
+        </p>
+
+        <p>
+            At the same time, the island's Seal system began to
+            collapse.
+        </p>
+
+        <p>
+            The system included seven Seal Statues, alongside
+            other established components such as the Beacons and
+            the Cathedral's seals.
+        </p>
+
+        <p>
+            The destruction of the seven Seal Statues happened
+            throughout the Summer storyline.
+        </p>
+
+        <p>
+            Two of the seven Seal Statues were destroyed.
+        </p>
+
+        <p>
+            A third Seal Statue then began breaking, and the
+            destruction continued throughout the remainder of
+            Summer.
+        </p>
+
+        <p>
+            Near the Summer finale, the final Seal Statue was
+            destroyed.
+        </p>
+
+        <div class="story-warning">
+            ALL SEVEN SEAL STATUES ARE GONE.
+        </div>
+
+        <p>
+            By the end of Summer, all seven Seal Statues had been
+            destroyed.
+        </p>
+
+        <p>
+            The Seal system was therefore already gone before the
+            beginning of Halloween 2026.
+        </p>
+
+
+        <!-- SEALKEEPERS -->
+
+        <div class="story-warning">
+            THE SEVEN SEALKEEPERS.
+        </div>
+
+        <p>
+            More than 100 years ago, seven Sealkeepers attempted
+            to create the Seal system.
+        </p>
+
+        <p>
+            Six of the original seven Sealkeepers are gone.
+        </p>
+
+        <p>
+            One remains.
+        </p>
+
+        <p>
+            The current Sealkeeper is the last of the seven and is
+            associated with the Sealkeeper Tower.
+        </p>
+
+        <p>
+            The Sealkeeper's established history is connected to
+            the creation of the Seal system.
+        </p>
+
+
+        <!-- THE AWAKENING -->
+
+        <div class="story-warning">
+            THE HALLOW KING AWAKENS.
+        </div>
+
+        <p>
+            The Crimson Lord woke the Hallow King.
+        </p>
+
+        <p>
+            By the beginning of the full Halloween 2026 event,
+            the Hallow King is already awake.
+        </p>
+
+        <p>
+            The island enters Halloween without the Seal system
+            that once existed.
+        </p>
+
+        <p>
+            The former Forest Beacon is now the Volcano.
+        </p>
+
+        <p>
+            The Cathedral becomes one of the central locations
+            of the Halloween storyline.
+        </p>
+
+
+        <!-- CATHEDRAL -->
+
+        <div class="story-warning">
+            THE CATHEDRAL.
+        </div>
+
+        <p>
+            The Cathedral is the prison where the Hallow King
+            was held.
+        </p>
+
+        <p>
+            The Cathedral Beacon is connected to the Hallow King's
+            awakening.
+        </p>
+
+        <p>
+            If the Cathedral Beacon fails, the Hallow King awakens.
+        </p>
+
+        <p>
+            Within the Cathedral is an altar protected by four
+            seals.
+        </p>
+
+        <p>
+            During Halloween 2026, the altar eventually shatters.
+        </p>
+
+        <p>
+            Its destruction reveals a crack into the Hallowed Realm.
+        </p>
+
+
+        <!-- HALLOWED REALM -->
+
+        <div class="story-warning">
+            THE HALLOWED REALM.
+        </div>
+
+        <p>
+            The Hallowed Realm is separate from the normal world
+            containing the island.
+        </p>
+
+        <p>
+            It is the realm ruled by the Hallow King.
+        </p>
+
+        <p>
+            The Fountain remains the strongest known connection
+            between the island and the Hallowed Realm.
+        </p>
+
+        <p>
+            With the Cathedral altar shattered and a connection
+            to the Hallowed Realm revealed, the boundary between
+            the two worlds becomes increasingly important.
+        </p>
+
+
+        <!-- THE HALLOW KING'S GOAL -->
+
+        <div class="story-warning">
+            THE HALLOW KING'S OBJECTIVE.
+        </div>
+
+        <p>
+            The Hallow King does not simply want to escape from
+            the Hallowed Realm.
+        </p>
+
+        <p>
+            He wants to rule both worlds.
+        </p>
+
+        <p>
+            To achieve this, he seeks to merge the normal world
+            and the Hallowed Realm.
+        </p>
+
+        <p>
+            This merging is known as the Convergence.
+        </p>
+
+        <div class="story-warning">
+            THE CONVERGENCE IS COMING.
+        </div>
+
+
+        <!-- HALLOWEEN 2026 -->
+
+        <div class="story-warning">
+            HALLOWEEN 2026 — THE THREAT.
+        </div>
+
+        <p>
+            Halloween 2026 begins with the Hallow King already
+            awake and the Seal system already gone.
+        </p>
+
+        <p>
+            The Killer Bunny returns during the full Halloween
+            event.
+        </p>
+
+        <p>
+            The Crimson Lord also returns.
+        </p>
+
+        <p>
+            The events of Easter and Summer are now connected to
+            the threat facing the island.
+        </p>
+
+        <p>
+            The players become directly involved in the conflict
+            as the Hallow King's plan moves toward completion.
+        </p>
+
+        <p>
+            The Convergence is no longer a distant possibility.
+        </p>
+
+        <div class="story-warning">
+            TWO WORLDS. ONE CONVERGENCE.
+        </div>
+
+
+        <!-- CLASSIFIED -->
+
+        <div class="story-warning">
+            THE FINAL CHAPTER IS CLASSIFIED.
+        </div>
+
+        <p>
+            What happens when the Convergence reaches its final
+            stage has not yet been revealed.
+        </p>
+
+        <p>
+            The events of the final confrontation remain classified.
+        </p>
+
+        <p>
+            The outcome of the conflict has not been disclosed.
+        </p>
+
+        <div class="story-warning">
+            THE STORY CONTINUES.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     COUNTDOWN
+     ===================================================== -->
+
+<section id="countdown" class="page">
+
+    <div class="section-header">
+
+        <span class="section-label">
+            THE GAME 2026 / COUNTDOWN
+        </span>
+
+        <h1>
+            COUNTDOWN
+        </h1>
+
+        <p>
+            FROM THE FIRST NIGHT TO THE FINAL CONFRONTATION.
+        </p>
+
+    </div>
+
+
+    <div class="countdown-section">
+
+
+        <div class="events-section-header">
+
+            <span>
+                GAME START
+            </span>
+
+            <span>
+                OCTOBER 03
+            </span>
+
+        </div>
+
+
+        <article class="countdown-feature">
+
+            <div class="countdown-feature-date">
+                OCT 03
+            </div>
+
+
+            <div>
+
+                <div class="countdown-feature-label">
+                    THE GAME 2026
+                </div>
+
+                <div class="countdown-feature-title">
+                    THE GAME BEGINS
+                </div>
+
+                <div class="countdown-feature-subtitle">
+                    Halloween 2026 officially begins.
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div id="countdown-start-timer" class="countdown-feature-timer">
+        34D
+        23H
+        32M
+        46S
+    </div>
+
+                <div id="countdown-start-status" class="countdown-feature-status">NEXT QUEST</div>
+
+            </div>
+
+        </article>
+
+
+        <div class="events-section-header">
+
+            <span>
+                THE FINALE
+            </span>
+
+            <span>
+                OCTOBER 31
+            </span>
+
+        </div>
+
+
+        <article class="countdown-feature countdown-feature-finale upcoming" data-event-id="quest-10">
+
+            <div class="countdown-feature-date">
+                OCT 31
+            </div>
+
+
+            <div>
+
+                <div class="countdown-feature-label">
+                    QUEST 10 / FINAL EVENT
+                </div>
+
+                <div class="countdown-feature-title">
+                    THE HALLOWED CONVERGENCE
+                </div>
+
+                <div class="countdown-feature-subtitle">
+                    The final confrontation. The Hallow King attempts
+                    to complete the Convergence between both worlds.
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div id="countdown-finale-timer" class="countdown-feature-timer">
+        63D
+        00H
+        32M
+        46S
+    </div>
+
+                <div id="countdown-finale-status" class="countdown-feature-status">QUEST 10 — THE HALLOWED CONVERGENCE</div>
+
+            </div>
+
+        </article>
+
+
+        <div class="events-section-header">
+
+            <span>
+                QUEST TIMELINE
+            </span>
+
+            <span>
+                QUESTS 01 — 09
+            </span>
+
+        </div>
+
+
+        <div class="countdown-quests">
+
+
+            <article class="countdown-quest upcoming" data-event-id="quest-1">
+
+                <div class="countdown-quest-number">
+                    QUEST 01
+                </div>
+
+                <div>
+
+                    <div class="countdown-quest-title">
+                    THE SILENT ARRIVAL
+                    </div>
+
+                    <div class="countdown-quest-date">
+                        OCT 03
+                    </div>
+
+                </div>
+
+                <div class="countdown-quest-timer" data-countdown-id="quest-1">
+            34D
+            23H
+        </div>
+
+                <div class="countdown-quest-status" data-status-id="quest-1">UPCOMING</div>
+
+            </article>
+
+
+            <article class="countdown-quest upcoming" data-event-id="quest-2">
+
+                <div class="countdown-quest-number">
+                    QUEST 02
+                </div>
+
+                <div>
+
+                    <div class="countdown-quest-title">
+                        THE WATCHER'S TOWER
+                    </div>
+
+                    <div class="countdown-quest-date">
+                        OCT 06
+                    </div>
+
+                </div>
+
+                <div class="countdown-quest-timer" data-countdown-id="quest-2">
+            37D
+            23H
+        </div>
+
+                <div class="countdown-quest-status" data-status-id="quest-2">UPCOMING</div>
+
+            </article>
+
+
+            <article class="countdown-quest upcoming" data-event-id="quest-3">
+
+                <div class="countdown-quest-number">
+                    QUEST 03
+                </div>
+
+                <div>
+
+                    <div class="countdown-quest-title">
+                        THE BROKEN SEALS
+                    </div>
+
+                    <div class="countdown-quest-date">
+                        OCT 09
+                    </div>
+
+                </div>
+
+                <div class="countdown-quest-timer" data-countdown-id="quest-3">
+            40D
+            23H
+        </div>
+
+                <div class="countdown-quest-status" data-status-id="quest-3">UPCOMING</div>
+
+            </article>
+
+
+            <article class="countdown-quest upcoming" data-event-id="quest-4">
+
+                <div class="countdown-quest-number">
+                    QUEST 04
+                </div>
+
+                <div>
+
+                    <div class="countdown-quest-title">
+                        ECHOES BENEATH THE VOLCANO
+                    </div>
+
+                    <div class="countdown-quest-date">
+                        OCT 12
+                    </div>
+
+                </div>
+
+                <div class="countdown-quest-timer" data-countdown-id="quest-4">
+            43D
+            23H
+        </div>
+
+                <div class="countdown-quest-status" data-status-id="quest-4">UPCOMING</div>
+
+            </article>
+
+
+            <article class="countdown-quest upcoming" data-event-id="quest-5">
+
+                <div class="countdown-quest-number">
+                    QUEST 05
+                </div>
+
+                <div>
+
+                    <div class="countdown-quest-title">
+                        THE LAST SEALKEEPER
+                    </div>
+
+                    <div class="countdown-quest-date">
+                        OCT 15
+                    </div>
+
+                </div>
+
+                <div class="countdown-quest-timer" data-countdown-id="quest-5">
+            46D
+            23H
+        </div>
+
+                <div class="countdown-quest-status" data-status-id="quest-5">UPCOMING</div>
+
+            </article>
+
+
+            <article class="countdown-quest upcoming" data-event-id="quest-6">
+
+                <div class="countdown-quest-number">
+                    QUEST 06
+                </div>
+
+                <div>
+
+                    <div class="countdown-quest-title">
+                        BEYOND THE VEIL
+                    </div>
+
+                    <div class="countdown-quest-date">
+                        OCT 18
+                    </div>
+
+                </div>
+
+                <div class="countdown-quest-timer" data-countdown-id="quest-6">
+            49D
+            23H
+        </div>
+
+                <div class="countdown-quest-status" data-status-id="quest-6">UPCOMING</div>
+
+            </article>
+
+
+            <article class="countdown-quest upcoming" data-event-id="quest-7">
+
+                <div class="countdown-quest-number">
+                    QUEST 07
+                </div>
+
+                <div>
+
+                    <div class="countdown-quest-title">
+                        THE LOST CREW
+                    </div>
+
+                    <div class="countdown-quest-date">
+                        OCT 21
+                    </div>
+
+                </div>
+
+                <div class="countdown-quest-timer" data-countdown-id="quest-7">
+            52D
+            23H
+        </div>
+
+                <div class="countdown-quest-status" data-status-id="quest-7">UPCOMING</div>
+
+            </article>
+
+
+            <article class="countdown-quest upcoming" data-event-id="quest-8">
+
+                <div class="countdown-quest-number">
+                    QUEST 08
+                </div>
+
+                <div>
+
+                    <div class="countdown-quest-title">
+                        THE RESCUE
+                    </div>
+
+                    <div class="countdown-quest-date">
+                        OCT 24
+                    </div>
+
+                </div>
+
+                <div class="countdown-quest-timer" data-countdown-id="quest-8">
+            55D
+            23H
+        </div>
+
+                <div class="countdown-quest-status" data-status-id="quest-8">UPCOMING</div>
+
+            </article>
+
+
+            <article class="countdown-quest upcoming" data-event-id="quest-9">
+
+                <div class="countdown-quest-number">
+                    QUEST 09
+                </div>
+
+                <div>
+
+                    <div class="countdown-quest-title">
+                        THE LAST CHANCE
+                    </div>
+
+                    <div class="countdown-quest-date">
+                        OCT 27
+                    </div>
+
+                </div>
+
+                <div class="countdown-quest-timer" data-countdown-id="quest-9">
+            59D
+            00H
+        </div>
+
+                <div class="countdown-quest-status" data-status-id="quest-9">UPCOMING</div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     QUESTS
+     ===================================================== -->
+
+<section id="quests" class="page">
+
+    <div class="section-header">
+
+        <span class="section-label">
+            HALLOWEEN 2026 / QUEST ARCHIVE
+        </span>
+
+        <h1>
+            QUESTS
+        </h1>
+
+        <p>
+            Follow the journey through the island's darkest secrets. From the first signs of an ancient threat to the discovery of what lies beyond the veil, each quest brings you closer to the truth. Uncover forgotten history, face the forces threatening the island, and prepare for the final confrontation that will decide its fate.
+
+        </p>
+
+    </div>
+
+
+    <div class="event-summary">
+
+        <div class="summary-card">
+
+            <span>
+                TOTAL QUESTS
+            </span>
+
+            <strong>
+                10
+            </strong>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <span>
+                FIRST RELEASE
+            </span>
+
+            <strong>
+                OCT 03
+            </strong>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <span>
+                FINAL RELEASE
+            </span>
+
+            <strong>
+                OCT 31
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="events-section-header">
+
+        <span>
+            QUEST TIMELINE
+        </span>
+
+        <span>
+            HALLOWEEN 2026
+        </span>
+
+    </div>
+
+
+    <div id="quest-list" class="event-list"><article class="event-card" data-quest-id="quest-1" data-event-id="quest-1">
+
+                <div class="event-card-date">
+                    OCT 03
+                </div>
+
+                <div>
+
+                    <div class="event-card-number">
+                        QUEST 01
+                    </div>
+
+                    <div class="event-card-title">
+                        THE SILENT ARRIVAL
+                    </div>
+
+                    <div class="event-card-subtitle">
+                        The first quest of The Game 2026 Halloween Edition.
+                    </div>
+
+                    <div class="event-card-countdown" data-countdown-id="quest-1">
+                        
+            34D
+            23H
+        
+                    </div>
+
+                </div>
+
+                <div class="event-card-status" data-status-id="quest-1">
+                    UPCOMING
+                </div>
+
+            </article><article class="event-card" data-quest-id="quest-2" data-event-id="quest-2">
+
+                <div class="event-card-date">
+                    OCT 06
+                </div>
+
+                <div>
+
+                    <div class="event-card-number">
+                        QUEST 02
+                    </div>
+
+                    <div class="event-card-title">
+                        QUEST 2
+                    </div>
+
+                    <div class="event-card-subtitle">
+                        The second quest of The Game 2026.
+                    </div>
+
+                    <div class="event-card-countdown" data-countdown-id="quest-2">
+                        
+            37D
+            23H
+        
+                    </div>
+
+                </div>
+
+                <div class="event-card-status" data-status-id="quest-2">
+                    UPCOMING
+                </div>
+
+            </article><article class="event-card" data-quest-id="quest-3" data-event-id="quest-3">
+
+                <div class="event-card-date">
+                    OCT 09
+                </div>
+
+                <div>
+
+                    <div class="event-card-number">
+                        QUEST 03
+                    </div>
+
+                    <div class="event-card-title">
+                        QUEST 3
+                    </div>
+
+                    <div class="event-card-subtitle">
+                        The third quest of The Game 2026.
+                    </div>
+
+                    <div class="event-card-countdown" data-countdown-id="quest-3">
+                        
+            40D
+            23H
+        
+                    </div>
+
+                </div>
+
+                <div class="event-card-status" data-status-id="quest-3">
+                    UPCOMING
+                </div>
+
+            </article><article class="event-card" data-quest-id="quest-4" data-event-id="quest-4">
+
+                <div class="event-card-date">
+                    OCT 12
+                </div>
+
+                <div>
+
+                    <div class="event-card-number">
+                        QUEST 04
+                    </div>
+
+                    <div class="event-card-title">
+                        QUEST 4
+                    </div>
+
+                    <div class="event-card-subtitle">
+                        The fourth quest of The Game 2026.
+                    </div>
+
+                    <div class="event-card-countdown" data-countdown-id="quest-4">
+                        
+            43D
+            23H
+        
+                    </div>
+
+                </div>
+
+                <div class="event-card-status" data-status-id="quest-4">
+                    UPCOMING
+                </div>
+
+            </article><article class="event-card" data-quest-id="quest-5" data-event-id="quest-5">
+
+                <div class="event-card-date">
+                    OCT 15
+                </div>
+
+                <div>
+
+                    <div class="event-card-number">
+                        QUEST 05
+                    </div>
+
+                    <div class="event-card-title">
+                        QUEST 5
+                    </div>
+
+                    <div class="event-card-subtitle">
+                        The fifth quest of The Game 2026.
+                    </div>
+
+                    <div class="event-card-countdown" data-countdown-id="quest-5">
+                        
+            46D
+            23H
+        
+                    </div>
+
+                </div>
+
+                <div class="event-card-status" data-status-id="quest-5">
+                    UPCOMING
+                </div>
+
+            </article><article class="event-card" data-quest-id="quest-6" data-event-id="quest-6">
+
+                <div class="event-card-date">
+                    OCT 18
+                </div>
+
+                <div>
+
+                    <div class="event-card-number">
+                        QUEST 06
+                    </div>
+
+                    <div class="event-card-title">
+                        QUEST 6
+                    </div>
+
+                    <div class="event-card-subtitle">
+                        The sixth quest of The Game 2026.
+                    </div>
+
+                    <div class="event-card-countdown" data-countdown-id="quest-6">
+                        
+            49D
+            23H
+        
+                    </div>
+
+                </div>
+
+                <div class="event-card-status" data-status-id="quest-6">
+                    UPCOMING
+                </div>
+
+            </article><article class="event-card" data-quest-id="quest-7" data-event-id="quest-7">
+
+                <div class="event-card-date">
+                    OCT 21
+                </div>
+
+                <div>
+
+                    <div class="event-card-number">
+                        QUEST 07
+                    </div>
+
+                    <div class="event-card-title">
+                        QUEST 7
+                    </div>
+
+                    <div class="event-card-subtitle">
+                        The seventh quest of The Game 2026.
+                    </div>
+
+                    <div class="event-card-countdown" data-countdown-id="quest-7">
+                        
+            52D
+            23H
+        
+                    </div>
+
+                </div>
+
+                <div class="event-card-status" data-status-id="quest-7">
+                    UPCOMING
+                </div>
+
+            </article><article class="event-card" data-quest-id="quest-8" data-event-id="quest-8">
+
+                <div class="event-card-date">
+                    OCT 24
+                </div>
+
+                <div>
+
+                    <div class="event-card-number">
+                        QUEST 08
+                    </div>
+
+                    <div class="event-card-title">
+                        QUEST 8
+                    </div>
+
+                    <div class="event-card-subtitle">
+                        The eighth quest of The Game 2026.
+                    </div>
+
+                    <div class="event-card-countdown" data-countdown-id="quest-8">
+                        
+            55D
+            23H
+        
+                    </div>
+
+                </div>
+
+                <div class="event-card-status" data-status-id="quest-8">
+                    UPCOMING
+                </div>
+
+            </article><article class="event-card" data-quest-id="quest-9" data-event-id="quest-9">
+
+                <div class="event-card-date">
+                    OCT 27
+                </div>
+
+                <div>
+
+                    <div class="event-card-number">
+                        QUEST 09
+                    </div>
+
+                    <div class="event-card-title">
+                        QUEST 9
+                    </div>
+
+                    <div class="event-card-subtitle">
+                        The ninth quest of The Game 2026.
+                    </div>
+
+                    <div class="event-card-countdown" data-countdown-id="quest-9">
+                        
+            59D
+            00H
+        
+                    </div>
+
+                </div>
+
+                <div class="event-card-status" data-status-id="quest-9">
+                    UPCOMING
+                </div>
+
+            </article><article class="event-card" data-quest-id="quest-10" data-event-id="quest-10">
+
+                <div class="event-card-date">
+                    OCT 31
+                </div>
+
+                <div>
+
+                    <div class="event-card-number">
+                        QUEST 10
+                    </div>
+
+                    <div class="event-card-title">
+                        THE HALLOWED CONVERGENCE
+                    </div>
+
+                    <div class="event-card-subtitle">
+                        The final confrontation. The players must activate and defend the three Severing Anchors, sever the Hallow King's connection to the world, and survive the Convergence.
+                    </div>
+
+                    <div class="event-card-countdown" data-countdown-id="quest-10">
+            63D
+            00H
+        </div>
+
+                </div>
+
+                <div class="event-card-status" data-status-id="quest-10">UPCOMING</div>
+
+            </article></div>
+
+
+    <div id="quest-detail" class="event-detail visible">
+
+        <div class="event-detail-top">
+
+            <span id="quest-detail-number">QUEST 09</span>
+
+            <span id="quest-detail-date">OCT 27</span>
+
+        </div>
+
+        <h2 id="event-detail-title">QUEST 9</h2>
+
+        <p id="event-detail-description">The ninth quest of The Game 2026.</p>
+
+        <div class="event-detail-action">
+            QUEST RECORD
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     EVENTS
+     ===================================================== -->
+
+<section id="events" class="page">
+
+    <div class="section-header">
+
+        <span class="section-label">
+            RECORDED EVENTS
+        </span>
+
+        <h1>
+            EVENTS
+        </h1>
+
+        <p>
+            ONLY ESTABLISHED EVENTS ARE RECORDED.
+        </p>
+
+    </div>
+
+
+    <div class="event-list">
+
+
+        <article class="event-card completed">
+
+            <div class="event-card-date">
+                2025
+            </div>
+
+            <div>
+
+                <div class="event-card-number">
+                    HALLOWEEN
+                </div>
+
+                <div class="event-card-title">
+                    The Hallow King Appears
+                </div>
+
+                <div class="event-card-subtitle">
+                    The players encounter the Hallow King.
+                </div>
+
+            </div>
+
+            <div class="event-card-status">
+                RECORDED
+            </div>
+
+        </article>
+
+
+        <article class="event-card completed">
+
+            <div class="event-card-date">
+                EASTER 2026
+            </div>
+
+            <div>
+
+                <div class="event-card-number">
+                    EVENT
+                </div>
+
+                <div class="event-card-title">
+                    The Killer Bunny
+                </div>
+
+                <div class="event-card-subtitle">
+                    The Killer Bunny enters through the Fountain.
+                </div>
+
+            </div>
+
+            <div class="event-card-status">
+                RECORDED
+            </div>
+
+        </article>
+
+
+        <article class="event-card completed">
+
+            <div class="event-card-date">
+                EASTER 2026
+            </div>
+
+            <div>
+
+                <div class="event-card-number">
+                    FOREST BEACON
+                </div>
+
+                <div class="event-card-title">
+                    The Beacon Is Targeted
+                </div>
+
+                <div class="event-card-subtitle">
+                    The Killer Bunny targets the Forest Beacon.
+                </div>
+
+            </div>
+
+            <div class="event-card-status">
+                RECORDED
+            </div>
+
+        </article>
+
+
+        <article class="event-card completed">
+
+            <div class="event-card-date">
+                SUMMER 2026
+            </div>
+
+            <div>
+
+                <div class="event-card-number">
+                    CRIMSON FOREST
+                </div>
+
+                <div class="event-card-title">
+                    The Crimson Lord Appears
+                </div>
+
+                <div class="event-card-subtitle">
+                    The Crimson Lord appears in the Crimson Forest.
+                </div>
+
+            </div>
+
+            <div class="event-card-status">
+                RECORDED
+            </div>
+
+        </article>
+
+
+        <article class="event-card completed">
+
+            <div class="event-card-date">
+                SUMMER 2026
+            </div>
+
+            <div>
+
+                <div class="event-card-number">
+                    SEAL SYSTEM
+                </div>
+
+                <div class="event-card-title">
+                    The Seven Seals Are Destroyed
+                </div>
+
+                <div class="event-card-subtitle">
+                    All seven Seal Statues are destroyed.
+                </div>
+
+            </div>
+
+            <div class="event-card-status">
+                RECORDED
+            </div>
+
+        </article>
+
+
+        <article class="event-card completed">
+
+            <div class="event-card-date">
+                SUMMER 2026
+            </div>
+
+            <div>
+
+                <div class="event-card-number">
+                    AWAKENING
+                </div>
+
+                <div class="event-card-title">
+                    The Hallow King Awakens
+                </div>
+
+                <div class="event-card-subtitle">
+                    The Crimson Lord wakes the Hallow King.
+                </div>
+
+            </div>
+
+            <div class="event-card-status">
+                RECORDED
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CHARACTERS
+     ===================================================== -->
+
+<section id="characters" class="page">
+
+    <div class="section-header">
+
+        <span class="section-label">
+            ARCHIVE / IDENTIFIED ENTITIES
+        </span>
+
+        <h1>
+            CHARACTERS
+        </h1>
+
+        <p>
+            ESTABLISHED PERSONS AND ENTITIES.
+        </p>
+
+    </div>
+
+
+    <div class="home-grid">
+
+
+        <article class="home-card">
+
+            <span class="card-label">
+                ENTITY 001
+            </span>
+
+            <h2>
+                Hallow King
+            </h2>
+
+            <p>
+                Ruler of the Hallowed Realm.
+            </p>
+
+            <div class="status-text">
+                AWAKE
+            </div>
+
+        </article>
+
+
+        <article class="home-card">
+
+            <span class="card-label">
+                ENTITY 002
+            </span>
+
+            <h2>
+                Killer Bunny
+            </h2>
+
+            <p>
+                Supernatural antagonist.
+            </p>
+
+            <div class="status-text">
+                RETURNS HALLOWEEN 2026
+            </div>
+
+        </article>
+
+
+        <article class="home-card">
+
+            <span class="card-label">
+                ENTITY 003
+            </span>
+
+            <h2>
+                Crimson Lord
+            </h2>
+
+            <p>
+                Supernatural antagonist associated with
+                the Crimson Forest.
+            </p>
+
+            <div class="status-text">
+                WOKE THE HALLOW KING
+            </div>
+
+        </article>
+
+
+        <article class="home-card">
+
+            <span class="card-label">
+                CHARACTER 001
+            </span>
+
+            <h2>
+                Captain Rowan
+            </h2>
+
+            <p>
+                Established quest character.
+            </p>
+
+        </article>
+
+
+        <article class="home-card">
+
+            <span class="card-label">
+                CHARACTER 002
+            </span>
+
+            <h2>
+                Sealkeeper
+            </h2>
+
+            <p>
+                The last of the seven Sealkeepers.
+            </p>
+
+        </article>
+
+
+        <article class="home-card">
+
+            <span class="card-label">
+                GROUP
+            </span>
+
+            <h2>
+                The Crew
+            </h2>
+
+            <p>
+                Involved in the island's events and investigation.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     ISLAND
+     PHASE 3 — ISLAND EXPLORER
+     ===================================================== -->
+
+<section id="island" class="page">
+
+
+<div class="section-header">
+
+    <span class="section-label">
+        THE ISLAND / EXPLORER
+    </span>
+
+    <h1>
+        ISLAND
+    </h1>
+
+    <p>
+        EXPLORE THE KNOWN LOCATIONS OF THE ISLAND.
+    </p>
+
+</div>
+
+
+<!-- =================================================
+     ISLAND OVERVIEW
+     ================================================= -->
+
+<div class="island-visual">
+
+    <div class="island-visual-header">
+
+        <div>
+            <span>
+                ISLAND EXPLORER
+            </span>
+
+            <h2>
+                THE ISLAND
+            </h2>
+        </div>
+
+        <div class="island-visual-status">
+            HALLOWEEN 2026
+        </div>
+
+    </div>
+
+
+    <div class="island-main-picture">
+
+        <img
+            src="island-map.jpg"
+            alt="The Game 2026 Island">
+
+    </div>
+
+
+    <div class="island-description">
+
+        <span>
+            EXPLORER RECORD
+        </span>
+
+        <p>
+            The central location of The Game 2026.
+            Explore the island and investigate its
+            known locations.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     EXPLORER STATUS
+     ================================================= -->
+
+<div class="island-explorer-status">
+
+    <div class="island-status-item">
+
+        <small>
+            LOCATIONS DISCOVERED
+        </small>
+
+        <strong id="island-discovered-count">
+            0 / 7
+        </strong>
+
+    </div>
+
+
+    <div class="island-status-item">
+
+        <small>
+            EXPLORER STATUS
+        </small>
+
+        <strong id="island-explorer-state">
+            INITIALIZING
+        </strong>
+
+    </div>
+
+
+    <div class="island-status-item">
+
+        <small>
+            ISLAND CONDITION
+        </small>
+
+        <strong id="island-explorer-condition">
+            CRITICAL
+        </strong>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     LOCATION ARCHIVE
+     ================================================= -->
+
+<div class="island-spots">
+
+    <div class="island-spots-header">
+
+        <div>
+
+            <span class="section-label">
+                EXPLORER DATABASE
+            </span>
+
+            <h2>
+                ISLAND LOCATIONS
+            </h2>
+
+        </div>
+
+        <span
+            class="island-spots-count"
+            id="island-location-count"
+        >
+            07 LOCATIONS
+        </span>
+
+    </div>
+
+
+    <div
+        class="island-spots-grid"
+        id="island-explorer-grid"
+    >
+
+
+        <!-- =========================================
+             LOCATION 01
+             ========================================= -->
+
+        <article
+            class="island-spot island-explorer-location"
+            data-location="cathedral"
+            data-location-id="001"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Cathedral archive"
+            >
+
+                <div class="island-spot-image">
+
+                    <img
+                        src="cathedral.jpg"
+                        alt="Cathedral">
+
+                    <span>
+                        01
+                    </span>
+
+                </div>
+
+
+                <div class="island-spot-info">
+
+                    <small>
+                        LOCATION 001
+                    </small>
+
+                    <h3>
+                        CATHEDRAL
+                    </h3>
+
+                    <p>
+                        The prison where the Hallow King
+                        was held and one of the most
+                        important locations on the island.
+                    </p>
+
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </button>
+
+        </article>
+
+
+        <!-- =========================================
+             LOCATION 02
+             ========================================= -->
+
+        <article
+            class="island-spot island-explorer-location"
+            data-location="volcano"
+            data-location-id="002"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Volcano archive"
+            >
+
+                <div class="island-spot-image">
+
+                    <img
+                        src="volcano.jpg"
+                        alt="Volcano">
+
+                    <span>
+                        02
+                    </span>
+
+                </div>
+
+
+                <div class="island-spot-info">
+
+                    <small>
+                        LOCATION 002
+                    </small>
+
+                    <h3>
+                        VOLCANO
+                    </h3>
+
+                    <p>
+                        The location that replaced the
+                        former Forest Beacon during the
+                        Summer storyline.
+                    </p>
+
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </button>
+
+        </article>
+
+
+        <!-- =========================================
+             LOCATION 03
+             ========================================= -->
+
+        <article
+            class="island-spot island-explorer-location"
+            data-location="fountain"
+            data-location-id="003"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Fountain archive"
+            >
+
+                <div class="island-spot-image">
+
+                    <img
+                        src="fountain.jpg"
+                        alt="Fountain">
+
+                    <span>
+                        03
+                    </span>
+
+                </div>
+
+
+                <div class="island-spot-info">
+
+                    <small>
+                        LOCATION 003
+                    </small>
+
+                    <h3>
+                        FOUNTAIN
+                    </h3>
+
+                    <p>
+                        The strongest known connection
+                        between the island and the
+                        Hallowed Realm.
+                    </p>
+
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </button>
+
+        </article>
+
+
+        <!-- =========================================
+             LOCATION 04
+             ========================================= -->
+
+        <article
+            class="island-spot island-explorer-location"
+            data-location="crimson-forest"
+            data-location-id="004"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Crimson Forest archive"
+            >
+
+                <div class="island-spot-image">
+
+                    <img
+                        src="crimson-forest.jpg"
+                        alt="Crimson Forest">
+
+                    <span>
+                        04
+                    </span>
+
+                </div>
+
+
+                <div class="island-spot-info">
+
+                    <small>
+                        LOCATION 004
+                    </small>
+
+                    <h3>
+                        CRIMSON FOREST
+                    </h3>
+
+                    <p>
+                        The forest where the Crimson Lord
+                        appeared during Summer 2026.
+                    </p>
+
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </button>
+
+        </article>
+
+
+        <!-- =========================================
+             LOCATION 05
+             ========================================= -->
+
+        <article
+            class="island-spot island-explorer-location"
+            data-location="sealkeeper-tower"
+            data-location-id="005"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Sealkeeper Tower archive"
+            >
+
+                <div class="island-spot-image">
+
+                    <img
+                        src="sealkeeper-tower.jpg"
+                        alt="Sealkeeper Tower">
+
+                    <span>
+                        05
+                    </span>
+
+                </div>
+
+
+                <div class="island-spot-info">
+
+                    <small>
+                        LOCATION 005
+                    </small>
+
+                    <h3>
+                        SEALKEEPER TOWER
+                    </h3>
+
+                    <p>
+                        The tower associated with the
+                        last remaining Sealkeeper.
+                    </p>
+
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </button>
+
+        </article>
+
+
+        <!-- =========================================
+             LOCATION 06
+             ========================================= -->
+
+        <article
+            class="island-spot island-explorer-location"
+            data-location="haunted-house"
+            data-location-id="006"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Haunted House archive"
+            >
+
+                <div class="island-spot-image">
+
+                    <img
+                        src="haunted-house.jpg"
+                        alt="Haunted House">
+
+                    <span>
+                        06
+                    </span>
+
+                </div>
+
+
+                <div class="island-spot-info">
+
+                    <small>
+                        LOCATION 006
+                    </small>
+
+                    <h3>
+                        HAUNTED HOUSE
+                    </h3>
+
+                    <p>
+                        One of the locations investigated
+                        during Halloween 2026.
+                    </p>
+
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </button>
+
+        </article>
+
+
+        <!-- =========================================
+             LOCATION 07
+             ========================================= -->
+
+        <article
+            class="island-spot island-explorer-location"
+            data-location="sealkeeper-fortress"
+            data-location-id="007"
+            data-location-status="discovered"
+        >
+
+            <button
+                class="island-location-button"
+                type="button"
+                aria-label="Open Fortress of the Sealkeeper archive"
+            >
+
+                <div class="island-spot-image">
+
+                    <img
+                        src="location-07.jpg"
+                        alt="The Fortress of the Sealkeeper">
+
+                    <span>
+                        07
+                    </span>
+
+                </div>
+
+
+                <div class="island-spot-info">
+
+                    <small>
+                        LOCATION 007
+                    </small>
+
+                    <h3>
+                        THE FORTRESS OF THE SEALKEEPER
+                    </h3>
+
+                    <p>
+                        The last place where the Sealkeeper
+                        is safe from the Hallow King.
+                    </p>
+
+                    <div class="island-location-meta">
+
+                        <span>
+                            ARCHIVED
+                        </span>
+
+                        <span>
+                            OPEN RECORD
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </button>
+
+        </article>
+
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     LOCATION RECORD
+     ================================================= -->
+
+<div
+    id="island-location-record"
+    class="island-location-record"
+    aria-hidden="true"
+>
+
+    <div class="island-record-header">
+
+        <div>
+
+            <span id="island-record-label">
+                LOCATION RECORD
+            </span>
+
+            <h2 id="island-record-title">
+                LOCATION
+            </h2>
+
+        </div>
+
+
+        <button
+            id="island-record-close"
+            type="button"
+            aria-label="Close location record"
+        >
+            CLOSE
+        </button>
+
+    </div>
+
+
+    <div class="island-record-content">
+
+        <div class="island-record-image">
+
+            <img
+                id="island-record-image"
+                src=""
+                alt=""
+            >
+
+        </div>
+
+
+        <div class="island-record-information">
+
+            <div class="island-record-status">
+
+                <span>
+                    STATUS
+                </span>
+
+                <strong id="island-record-status">
+                    ARCHIVED
+                </strong>
+
+            </div>
+
+
+            <div class="island-record-section">
+
+                <span>
+                    DESCRIPTION
+                </span>
+
+                <p id="island-record-description">
+                    No record selected.
+                </p>
+
+            </div>
+
+
+            <div class="island-record-section">
+
+                <span>
+                    ARCHIVE NOTE
+                </span>
+
+                <p id="island-record-note">
+                    No additional information available.
+                </p>
+
+            </div>
+
+
+            <div class="island-record-section">
+
+                <span>
+                    LOCATION ID
+                </span>
+
+                <p id="island-record-id">
+                    ---
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     ARCHIVE
+     ===================================================== -->
+
+<section id="archive" class="page">
+
+    <div class="section-header">
+        <span class="section-label">RECOVERED MATERIAL</span>
+
+        <h1>ARCHIVE</h1>
+
+        <p>INFORMATION RECOVERED FROM THE GAME.</p>
+    </div>
+
+
+    <div class="archive-controls">
+
+        <input
+            id="archive-search"
+            type="text"
+            placeholder="SEARCH ARCHIVE..."
+            autocomplete="off"
+        >
+
+        <div class="archive-filters">
+
+            <button class="archive-filter active" data-filter="all">
+                ALL
+            </button>
+
+            <button class="archive-filter" data-filter="history">
+                HISTORY
+            </button>
+
+            <button class="archive-filter" data-filter="entities">
+                ENTITIES
+            </button>
+
+            <button class="archive-filter" data-filter="locations">
+                LOCATIONS
+            </button>
+
+            <button class="archive-filter" data-filter="finale">
+                FINALE
+            </button>
+
+        </div>
+    </div>
+
+
+    <div id="archive-grid" class="archive-grid">
+
+        <article class="archive-file"
+            data-category="history"
+            data-title="The Seal System"
+            data-archive="seal-system">
+            <span>HISTORY</span>
+            <strong>THE SEAL SYSTEM</strong>
+            <small>DESTROYED / SUMMER 2026</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="history"
+            data-title="The Killer Bunny"
+            data-archive="killer-bunny-history">
+            <span>HISTORY</span>
+            <strong>THE KILLER BUNNY</strong>
+            <small>EASTER 2026</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="history"
+            data-title="The Crimson Lord"
+            data-archive="crimson-lord-history">
+            <span>HISTORY</span>
+            <strong>THE CRIMSON LORD</strong>
+            <small>SUMMER 2026</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="history"
+            data-title="The Awakening"
+            data-archive="awakening">
+            <span>HISTORY</span>
+            <strong>THE AWAKENING</strong>
+            <small>SUMMER 2026</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="entities"
+            data-title="The Hallow King"
+            data-archive="hallow-king">
+            <span>ENTITY</span>
+            <strong>THE HALLOW KING</strong>
+            <small>THREAT / ACTIVE</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="entities"
+            data-title="Killer Bunny"
+            data-archive="killer-bunny">
+            <span>ENTITY</span>
+            <strong>KILLER BUNNY</strong>
+            <small>ENTITY / SUPERNATURAL</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="entities"
+            data-title="Crimson Lord"
+            data-archive="crimson-lord">
+            <span>ENTITY</span>
+            <strong>CRIMSON LORD</strong>
+            <small>ENTITY / SUPERNATURAL</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="entities"
+            data-title="Captain Rowan"
+            data-archive="captain-rowan">
+            <span>CHARACTER</span>
+            <strong>CAPTAIN ROWAN</strong>
+            <small>QUEST CHARACTER</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="entities"
+            data-title="The Sealkeeper"
+            data-archive="sealkeeper">
+            <span>CHARACTER</span>
+            <strong>THE SEALKEEPER</strong>
+            <small>LAST KNOWN SEALKEEPER</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="locations"
+            data-title="The Fountain"
+            data-archive="fountain">
+            <span>LOCATION</span>
+            <strong>THE FOUNTAIN</strong>
+            <small>HALLOWED CONNECTION</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="locations"
+            data-title="Cathedral"
+            data-archive="cathedral">
+            <span>LOCATION</span>
+            <strong>CATHEDRAL</strong>
+            <small>FORMER PRISON</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="locations"
+            data-title="Crimson Forest"
+            data-archive="crimson-forest">
+            <span>LOCATION</span>
+            <strong>CRIMSON FOREST</strong>
+            <small>CRIMSON LORD / SUMMER 2026</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="locations"
+            data-title="Volcano"
+            data-archive="volcano">
+            <span>LOCATION</span>
+            <strong>VOLCANO</strong>
+            <small>WESTERN ISLAND</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="locations"
+            data-title="Sealkeeper Tower"
+            data-archive="sealkeeper-tower">
+            <span>LOCATION</span>
+            <strong>SEALKEEPER TOWER</strong>
+            <small>LAST SEALKEEPER</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="locations"
+            data-title="Haunted House"
+            data-archive="haunted-house">
+            <span>LOCATION</span>
+            <strong>HAUNTED HOUSE</strong>
+            <small>ESTABLISHED LOCATION</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="finale"
+            data-title="The Hallowed Convergence"
+            data-archive="hallowed-convergence">
+            <span>FINALE / QUEST 10</span>
+            <strong>THE HALLOWED CONVERGENCE</strong>
+            <small>OCTOBER 31 / FINAL QUEST</small>
+        </article>
+
+
+        <article class="archive-file"
+            data-category="finale"
+            data-title="The Severing Anchors"
+            data-archive="severing-anchors">
+            <span>FINALE</span>
+            <strong>THE SEVERING ANCHORS</strong>
+            <small>QUEST 9 / FINAL PREPARATION</small>
+        </article>
+
+    </div>
+
+
+    <div id="archive-no-results" style="display:none;">
+        NO RECORDS FOUND.
+    </div>
+
+
+    <!-- ARCHIVE VIEWER -->
+
+    <div id="archive-viewer" class="archive-viewer">
+
+        <div class="archive-viewer-header">
+
+            <span>ARCHIVE DOCUMENT</span>
+
+            <button id="archive-close" type="button">
+                CLOSE
+            </button>
+
+        </div>
+
+
+        <div class="archive-document-meta">
+
+            <span id="archive-document-category">
+                ARCHIVE
+            </span>
+
+            <span>
+                ARCHIVE RECORD
+            </span>
+
+        </div>
+
+
+        <h2 id="archive-document-title">
+            ARCHIVE DOCUMENT
+        </h2>
+
+
+        <div id="archive-document-content">
+            Select an archive record to view its contents.
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+const archiveData = {
+
+    "seal-system": {
+        category: "HISTORY",
+        title: "THE SEAL SYSTEM",
+        content:
+        "The Seal System was created to contain the forces connected to the Hallowed Realm. Seven Seal Statues and two Beacons once maintained the protection surrounding the island. The system was ultimately destroyed during the events of Summer 2026."
+    },
+
+    "killer-bunny-history": {
+        category: "HISTORY",
+        title: "THE KILLER BUNNY",
+        content:
+        "During Easter 2026, a demonic entity known as the Killer Bunny entered the island through the Fountain. Its presence threatened the Forest Beacon and revealed that the island's connection to the Hallowed Realm was growing stronger."
+    },
+
+    "crimson-lord-history": {
+        category: "HISTORY",
+        title: "THE CRIMSON LORD",
+        content:
+        "During Summer 2026, the Crimson Lord emerged from the Crimson Forest. Its arrival marked the beginning of the destruction of the island's ancient Seal System."
+    },
+
+    "awakening": {
+        category: "HISTORY",
+        title: "THE AWAKENING",
+        content:
+        "The destruction of the Seal System allowed something far older to stir. The Crimson Lord's actions ultimately awakened the Hallow King and pushed the island closer to the Hallowed Realm."
+    },
+
+    "hallow-king": {
+        category: "ENTITY",
+        title: "THE HALLOW KING",
+        content:
+        "The Hallow King is the ancient entity imprisoned beneath the Cathedral. His connection to the Hallowed Realm has grown stronger as the island's defenses have fallen. His ultimate goal is to merge the two worlds."
+    },
+
+    "killer-bunny": {
+        category: "ENTITY",
+        title: "KILLER BUNNY",
+        content:
+        "A supernatural entity that entered the island during Easter 2026. The Killer Bunny was connected to the Hallowed Realm and became one of the earliest signs that the island's ancient defenses were failing."
+    },
+
+    "crimson-lord": {
+        category: "ENTITY",
+        title: "CRIMSON LORD",
+        content:
+        "A powerful supernatural entity that made its home within the Crimson Forest. The Crimson Lord played a major role in the destruction of the Seal System and the awakening of the Hallow King."
+    },
+
+    "captain-rowan": {
+        category: "CHARACTER",
+        title: "CAPTAIN ROWAN",
+        content:
+        "Captain Rowan is connected to the expedition and the events surrounding the missing crew. His knowledge becomes increasingly important as the players uncover what happened beyond the veil."
+    },
+
+    "sealkeeper": {
+        category: "CHARACTER",
+        title: "THE SEALKEEPER",
+        content:
+        "The last known Sealkeeper. He carries the remaining knowledge of the ancient system created to contain the Hallow King and understands the danger facing the island."
+    },
+
+    "fountain": {
+        category: "LOCATION",
+        title: "THE FOUNTAIN",
+        content:
+        "The Fountain possesses the strongest known connection to the Hallowed Realm. It has repeatedly acted as a point of contact between the island and the world beyond the veil."
+    },
+
+    "cathedral": {
+        category: "LOCATION",
+        title: "CATHEDRAL",
+        content:
+        "The Cathedral once served as the prison of the Hallow King. At its center lies the ancient altar, where the barrier between the island and the Hallowed Realm has begun to fracture."
+    },
+
+    "crimson-forest": {
+        category: "LOCATION",
+        title: "CRIMSON FOREST",
+        content:
+        "The Crimson Forest became the domain of the Crimson Lord during Summer 2026. Its transformation was closely connected to the destruction of the Seal System."
+    },
+
+    "volcano": {
+        category: "LOCATION",
+        title: "VOLCANO",
+        content:
+        "The Volcano occupies the western region of the island. What was once connected to the island's ancient defenses was transformed during the events of Summer 2026."
+    },
+
+    "sealkeeper-tower": {
+        category: "LOCATION",
+        title: "SEALKEEPER TOWER",
+        content:
+        "The Sealkeeper Tower was built by those who created the original Seal System. It became the final refuge of the last surviving Sealkeeper."
+    },
+
+    "haunted-house": {
+        category: "LOCATION",
+        title: "HAUNTED HOUSE",
+        content:
+        "An established location on the island surrounded by stories and unexplained activity. Its history remains connected to the darker events that have taken place across the island."
+    },
+
+    "hallowed-convergence": {
+        category: "FINALE / QUEST 10",
+        title: "THE HALLOWED CONVERGENCE",
+        content:
+        "The final confrontation. With the boundary between worlds collapsing, the players must face the Hallow King and prevent the Hallowed Realm from consuming the island."
+    },
+
+    "severing-anchors": {
+        category: "FINALE / QUEST 9",
+        title: "THE SEVERING ANCHORS",
+        content:
+        "Three Severing Anchors must be established before the final confrontation. Together, they provide the means to break the Hallow King's connection to the island and the Hallowed Realm."
+    }
+
+};
+
+
+/* OPEN ARCHIVE DOCUMENT */
+
+document.querySelectorAll(".archive-file").forEach(file => {
+
+    file.addEventListener("click", function() {
+
+        const id = this.dataset.archive;
+        const data = archiveData[id];
+
+        if (!data) return;
+
+        document.getElementById("archive-document-category").textContent =
+            data.category;
+
+        document.getElementById("archive-document-title").textContent =
+            data.title;
+
+        document.getElementById("archive-document-content").textContent =
+            data.content;
+
+        document.getElementById("archive-viewer").classList.add("visible");
+
+    });
+
+});
+
+
+/* CLOSE ARCHIVE DOCUMENT */
+
+document.getElementById("archive-close").addEventListener("click", function() {
+
+    document.getElementById("archive-viewer").classList.remove("visible");
+
+});
+
+
+/* SEARCH */
+
+const archiveSearch = document.getElementById("archive-search");
+
+archiveSearch.addEventListener("input", function() {
+
+    const search = this.value.toLowerCase();
+
+    document.querySelectorAll(".archive-file").forEach(file => {
+
+        const title = file.dataset.title.toLowerCase();
+
+        file.style.display =
+            title.includes(search) ? "" : "none";
+
+    });
+
+});
+
+
+/* FILTERS */
+
+document.querySelectorAll(".archive-filter").forEach(button => {
+
+    button.addEventListener("click", function() {
+
+        document.querySelectorAll(".archive-filter")
+            .forEach(btn => btn.classList.remove("active"));
+
+        this.classList.add("active");
+
+        const filter = this.dataset.filter;
+
+        document.querySelectorAll(".archive-file").forEach(file => {
+
+            if (
+                filter === "all" ||
+                file.dataset.category === filter
+            ) {
+                file.style.display = "";
+            } else {
+                file.style.display = "none";
+            }
+
+        });
+
+    });
+
+});
+
+</script>
+
+
+<!-- =====================================================
+     PREVIOUS EVENTS
+     ===================================================== -->
+
+<section id="previous-events" class="page">
+
+    <div class="section-header">
+
+        <span class="section-label">
+            THE GAME 2026 / PREVIOUS EVENTS
+        </span>
+
+        <h1>
+            PREVIOUS EVENTS
+        </h1>
+
+        <p>
+            ARCHIVED EDITIONS OF THE GAME.
+        </p>
+
+    </div>
+
+
+    <div class="prev-events-grid">
+
+
+        <!-- EASTER CARD -->
+
+        <article class="prev-event-card era-easter" data-event="easter" tabindex="0" role="button" aria-label="Open the Easter Edition archive">
+
+            <div class="pec-bg" aria-hidden="true">
+            </div>
+
+            <div class="pec-noise" aria-hidden="true">
+            </div>
+
+            <div class="pec-top">
+
+                <span class="pec-eyebrow">
+                    EASTER 2026
+                </span>
+
+                <span class="pec-status">
+                    ARCHIVED
+                </span>
+
+            </div>
+
+            <div class="pec-body">
+
+                <h2 class="pec-title">
+                    THE EASTER EDITION
+                </h2>
+
+                <div class="pec-dates">
+                    APRIL 06 — APRIL 25
+                </div>
+
+                <p class="pec-desc">
+                    The first major edition of The Game 2026 introduced
+                    the token system, a collection of minigames, and the
+                    first major threat to the island: the Killer Bunny.
+                </p>
+
+            </div>
+
+            <div class="pec-bottom">
+
+                <span class="pec-button">
+                    VIEW EVENT
+                    <i>→</i>
+                </span>
+
+            </div>
+
+        </article>
+
+
+        <!-- SUMMER CARD -->
+
+        <article class="prev-event-card era-summer" data-event="summer" tabindex="0" role="button" aria-label="Open the Summer Edition archive">
+
+            <div class="pec-bg" aria-hidden="true">
+            </div>
+
+            <div class="pec-noise" aria-hidden="true">
+            </div>
+
+            <div class="pec-top">
+
+                <span class="pec-eyebrow">
+                    SUMMER 2026
+                </span>
+
+                <span class="pec-status">
+                    ARCHIVED
+                </span>
+
+            </div>
+
+            <div class="pec-body">
+
+                <h2 class="pec-title">
+                    THE SUMMER EDITION
+                </h2>
+
+                <div class="pec-dates">
+                    JUNE 20 — JULY 09
+                </div>
+
+                <p class="pec-desc">
+                    The Summer Edition introduced the Crimson Lord, the
+                    destruction of the seven Seal Statues, and the
+                    awakening of something far older beneath the island.
+                </p>
+
+            </div>
+
+            <div class="pec-bottom">
+
+                <span class="pec-button">
+                    VIEW EVENT
+                    <i>→</i>
+                </span>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MEDIA
+     ===================================================== -->
+
+<section id="media" class="page">
+
+    <div class="media-hero">
+
+        <div class="media-hero-content">
+
+            <span class="media-hero-label">
+                THE GAME 2026 / MEDIA ARCHIVE
+            </span>
+
+            <h1>
+                MEDIA
+            </h1>
+
+            <p>
+                OFFICIAL VISUAL MATERIAL FROM THE GAME 2026.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         OFFICIAL ISLAND
+         ================================================= -->
+
+    <div class="media-block official-island-block">
+
+        <div class="media-block-header">
+
+            <div>
+
+                <span class="media-block-index">
+                    01
+                </span>
+
+                <h2>
+                    OFFICIAL ISLAND
+                </h2>
+
+            </div>
+
+            <span class="media-block-type">
+                OFFICIAL
+            </span>
+
+        </div>
+
+        <div class="official-island">
+
+            <img src="island.jpg" alt="The official island of The Game 2026" loading="lazy">
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         TEASERS
+         ================================================= -->
+
+    <div class="media-block">
+
+        <div class="media-block-header">
+
+            <div>
+
+                <span class="media-block-index">
+                    02
+                </span>
+
+                <h2>
+                    TEASERS
+                </h2>
+
+            </div>
+
+            <span class="media-block-type">
+                VISUAL ARCHIVE
+            </span>
+
+        </div>
+
+
+        <div class="teaser-grid">
+
+
+            <article class="teaser-card">
+
+                <div class="teaser-image">
+
+                    <img src="teaser-01.jpg" alt="The Game 2026 teaser 1" loading="lazy">
+
+                    <div class="teaser-overlay">
+
+                        <span>
+                            TEASER 01
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="teaser-info">
+
+                    <span>
+                        TEASER 01
+                    </span>
+
+                    <h3>
+                        THE GAME 2026
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article class="teaser-card">
+
+                <div class="teaser-image">
+
+                    <img src="teaser-02.jpg" alt="The Game 2026 teaser 2" loading="lazy">
+
+                    <div class="teaser-overlay">
+
+                        <span>
+                            TEASER 02
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="teaser-info">
+
+                    <span>
+                        TEASER 02
+                    </span>
+
+                    <h3>
+                        THE GAME 2026
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article class="teaser-card">
+
+                <div class="teaser-image">
+
+                    <img src="teaser-03.jpg" alt="The Game 2026 teaser 3" loading="lazy">
+
+                    <div class="teaser-overlay">
+
+                        <span>
+                            TEASER 03
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="teaser-info">
+
+                    <span>
+                        TEASER 03
+                    </span>
+
+                    <h3>
+                        THE GAME 2026
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article class="teaser-card">
+
+                <div class="teaser-image">
+
+                    <img src="teaser-04.jpg" alt="The Game 2026 teaser 4" loading="lazy">
+
+                    <div class="teaser-overlay">
+
+                        <span>
+                            TEASER 04
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="teaser-info">
+
+                    <span>
+                        TEASER 04
+                    </span>
+
+                    <h3>
+                        THE GAME 2026
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article class="teaser-card">
+
+                <div class="teaser-image">
+
+                    <img src="teaser-05.jpg" alt="The Game 2026 teaser 5" loading="lazy">
+
+                    <div class="teaser-overlay">
+
+                        <span>
+                            TEASER 05
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="teaser-info">
+
+                    <span>
+                        TEASER 05
+                    </span>
+
+                    <h3>
+                        THE GAME 2026
+                    </h3>
+
+                </div>
+
+            </article>
+
+            <article class="teaser-card">
+
+                <div class="teaser-image">
+
+                    <img src="teaser06.jpg" alt="The Game 2026 teaser 6" loading="lazy">
+
+                    <div class="teaser-overlay">
+
+                        <span>
+                            TEASER 06
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                    <span>
+                        TEASER 06
+                    </span>
+
+                    <h3>
+                        THE GAME 2026
+                    </h3>
+
+                </div>
+
+                            <article class="teaser-card">
+
+                <div class="teaser-image">
+
+                    <img src="teaser07.jpg" alt="The Game 2026 teaser 7" loading="lazy">
+
+                    <div class="teaser-overlay">
+
+                        <span>
+                            TEASER 07
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                    <span>
+                        TEASER 07
+                    </span>
+
+                    <h3>
+                        THE GAME 2026
+                    </h3>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     THE FINALE / QUEST 10
+     ===================================================== -->
+
+<section id="convergence" class="page">
+
+    <div class="section-header">
+
+        <span class="section-label">
+            QUEST 10 / FINAL EVENT
+        </span>
+
+        <h1>
+            THE HALLOWED CONVERGENCE
+        </h1>
+
+        <p>
+            THE FINAL CONFRONTATION.
+        </p>
+
+    </div>
+
+
+    <div class="convergence-panel">
+
+        <div class="panel-header">
+
+            <span>
+                CONVERGENCE STATUS
+            </span>
+
+            <span id="convergence-page-status">MONITORING</span>
+
+        </div>
+
+
+        <div class="meter">
+
+            <div id="convergence-page-meter" class="meter-fill" style="width: 0%;">
+            </div>
+
+        </div>
+
+
+        <div class="meter-bottom">
+
+            <span>
+                CONNECTION
+            </span>
+
+            <strong id="convergence-page-value">0%</strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="story-content">
+
+        <p>
+            Quest 10 is the final confrontation of The Game 2026.
+        </p>
+
+        <p>
+            The Hallowed Convergence begins as the Hallow King
+            attempts to complete the connection between the island
+            and the Hallowed Realm.
+        </p>
+
+        <div class="story-warning">
+            THE HALLOWED REALM IS HERE.
+        </div>
+
+        <p>
+            The players must activate and defend three Severing
+            Anchors while the Hallow King and his forces attempt
+            to stop them.
+        </p>
+
+        <p>
+            The battle escalates through multiple phases as the
+            Hallow King, the Killer Bunny and the Crimson Lord
+            enter the confrontation.
+        </p>
+
+        <p>
+            Once the Anchors are activated, the players initiate
+            the Severing.
+        </p>
+
+        <div class="story-warning">
+            SEVER THE CONNECTION.
+        </div>
+
+        <p>
+            The Severing cuts the Hallow King's connection to the
+            world and prevents the complete merging of the two
+            realms.
+        </p>
+
+        <p>
+            What remains after the Severing determines what comes
+            next.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CREDITS
+     ===================================================== -->
+
+<section id="credits" class="page">
+
+    <div class="section-header">
+
+        <span class="section-label">
+            THE GAME 2026 / PRODUCTION ARCHIVE
+        </span>
+
+        <h1>
+            CREDITS
+        </h1>
+
+        <p>
+            THE PEOPLE BEHIND THE GAME.
+        </p>
+
+    </div>
+
+
+    <div class="credits-intro">
+
+        <span>
+            THE GAME 2026
+        </span>
+
+        <h2>
+            EVERY STORY HAS A CREW.
+        </h2>
+
+        <p>
+            The Game 2026 is built through the combined work of
+            its creators, contributors, builders and developers
+            who helped bring the project to life.
+        </p>
+
+    </div>
+
+
+    <div class="credits-section">
+
+        <div class="credits-section-title">
+            PROJECT LEAD
+        </div>
+
+        <div class="credits-list">
+
+            <div class="credit-entry">
+
+                <div class="credit-role">
+                    PROJECT LEAD
+                </div>
+
+                <div class="credit-name">
+                    Gamer_pro_killer
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="credits-section">
+
+        <div class="credits-section-title">
+            CO-LEAD
+        </div>
+
+        <div class="credits-list">
+
+            <div class="credit-entry">
+
+                <div class="credit-role">
+                    CO-LEAD
+                </div>
+
+                <div class="credit-name">
+                    Rhens
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="credits-section">
+
+        <div class="credits-section-title">
+            DEVELOPMENT
+        </div>
+
+        <div class="credits-list">
+
+            <div class="credit-entry">
+
+                <div class="credit-role">
+                    DEVELOPER
+                </div>
+
+                <div class="credit-name">
+                    xDiamondBeerx
+                </div>
+
+                <div class="credit-description">
+                    Soundtrack system · Quest system · Schematics ·
+                    Additional development
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="credits-section">
+
+        <div class="credits-section-title">
+            BUILD TEAM
+        </div>
+
+        <div class="credits-list">
+
+
+            <div class="credit-entry">
+
+                <div class="credit-role">
+                    BUILD LEAD
+                </div>
+
+                <div class="credit-name">
+                    LunarMoonNL
+                </div>
+
+                <div class="credit-description">
+                    Directed builders
+                </div>
+
+            </div>
+
+
+            <div class="credit-entry">
+
+                <div class="credit-role">
+                    BUILDER
+                </div>
+
+                <div class="credit-name">
+                    P4odu
+                </div>
+
+                <div class="credit-description">
+                    Helped with building
+                </div>
+
+            </div>
+
+
+            <div class="credit-entry">
+
+                <div class="credit-role">
+                    BUILDER
+                </div>
+
+                <div class="credit-name">
+                    Paudawn
+                </div>
+
+                <div class="credit-description">
+                    Helped with removing structures
+                </div>
+
+            </div>
+
+
+            <div class="credit-entry">
+
+                <div class="credit-role">
+                    BUILDER
+                </div>
+
+                <div class="credit-name">
+                    TheUltimate348
+                </div>
+
+                <div class="credit-description">
+                    Helped with building
+                </div>
+
+            </div>
+
+
+            <div class="credit-entry">
+
+                <div class="credit-role">
+                    BUILDER
+                </div>
+
+                <div class="credit-name">
+                    Wolfgamer2011
+                </div>
+
+                <div class="credit-description">
+                    Helped with removing structures
+                </div>
+
+            </div>
+
+
+            <div class="credit-entry">
+
+                <div class="credit-role">
+                    BUILDER
+                </div>
+
+                <div class="credit-name">
+                    SL_Eclypse
+                </div>
+
+                <div class="credit-description">
+                    Helped with building
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="credits-subsection">
+
+        <div class="credits-subsection-header">
+
+            <span class="credit-role">
+                ADDITIONAL CONTRIBUTORS
+            </span>
+
+            <h3>
+                Game &amp; World Design
+            </h3>
+
+            <p>
+                Contributors who helped with The Game 2026
+                outside of the main Halloween 2026 event team.
+            </p>
+
+        </div>
+
+
+        <div class="credits-grid secondary">
+
+
+            <div class="credit-card">
+
+                <span class="credit-role">
+                    ROLE BUILDER
+                </span>
+
+                <h3>
+                    Jack
+                </h3>
+
+            </div>
+
+
+            <div class="credit-card">
+
+                <span class="credit-role">
+                    ROLE BUILDER
+                </span>
+
+                <h3>
+                    Paudawn
+                </h3>
+
+            </div>
+
+
+            <div class="credit-card">
+
+                <span class="credit-role">
+                    WORLD DESIGN TEAM
+                </span>
+
+                <h3>
+                    Supertauriel
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="credits-subsection">
+
+        <div class="credits-subsection-header">
+
+            <span class="credit-role">
+                PROJECT HISTORY
+            </span>
+
+            <h3>
+                The Founding
+            </h3>
+
+            <p>
+                The Game 2026 was founded by Gamer_pro_killer
+                and ArtieFox. ArtieFox later stepped away from the project
+                after finding it difficult to maintain her motivation while
+                balancing the pressure of development.
+                Gamer_pro_killer continued leading its
+                development.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="credits-footer">
+
+        <span>
+            THE GAME 2026
+        </span>
+
+        <strong>
+            FOUNDED BY GAMER_PRO_KILLER &amp; ARTIEFOX
+        </strong>
+
+        <p>
+            THANK YOU FOR PLAYING.
+        </p>
+
+        <p>
+            A special thank you to ArtieFox, for helping bring The Game 2026 to life from the very beginning.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PREVIOUS EVENTS ARCHIVE VIEWER
+     ===================================================== -->
+
+<div id="event-archive-viewer" class="event-archive-viewer" aria-hidden="true">
+
+    <div class="event-archive-scroll">
+
+        <div class="event-archive-dossier">
+
+            <div class="dossier-topbar">
+
+                <button id="event-archive-back" type="button" class="dossier-back">
+                     BACK
+                </button>
+
+                <span class="dossier-topbar-label">
+                    ARCHIVE DOCUMENT
+                </span>
+
+            </div>
+
+
+            <div id="dossier-content" class="dossier-content">
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PREVIOUS EVENTS LIGHTBOX
+     ===================================================== -->
+
+<div id="event-lightbox" class="event-lightbox" aria-hidden="true">
+
+    <button id="event-lightbox-close" type="button" class="event-lightbox-close">
+        ×
+    </button>
+
+    <img id="event-lightbox-image" src="" alt="">
+
+    <div id="event-lightbox-caption" class="event-lightbox-caption">
+    </div>
+
+</div>
+
+
+</main>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="script.js"></script>
+<script src="previous-events.js"></script>
+<script src="corruption-override.js"></script>
+
