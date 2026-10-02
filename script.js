@@ -2203,83 +2203,6 @@ console.log(
     var html = "";
 
 
-    /* HERO */
-
-    html +=
-      '<div class="dossier-hero era-' +
-        ev.era +
-      '">';
-
-    html +=
-      '<span class="dossier-hero-tag">' +
-        ev.tag +
-      '</span>';
-
-    html +=
-      '<h1>' +
-        ev.title +
-      '</h1>';
-
-    html +=
-      '<div class="dossier-hero-subtitle">' +
-        ev.subtitle +
-      '</div>';
-
-    html +=
-      '<div class="dossier-hero-dates">' +
-        ev.dates +
-      '</div>';
-
-    html +=
-      '</div>';
-
-
-    /* OVERVIEW */
-
-    html +=
-      '<div class="dossier-section">';
-
-    html +=
-      '<div class="dossier-section-label">' +
-        'OVERVIEW' +
-      '</div>';
-
-    html +=
-      '<div class="dossier-section-label">' +
-        'THE TOKEN SYSTEM' +
-      '</div>';
-
-    html +=
-      ev.overview.map(function (p) {
-        return '<p>' + p + '</p>';
-      }).join("");
-
-    html +=
-      '</div>';
-
-
-    /* STORY SECTIONS */
-
-    ev.sections.forEach(function (s) {
-
-      html +=
-        '<div class="dossier-section">';
-
-      html +=
-        '<div class="dossier-section-label">' +
-          s.heading +
-        '</div>';
-
-      html +=
-        s.paragraphs.map(function (p) {
-          return '<p>' + p + '</p>';
-        }).join("");
-
-      html +=
-        '</div>';
-    });
-
-
     /* TIMELINE */
 
     html +=
@@ -9960,4 +9883,567 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+});
+
+(() => {
+
+    "use strict";
+
+    const START =
+        new Date("2026-10-03T14:00:00+02:00");
+
+    const days =
+        document.getElementById("tgHomeDays");
+
+    const hours =
+        document.getElementById("tgHomeHours");
+
+    const minutes =
+        document.getElementById("tgHomeMinutes");
+
+    const seconds =
+        document.getElementById("tgHomeSeconds");
+
+
+    if (
+        days &&
+        hours &&
+        minutes &&
+        seconds
+    ) {
+
+        const pad = value =>
+            String(value).padStart(2, "0");
+
+
+        function updateCountdown() {
+
+            const difference =
+                START.getTime() - Date.now();
+
+
+            if (difference <= 0) {
+
+                days.textContent = "00";
+                hours.textContent = "00";
+                minutes.textContent = "00";
+                seconds.textContent = "00";
+
+                return;
+            }
+
+
+            const totalSeconds =
+                Math.floor(
+                    difference / 1000
+                );
+
+
+            days.textContent =
+                Math.floor(
+                    totalSeconds / 86400
+                );
+
+            hours.textContent =
+                pad(
+                    Math.floor(
+                        (totalSeconds % 86400) /
+                        3600
+                    )
+                );
+
+            minutes.textContent =
+                pad(
+                    Math.floor(
+                        (totalSeconds % 3600) /
+                        60
+                    )
+                );
+
+            seconds.textContent =
+                pad(
+                    totalSeconds % 60
+                );
+        }
+
+
+        updateCountdown();
+
+        window.setInterval(
+            updateCountdown,
+            1000
+        );
+    }
+
+
+    /* ========================================================
+       SUBTLE WORLD MOVEMENT
+       ======================================================== */
+
+    const world =
+        document.querySelector(".tg-world-image");
+
+    const convergence =
+        document.querySelector(".tg-convergence-image");
+
+    const descent =
+        document.querySelector(".tg-descent-bg");
+
+
+    if (
+        world &&
+        !window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
+
+        let mouseX = 0;
+        let mouseY = 0;
+
+        let currentX = 0;
+        let currentY = 0;
+
+
+        window.addEventListener(
+            "mousemove",
+            event => {
+
+                mouseX =
+                    (event.clientX /
+                    window.innerWidth - .5) * 7;
+
+                mouseY =
+                    (event.clientY /
+                    window.innerHeight - .5) * 4;
+
+            },
+            { passive: true }
+        );
+
+
+        function render() {
+
+            currentX +=
+                (mouseX - currentX) * .025;
+
+            currentY +=
+                (mouseY - currentY) * .025;
+
+
+            world.style.transform =
+                `scale(1.05)
+                 translate3d(
+                    ${currentX}px,
+                    ${currentY}px,
+                    0
+                 )`;
+
+
+            requestAnimationFrame(render);
+        }
+
+
+        requestAnimationFrame(render);
+    }
+
+
+    /* ========================================================
+       SCROLL PARALLAX
+       ======================================================== */
+
+    if (
+        !window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
+
+        let ticking = false;
+
+
+        function updateParallax() {
+
+            const scroll =
+                window.scrollY;
+
+
+            if (world) {
+
+                world.style.backgroundPosition =
+                    `center ${50 + scroll * .008}%`;
+            }
+
+
+            if (convergence) {
+
+                const rect =
+                    convergence.getBoundingClientRect();
+
+                const offset =
+                    rect.top * -.04;
+
+                convergence.style.transform =
+                    `scale(1.04)
+                     translate3d(0, ${offset}px, 0)`;
+            }
+
+
+            if (descent) {
+
+                const rect =
+                    descent.getBoundingClientRect();
+
+                const offset =
+                    rect.top * -.025;
+
+                descent.style.transform =
+                    `scale(1.03)
+                     translate3d(0, ${offset}px, 0)`;
+            }
+
+
+            ticking = false;
+        }
+
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (!ticking) {
+
+                    requestAnimationFrame(
+                        updateParallax
+                    );
+
+                    ticking = true;
+                }
+
+            },
+            { passive: true }
+        );
+    }
+
+
+    /* ========================================================
+       JOURNEY REVEALS
+       ======================================================== */
+
+    const journeyItems =
+        document.querySelectorAll(
+            ".tg-journey article"
+        );
+
+
+    if (
+        journeyItems.length &&
+        "IntersectionObserver" in window
+    ) {
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (
+                            !entry.isIntersecting
+                        ) {
+                            return;
+                        }
+
+
+                        entry.target.classList.add(
+                            "is-visible"
+                        );
+
+
+                        observer.unobserve(
+                            entry.target
+                        );
+                    });
+
+                },
+                {
+                    threshold: .15
+                }
+            );
+
+
+        journeyItems.forEach(
+            item => observer.observe(item)
+        );
+    }
+
+})();
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const hero = document.getElementById("hero");
+
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    const statusEl = document.getElementById("status");
+    const particlesEl = document.getElementById("particles");
+
+    /*
+        EVENT TIMES
+        Opening Ceremony: 13:30 CEST
+        Main Event / Quest 1: 14:00 CEST
+    */
+
+    const openingTime = new Date("2026-10-03T13:30:00+02:00").getTime();
+    const eventTime = new Date("2026-10-03T14:00:00+02:00").getTime();
+
+    let previousSecond = null;
+
+    /* -----------------------------
+       PARTICLES
+    ----------------------------- */
+
+    function createParticles() {
+
+        const amount = window.innerWidth < 700 ? 35 : 75;
+
+        for (let i = 0; i < amount; i++) {
+
+            const particle = document.createElement("span");
+
+            particle.className = "particle";
+
+            particle.style.left = `${Math.random() * 100}%`;
+
+            particle.style.animationDuration =
+                `${8 + Math.random() * 16}s`;
+
+            particle.style.animationDelay =
+                `${Math.random() * -20}s`;
+
+            const size = Math.random() > .9 ? 3 : 1 + Math.random();
+
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+
+            particlesEl.appendChild(particle);
+        }
+    }
+
+    createParticles();
+
+
+    /* -----------------------------
+       NUMBER FORMAT
+    ----------------------------- */
+
+    function pad(value) {
+        return String(value).padStart(2, "0");
+    }
+
+
+    /* -----------------------------
+       COUNTDOWN
+    ----------------------------- */
+
+    function updateCountdown() {
+
+        const now = Date.now();
+
+        let difference = eventTime - now;
+
+        /*
+            Event hasn't started.
+        */
+
+        if (difference > 0) {
+
+            const totalSeconds =
+                Math.floor(difference / 1000);
+
+            const days =
+                Math.floor(totalSeconds / 86400);
+
+            const hours =
+                Math.floor((totalSeconds % 86400) / 3600);
+
+            const minutes =
+                Math.floor((totalSeconds % 3600) / 60);
+
+            const seconds =
+                totalSeconds % 60;
+
+            daysEl.textContent = pad(days);
+            hoursEl.textContent = pad(hours);
+            minutesEl.textContent = pad(minutes);
+            secondsEl.textContent = pad(seconds);
+
+            /*
+                Opening ceremony has begun.
+            */
+
+            if (now >= openingTime) {
+
+                hero.classList.add("opening");
+
+                statusEl.textContent =
+                    "THE OPENING CEREMONY HAS BEGUN";
+
+            } else {
+
+                hero.classList.remove("opening");
+
+                statusEl.textContent =
+                    "THE GATE REMAINS SEALED";
+            }
+
+            /*
+                Small visual pulse every second.
+            */
+
+            if (seconds !== previousSecond) {
+
+                document.querySelector(".countdown").animate(
+                    [
+                        { opacity: .82 },
+                        { opacity: 1 }
+                    ],
+                    {
+                        duration: 350,
+                        easing: "ease-out"
+                    }
+                );
+
+                previousSecond = seconds;
+            }
+
+            return;
+        }
+
+
+        /*
+            EVENT HAS STARTED
+        */
+
+        daysEl.textContent = "00";
+        hoursEl.textContent = "00";
+        minutesEl.textContent = "00";
+        secondsEl.textContent = "00";
+
+        hero.classList.add("opening");
+
+        statusEl.textContent =
+            "THE GATE IS OPEN";
+
+        /*
+            Make the countdown feel like
+            it has actually triggered something.
+        */
+
+        if (!hero.dataset.started) {
+
+            hero.dataset.started = "true";
+
+            document.querySelector(".corruption-flash").style.background =
+                "rgba(255,45,15,.18)";
+
+            setTimeout(() => {
+
+                document.querySelector(".corruption-flash").style.background =
+                    "rgba(255,45,15,0)";
+
+            }, 180);
+        }
+    }
+
+
+    updateCountdown();
+
+    setInterval(updateCountdown, 250);
+
+
+    /* -----------------------------
+       SUBTLE MOUSE PARALLAX
+    ----------------------------- */
+
+    const cathedral = document.querySelector(".cathedral");
+    const watcher = document.querySelector(".watcher");
+
+    window.addEventListener("mousemove", (event) => {
+
+        const x =
+            (event.clientX / window.innerWidth - .5);
+
+        const y =
+            (event.clientY / window.innerHeight - .5);
+
+        cathedral.style.transform =
+            `translateX(calc(-50% + ${x * 18}px))
+             translateY(${y * 8}px)`;
+
+        watcher.style.transform =
+            `translateX(calc(-50% + ${x * 10}px))
+             translateY(${y * 5}px)`;
+    });
+
+
+    /* -----------------------------
+       RANDOM CORRUPTION GLITCH
+       BECOMES MORE ACTIVE NEAR EVENT
+    ----------------------------- */
+
+    function corruptionPulse() {
+
+        const now = Date.now();
+
+        if (now < openingTime) {
+
+            const distance =
+                openingTime - now;
+
+            /*
+                Only becomes noticeable
+                during the final 10 minutes.
+            */
+
+            if (distance < 600000) {
+
+                const intensity =
+                    1 - distance / 600000;
+
+                if (Math.random() < intensity * .08) {
+
+                    const flash =
+                        document.querySelector(".corruption-flash");
+
+                    flash.style.background =
+                        `rgba(255,40,10,${0.03 + intensity * .08})`;
+
+                    setTimeout(() => {
+                        flash.style.background =
+                            "rgba(255,40,10,0)";
+                    }, 80);
+                }
+            }
+        }
+    }
+
+    setInterval(corruptionPulse, 500);
+
+
+    /* -----------------------------
+       REDUCE MOTION ACCESSIBILITY
+    ----------------------------- */
+
+    const reducedMotion =
+        window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (reducedMotion.matches) {
+
+        document.querySelectorAll("*").forEach(element => {
+            element.style.animationDuration = "0.01ms";
+            element.style.animationIterationCount = "1";
+        });
+    }
+
 });
