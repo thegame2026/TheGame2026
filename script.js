@@ -15,7 +15,7 @@ const QUEST_ONE_TIME =
     new Date("2026-10-03T14:00:00+02:00");
 
 const CONVERGENCE_END =
-    new Date("2026-10-31T23:59:59+01:00");
+    new Date("2026-10-31T19:00:00+01:00");
 
 
 /* =========================================
@@ -65,7 +65,7 @@ function showState(state) {
 
 
 /* =========================================
-   OPENING COUNTDOWN
+   OPENING
 ========================================= */
 
 function updateOpening(now) {
@@ -73,20 +73,22 @@ function updateOpening(now) {
     const difference =
         OPENING_TIME - now;
 
+
     if (difference <= 0) {
-
-        showState(questState);
-
         return;
     }
 
 
     const totalSeconds =
-        Math.floor(difference / 1000);
+        Math.ceil(
+            difference / 1000
+        );
 
 
     const days =
-        Math.floor(totalSeconds / 86400);
+        Math.floor(
+            totalSeconds / 86400
+        );
 
     const hours =
         Math.floor(
@@ -103,16 +105,20 @@ function updateOpening(now) {
 
 
     document.getElementById("days")
-        .textContent = pad(days);
+        .textContent =
+        pad(days);
 
     document.getElementById("hours")
-        .textContent = pad(hours);
+        .textContent =
+        pad(hours);
 
     document.getElementById("minutes")
-        .textContent = pad(minutes);
+        .textContent =
+        pad(minutes);
 
     document.getElementById("seconds")
-        .textContent = pad(seconds);
+        .textContent =
+        pad(seconds);
 
 
     systemLabel.textContent =
@@ -121,7 +127,7 @@ function updateOpening(now) {
 
 
 /* =========================================
-   QUEST ONE COUNTDOWN
+   QUEST 1
 ========================================= */
 
 function updateQuest(now) {
@@ -131,33 +137,92 @@ function updateQuest(now) {
 
 
     if (difference <= 0) {
-
-        showState(convergenceState);
-
         return;
     }
 
 
     const totalSeconds =
-        Math.floor(difference / 1000);
+        Math.ceil(
+            difference / 1000
+        );
 
 
     const minutes =
-        Math.floor(totalSeconds / 60);
+        Math.floor(
+            totalSeconds / 60
+        );
 
     const seconds =
         totalSeconds % 60;
 
 
     document.getElementById("questMinutes")
-        .textContent = pad(minutes);
+        .textContent =
+        pad(minutes);
 
     document.getElementById("questSeconds")
-        .textContent = pad(seconds);
+        .textContent =
+        pad(seconds);
 
 
     systemLabel.textContent =
         "OPENING ACTIVE";
+}
+
+
+/* =========================================
+   FINALE COUNTDOWN
+========================================= */
+
+function updateFinaleCountdown(now) {
+
+    const difference =
+        Math.max(
+            0,
+            CONVERGENCE_END - now
+        );
+
+
+    const totalSeconds =
+        Math.ceil(
+            difference / 1000
+        );
+
+
+    const days =
+        Math.floor(
+            totalSeconds / 86400
+        );
+
+    const hours =
+        Math.floor(
+            (totalSeconds % 86400) / 3600
+        );
+
+    const minutes =
+        Math.floor(
+            (totalSeconds % 3600) / 60
+        );
+
+    const seconds =
+        totalSeconds % 60;
+
+
+    document.getElementById("finaleDays")
+        .textContent =
+        pad(days);
+
+    document.getElementById("finaleHours")
+        .textContent =
+        pad(hours);
+
+    document.getElementById("finaleMinutes")
+        .textContent =
+        pad(minutes);
+
+    document.getElementById("finaleSeconds")
+        .textContent =
+        pad(seconds);
 }
 
 
@@ -168,20 +233,27 @@ function updateQuest(now) {
 function updateConvergence(now) {
 
     const totalDuration =
-        CONVERGENCE_END - QUEST_ONE_TIME;
+        CONVERGENCE_END -
+        QUEST_ONE_TIME;
+
 
     const elapsed =
-        now - QUEST_ONE_TIME;
+        now -
+        QUEST_ONE_TIME;
 
 
     let progress =
-        elapsed / totalDuration;
+        elapsed /
+        totalDuration;
 
 
     progress =
         Math.max(
             0,
-            Math.min(1, progress)
+            Math.min(
+                1,
+                progress
+            )
         );
 
 
@@ -211,18 +283,16 @@ function updateConvergence(now) {
         ).toUpperCase();
 
 
+    updateFinaleCountdown(now);
+
+
     systemLabel.textContent =
         "CONVERGENCE ACTIVE";
 
 
-    /*
-       The closer the Convergence gets
-       to 100%, the more intense the red
-       atmospheric glow becomes.
-    */
-
     const intensity =
-        0.10 + (progress * 0.30);
+        0.10 +
+        (progress * 0.30);
 
 
     document.documentElement
@@ -230,15 +300,6 @@ function updateConvergence(now) {
             "--convergenceIntensity",
             intensity
         );
-
-
-    if (progress >= 1) {
-
-        showState(finaleState);
-
-        systemLabel.textContent =
-            "CONVERGENCE COMPLETE";
-    }
 }
 
 
@@ -252,11 +313,14 @@ function updateFinale() {
 
     systemLabel.textContent =
         "CONVERGENCE COMPLETE";
+
+    document.title =
+        "The Game 2026 — Finale";
 }
 
 
 /* =========================================
-   MAIN STATE MACHINE
+   MAIN EVENT STATE
 ========================================= */
 
 function updateEvent() {
@@ -265,10 +329,16 @@ function updateEvent() {
         new Date();
 
 
+    /*
+       1. BEFORE OPENING
+    */
+
     if (now < OPENING_TIME) {
 
         if (
-            openingState.classList.contains("hidden")
+            openingState.classList.contains(
+                "hidden"
+            )
         ) {
             showState(openingState);
         }
@@ -279,10 +349,17 @@ function updateEvent() {
     }
 
 
+    /*
+       2. OPENING CEREMONY
+       13:30 → 14:00
+    */
+
     if (now < QUEST_ONE_TIME) {
 
         if (
-            questState.classList.contains("hidden")
+            questState.classList.contains(
+                "hidden"
+            )
         ) {
             showState(questState);
         }
@@ -293,10 +370,17 @@ function updateEvent() {
     }
 
 
+    /*
+       3. CONVERGENCE
+       14:00 Oct 3 → 19:00 Oct 31
+    */
+
     if (now < CONVERGENCE_END) {
 
         if (
-            convergenceState.classList.contains("hidden")
+            convergenceState.classList.contains(
+                "hidden"
+            )
         ) {
             showState(convergenceState);
         }
@@ -306,6 +390,11 @@ function updateEvent() {
         return;
     }
 
+
+    /*
+       4. AFTER FINALE
+       19:00 Oct 31 onward
+    */
 
     updateFinale();
 }
@@ -320,19 +409,32 @@ function updateClock() {
     const now =
         new Date();
 
+
     const hours =
-        pad(now.getHours());
+        pad(
+            now.getHours()
+        );
 
     const minutes =
-        pad(now.getMinutes());
+        pad(
+            now.getMinutes()
+        );
 
     const seconds =
-        pad(now.getSeconds());
+        pad(
+            now.getSeconds()
+        );
 
+
+    /*
+       The clock uses the browser's local
+       timezone, which is correct for the
+       user viewing the site.
+    */
 
     document.getElementById("clock")
         .textContent =
-        `${hours}:${minutes}:${seconds} CEST`;
+        `${hours}:${minutes}:${seconds}`;
 }
 
 
@@ -343,7 +445,9 @@ function updateClock() {
 function createParticles() {
 
     const container =
-        document.getElementById("particles");
+        document.getElementById(
+            "particles"
+        );
 
 
     const amount =
@@ -352,10 +456,17 @@ function createParticles() {
             : 65;
 
 
-    for (let i = 0; i < amount; i++) {
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
 
         const particle =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
         particle.className =
             "particle";
@@ -381,7 +492,9 @@ function createParticles() {
             Math.random();
 
 
-        container.appendChild(particle);
+        container.appendChild(
+            particle
+        );
     }
 }
 
@@ -396,5 +509,12 @@ updateEvent();
 updateClock();
 
 
-setInterval(updateEvent, 1000);
-setInterval(updateClock, 1000);
+setInterval(
+    updateEvent,
+    1000
+);
+
+setInterval(
+    updateClock,
+    1000
+);
