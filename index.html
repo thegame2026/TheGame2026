@@ -19,288 +19,383 @@
 
 <body>
 
-    <div class="scene">
-        <div class="noise"></div>
-        <div class="grid"></div>
+<div class="scene">
+    <div class="noise"></div>
+    <div class="grid"></div>
 
-        <div class="redGlow glowOne"></div>
-        <div class="redGlow glowTwo"></div>
+    <div class="redGlow glowOne"></div>
+    <div class="redGlow glowTwo"></div>
 
-        <div class="particles" id="particles"></div>
+    <div class="corruption"></div>
 
-        <div class="scanlines"></div>
-        <div class="vignette"></div>
-    </div>
+    <div class="particles" id="particles"></div>
+
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+</div>
 
 
-    <main class="interface">
+<main class="interface">
 
-        <header class="topbar">
+    <header class="topbar">
 
-            <div class="brand">
-                <span class="brandMark"></span>
+        <div class="brand">
+            <span class="brandMark"></span>
 
-                <div>
-                    <strong>THE GAME</strong>
-                    <span>HALLOWEEN 2026</span>
-                </div>
+            <div>
+                <strong>THE GAME</strong>
+                <span>HALLOWEEN 2026</span>
+            </div>
+        </div>
+
+        <div class="liveIndicator">
+            <span></span>
+            <b id="systemLabel">SYSTEM STANDBY</b>
+        </div>
+
+    </header>
+
+
+    <section class="hero">
+
+        <div class="eyebrow">
+            BLACKMAGICCRAFT · HALLOWEEN 2026
+        </div>
+
+        <h1>
+            THE GAME
+            <span>2026</span>
+        </h1>
+
+        <div class="line"></div>
+
+
+        <!-- BEFORE EVENT -->
+
+        <section id="openingState" class="state">
+
+            <div class="stateLabel">
+                <span class="number">01</span>
+                OPENING CEREMONY
             </div>
 
-            <div class="liveIndicator">
-                <span></span>
-                <b id="systemLabel">SYSTEM STANDBY</b>
+            <h2>BEGINS IN</h2>
+
+            <div class="countdown">
+
+                <div class="timeUnit">
+                    <strong id="days">00</strong>
+                    <span>DAYS</span>
+                </div>
+
+                <div class="separator">:</div>
+
+                <div class="timeUnit">
+                    <strong id="hours">00</strong>
+                    <span>HOURS</span>
+                </div>
+
+                <div class="separator">:</div>
+
+                <div class="timeUnit">
+                    <strong id="minutes">00</strong>
+                    <span>MINUTES</span>
+                </div>
+
+                <div class="separator">:</div>
+
+                <div class="timeUnit">
+                    <strong id="seconds">00</strong>
+                    <span>SECONDS</span>
+                </div>
+
             </div>
 
-        </header>
-
-
-        <section class="hero">
-
-            <div class="eyebrow">
-                BLACKMAGICCRAFT · HALLOWEEN 2026
+            <div class="eventDate">
+                03 OCTOBER 2026 <span>·</span> 13:30 CEST
             </div>
-
-            <h1>
-                THE GAME
-                <span>2026</span>
-            </h1>
-
-            <div class="line"></div>
-
-
-            <!-- OPENING -->
-
-            <section id="openingState" class="state">
-
-                <div class="stateLabel">
-                    <span class="number">01</span>
-                    OPENING CEREMONY
-                </div>
-
-                <h2>BEGINS IN</h2>
-
-                <div class="countdown">
-
-                    <div class="timeUnit">
-                        <strong id="days">00</strong>
-                        <span>DAYS</span>
-                    </div>
-
-                    <div class="separator">:</div>
-
-                    <div class="timeUnit">
-                        <strong id="hours">00</strong>
-                        <span>HOURS</span>
-                    </div>
-
-                    <div class="separator">:</div>
-
-                    <div class="timeUnit">
-                        <strong id="minutes">00</strong>
-                        <span>MINUTES</span>
-                    </div>
-
-                    <div class="separator">:</div>
-
-                    <div class="timeUnit">
-                        <strong id="seconds">00</strong>
-                        <span>SECONDS</span>
-                    </div>
-
-                </div>
-
-                <div class="eventDate">
-                    03 OCTOBER 2026 <span>·</span> 13:30 CEST
-                </div>
-
-            </section>
-
-
-            <!-- QUEST 1 -->
-
-            <section id="questState" class="state hidden">
-
-                <div class="stateLabel">
-                    <span class="number">02</span>
-                    OPENING CEREMONY
-                </div>
-
-                <h2>QUEST 1 BEGINS IN</h2>
-
-                <div class="countdown short">
-
-                    <div class="timeUnit">
-                        <strong id="questMinutes">30</strong>
-                        <span>MINUTES</span>
-                    </div>
-
-                    <div class="separator">:</div>
-
-                    <div class="timeUnit">
-                        <strong id="questSeconds">00</strong>
-                        <span>SECONDS</span>
-                    </div>
-
-                </div>
-
-                <div class="eventDate">
-                    QUEST 1 <span>·</span> 03 OCTOBER 2026 · 14:00 CEST
-                </div>
-
-            </section>
-
-
-            <!-- CONVERGENCE -->
-
-            <section id="convergenceState" class="state hidden">
-
-                <div class="stateLabel">
-                    <span class="number">03</span>
-                    ACTIVE EVENT
-                </div>
-
-                <h2>THE CONVERGENCE</h2>
-
-                <div class="progressNumber">
-                    <span id="percentage">0.00</span>
-                    <small>%</small>
-                </div>
-
-
-                <!-- FINALE COUNTDOWN -->
-
-                <div class="finaleCountdown">
-
-                    <div class="finaleCountdownLabel">
-                        THE END APPROACHES
-                    </div>
-
-                    <div class="finaleClock">
-
-                        <div class="finaleTimeUnit">
-                            <strong id="finaleDays">00</strong>
-                            <span>DAYS</span>
-                        </div>
-
-                        <div class="finaleSeparator">:</div>
-
-                        <div class="finaleTimeUnit">
-                            <strong id="finaleHours">00</strong>
-                            <span>HOURS</span>
-                        </div>
-
-                        <div class="finaleSeparator">:</div>
-
-                        <div class="finaleTimeUnit">
-                            <strong id="finaleMinutes">00</strong>
-                            <span>MINUTES</span>
-                        </div>
-
-                        <div class="finaleSeparator">:</div>
-
-                        <div class="finaleTimeUnit">
-                            <strong id="finaleSeconds">00</strong>
-                            <span>SECONDS</span>
-                        </div>
-
-                    </div>
-
-                    <div class="finaleCountdownDate">
-                        1 NOVEMBER 2026 <span>·</span> 19:00 CET
-                    </div>
-
-                </div>
-
-
-                <div class="progressWrapper">
-
-                    <div class="progressTrack">
-                        <div id="meterFill"></div>
-                        <div class="energy"></div>
-                    </div>
-
-                    <div class="progressTicks">
-                        <span>0</span>
-                        <span>25</span>
-                        <span>50</span>
-                        <span>75</span>
-                        <span>100</span>
-                    </div>
-
-                </div>
-
-
-                <div class="convergenceMeta">
-
-                    <div>
-                        <span>STATUS</span>
-
-                        <strong id="convergenceStatus">
-                            IN MOTION
-                        </strong>
-                    </div>
-
-                    <div>
-                        <span>PROGRESS</span>
-
-                        <strong id="meterDate">
-                            03 OCT 2026
-                        </strong>
-                    </div>
-
-                </div>
-
-                <p class="eventMessage">
-                    THE CONVERGENCE IS IN MOTION.
-                </p>
-
-            </section>
-
-
-            <!-- FINALE -->
-
-            <section id="finaleState" class="state hidden finaleState">
-
-                <div class="stateLabel">
-                    <span class="number">04</span>
-                    EVENT STATUS
-                </div>
-
-                <h2>CONVERGENCE COMPLETE</h2>
-
-                <div class="finaleNumber">
-                    100<span>%</span>
-                </div>
-
-                <div class="finaleLine"></div>
-
-                <p class="eventMessage">
-                    THE FINALE IS COMPLETE.
-                </p>
-
-            </section>
 
         </section>
 
 
-        <footer>
+        <!-- OPENING CEREMONY -->
 
-            <div>
-                <span>BLACKMAGICCRAFT</span>
-                <i></i>
-                <span>THE GAME 2026</span>
+        <section id="questState" class="state hidden">
+
+            <div class="stateLabel">
+                <span class="number">02</span>
+                OPENING CEREMONY
             </div>
 
-            <div id="clock">
-                00:00:00 CET
+            <h2>QUEST 1 BEGINS IN</h2>
+
+            <div class="countdown short">
+
+                <div class="timeUnit">
+                    <strong id="questMinutes">30</strong>
+                    <span>MINUTES</span>
+                </div>
+
+                <div class="separator">:</div>
+
+                <div class="timeUnit">
+                    <strong id="questSeconds">00</strong>
+                    <span>SECONDS</span>
+                </div>
+
             </div>
 
-        </footer>
+            <div class="eventDate">
+                QUEST 1 <span>·</span> 03 OCTOBER 2026 · 14:00 CEST
+            </div>
 
-    </main>
+        </section>
 
 
-    <script src="script.js"></script>
+        <!-- ACTIVE CONVERGENCE -->
+
+        <section id="convergenceState" class="state hidden">
+
+            <div class="stateLabel">
+                <span class="number">03</span>
+                ACTIVE EVENT
+            </div>
+
+            <h2>THE CONVERGENCE</h2>
+
+
+            <!-- CURRENT QUEST -->
+
+            <div class="questStatus">
+
+                <div class="questStatusBlock">
+
+                    <span class="smallLabel">
+                        CURRENTLY ACTIVE
+                    </span>
+
+                    <strong id="currentQuest">
+                        Q2 — THE WATCHER'S TOWER
+                    </strong>
+
+                </div>
+
+                <div class="questStatusDivider"></div>
+
+                <div class="questStatusBlock next">
+
+                    <span class="smallLabel">
+                        NEXT
+                    </span>
+
+                    <strong id="nextQuest">
+                        Q3 — THE BROKEN SEALS
+                    </strong>
+
+                    <span id="nextQuestDate">
+                        10 OCTOBER · 00:00 CEST
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- CURRENT QUEST COUNTDOWN -->
+
+            <div class="nextCountdown">
+
+                <span id="nextCountdownLabel">
+                    NEXT QUEST RELEASE
+                </span>
+
+                <div class="nextClock">
+
+                    <div>
+                        <strong id="nextDays">00</strong>
+                        <span>D</span>
+                    </div>
+
+                    <div class="nextSeparator">:</div>
+
+                    <div>
+                        <strong id="nextHours">00</strong>
+                        <span>H</span>
+                    </div>
+
+                    <div class="nextSeparator">:</div>
+
+                    <div>
+                        <strong id="nextMinutes">00</strong>
+                        <span>M</span>
+                    </div>
+
+                    <div class="nextSeparator">:</div>
+
+                    <div>
+                        <strong id="nextSeconds">00</strong>
+                        <span>S</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONVERGENCE PERCENTAGE -->
+
+            <div class="progressNumber">
+                <span id="percentage">0.00</span>
+                <small>%</small>
+            </div>
+
+
+            <div class="progressLabel">
+                CONVERGENCE PROGRESS
+            </div>
+
+
+            <div class="progressWrapper">
+
+                <div class="progressTrack">
+                    <div id="meterFill"></div>
+                    <div class="energy"></div>
+                </div>
+
+                <div class="progressTicks">
+                    <span>0</span>
+                    <span>25</span>
+                    <span>50</span>
+                    <span>75</span>
+                    <span>100</span>
+                </div>
+
+            </div>
+
+
+            <!-- FINALE COUNTDOWN -->
+
+            <div class="finaleCountdown">
+
+                <div class="finaleCountdownLabel">
+                    THE CONVERGENCE ENDS IN
+                </div>
+
+                <div class="finaleClock">
+
+                    <div class="finaleTimeUnit">
+                        <strong id="finaleDays">00</strong>
+                        <span>DAYS</span>
+                    </div>
+
+                    <div class="finaleSeparator">:</div>
+
+                    <div class="finaleTimeUnit">
+                        <strong id="finaleHours">00</strong>
+                        <span>HOURS</span>
+                    </div>
+
+                    <div class="finaleSeparator">:</div>
+
+                    <div class="finaleTimeUnit">
+                        <strong id="finaleMinutes">00</strong>
+                        <span>MINUTES</span>
+                    </div>
+
+                    <div class="finaleSeparator">:</div>
+
+                    <div class="finaleTimeUnit">
+                        <strong id="finaleSeconds">00</strong>
+                        <span>SECONDS</span>
+                    </div>
+
+                </div>
+
+                <div class="finaleCountdownDate">
+                    31 OCTOBER 2026 <span>·</span> 19:00 CET
+                </div>
+
+            </div>
+
+
+            <!-- META -->
+
+            <div class="convergenceMeta">
+
+                <div>
+                    <span>STATUS</span>
+                    <strong id="convergenceStatus">
+                        IN MOTION
+                    </strong>
+                </div>
+
+                <div>
+                    <span>EVENT DATE</span>
+                    <strong id="meterDate">
+                        03 OCT 2026
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <p class="eventMessage" id="eventMessage">
+                THE CONVERGENCE IS IN MOTION.
+            </p>
+
+        </section>
+
+
+        <!-- COMPLETED -->
+
+        <section id="finaleState" class="state hidden finaleState">
+
+            <div class="stateLabel">
+                <span class="number">04</span>
+                EVENT STATUS
+            </div>
+
+            <h2>CONVERGENCE COMPLETE</h2>
+
+            <div class="finaleNumber">
+                100<span>%</span>
+            </div>
+
+            <div class="finaleLine"></div>
+
+            <p class="eventMessage">
+                THE CONVERGENCE HAS BEEN COMPLETED.
+            </p>
+
+            <div class="finaleSubtext">
+                THE HALLOWED REALM HAS BEEN OPENED.
+            </div>
+
+        </section>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div>
+            <span>BLACKMAGICCRAFT</span>
+            <i></i>
+            <span>THE GAME 2026</span>
+        </div>
+
+        <div id="clock">
+            00:00:00
+        </div>
+
+    </footer>
+
+</main>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
