@@ -32,7 +32,7 @@ const QUESTS = [
     {
         id: "Q5",
         title: "THE LAST SEALKEEPER",
-        date: new Date("2026-10-10T19:00:00+02:00")
+        date: new Date("2026-10-10T11:00:00+02:00")
     },
     {
         id: "Q6",
