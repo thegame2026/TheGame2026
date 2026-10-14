@@ -37,7 +37,7 @@ const QUESTS = [
     {
         id: "Q6",
         title: "BEYOND THE VEIL",
-        date: new Date("2026-10-14T20:00:00+02:00")
+        date: new Date("2026-10-14T09:00:00+02:00")
     },
     {
         id: "Q7",
