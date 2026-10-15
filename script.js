@@ -1,1070 +1,630 @@
-/* =========================================
+/* ==================================================
    THE GAME 2026
-   EVENT STATE SYSTEM
-========================================= */
-
-
-/* =========================================
-   QUEST SCHEDULE
-========================================= */
-
-const QUESTS = [
-    {
-        id: "Q1",
-        title: "THE SILENT ARRIVAL",
-        date: new Date("2026-10-03T14:00:00+02:00")
-    },
-    {
-        id: "Q2",
-        title: "THE WATCHER'S TOWER",
-        date: new Date("2026-10-03T19:00:00+02:00")
-    },
-    {
-        id: "Q3",
-        title: "THE BROKEN SEALS",
-        date: new Date("2026-10-04T19:00:00+02:00")
-    },
-    {
-        id: "Q4",
-        title: "ECHOES BENEATH THE VOLCANO",
-        date: new Date("2026-10-06T19:00:00+02:00")
-    },
-    {
-        id: "Q5",
-        title: "THE LAST SEALKEEPER",
-        date: new Date("2026-10-10T11:00:00+02:00")
-    },
-    {
-        id: "Q6",
-        title: "BEYOND THE VEIL",
-        date: new Date("2026-10-14T09:00:00+02:00")
-    },
-    {
-        id: "Q7",
-        title: "THE LOST CREW",
-        date: new Date("2026-10-18T19:00:00+02:00")
-    },
-    {
-        id: "Q8",
-        title: "THE RESCUE",
-        date: new Date("2026-10-22T19:00:00+02:00")
-    },
-    {
-        id: "Q9",
-        title: "THE LAST CHANCE",
-        date: new Date("2026-10-27T19:00:00+01:00")
-    },
-    {
-        id: "Q10",
-        title: "THE HALLOWED CONVERGENCE",
-        date: new Date("2026-11-01T18:00:00+01:00")
-    }
-];
-
-
-/* =========================================
-   EVENT TIMES
-========================================= */
-
-const OPENING_TIME =
-    new Date("2026-10-03T13:30:00+02:00");
-
-const EVENT_START =
-    new Date("2026-10-03T14:00:00+02:00");
-
-const CONVERGENCE_END =
-    new Date("2026-11-01T18:00:00+01:00");
-
-
-/* =========================================
-   ELEMENTS
-========================================= */
-
-const systemLabel =
-    document.getElementById("systemLabel");
-
-const openingState =
-    document.getElementById("openingState");
-
-const questState =
-    document.getElementById("questState");
-
-const convergenceState =
-    document.getElementById("convergenceState");
-
-const finaleState =
-    document.getElementById("finaleState");
-
-
-/* Opening countdown */
-
-const days =
-    document.getElementById("days");
-
-const hours =
-    document.getElementById("hours");
-
-const minutes =
-    document.getElementById("minutes");
-
-const seconds =
-    document.getElementById("seconds");
-
-
-/* Quest 1 countdown */
-
-const questMinutes =
-    document.getElementById("questMinutes");
-
-const questSeconds =
-    document.getElementById("questSeconds");
-
-
-/* Current / next quest */
-
-const currentQuest =
-    document.getElementById("currentQuest");
-
-const nextQuest =
-    document.getElementById("nextQuest");
-
-const nextQuestDate =
-    document.getElementById("nextQuestDate");
-
-
-/* Next quest countdown */
-
-const nextDays =
-    document.getElementById("nextDays");
-
-const nextHours =
-    document.getElementById("nextHours");
-
-const nextMinutes =
-    document.getElementById("nextMinutes");
-
-const nextSeconds =
-    document.getElementById("nextSeconds");
-
-const nextCountdownLabel =
-    document.getElementById("nextCountdownLabel");
-
-
-/* Convergence */
-
-const percentage =
-    document.getElementById("percentage");
-
-const meterFill =
-    document.getElementById("meterFill");
-
-const convergenceStatus =
-    document.getElementById("convergenceStatus");
-
-const meterDate =
-    document.getElementById("meterDate");
-
-const eventMessage =
-    document.getElementById("eventMessage");
-
-
-/* Finale countdown */
-
-const finaleDays =
-    document.getElementById("finaleDays");
-
-const finaleHours =
-    document.getElementById("finaleHours");
-
-const finaleMinutes =
-    document.getElementById("finaleMinutes");
-
-const finaleSeconds =
-    document.getElementById("finaleSeconds");
-
-
-/* Footer */
-
-const clock =
-    document.getElementById("clock");
-
-
-/* =========================================
-   HELPERS
-========================================= */
-
-function pad(value) {
-
-    return String(value).padStart(2, "0");
-}
-
-
-function hideAllStates() {
-
-    if (openingState) {
-        openingState.classList.add("hidden");
-    }
-
-    if (questState) {
-        questState.classList.add("hidden");
-    }
-
-    if (convergenceState) {
-        convergenceState.classList.add("hidden");
-    }
-
-    if (finaleState) {
-        finaleState.classList.add("hidden");
-    }
-}
-
-
-function showState(element) {
-
-    hideAllStates();
-
-    if (element) {
-        element.classList.remove("hidden");
-    }
-}
-
-
-/* =========================================
-   COUNTDOWN
-========================================= */
-
-function getTimeParts(milliseconds) {
-
-    if (milliseconds <= 0) {
-
-        return {
-            days: 0,
-            hours: 0,
-            minutes: 0,
-            seconds: 0
-        };
-    }
-
-
-    const totalSeconds =
-        Math.floor(milliseconds / 1000);
-
-
-    return {
-        days:
-            Math.floor(totalSeconds / 86400),
-
-        hours:
-            Math.floor(
-                (totalSeconds % 86400) / 3600
-            ),
-
-        minutes:
-            Math.floor(
-                (totalSeconds % 3600) / 60
-            ),
-
-        seconds:
-            totalSeconds % 60
+   CONVERGENCE SYSTEM
+   Automatic progression toward November 1, 19:00 CET
+================================================== */
+
+(() => {
+    "use strict";
+
+    /* ==================================================
+       CONFIGURATION
+    ================================================== */
+
+    const CONFIG = {
+        startDate: new Date("2026-10-15T20:00:00+02:00"),
+        finaleDate: new Date("2026-11-01T19:00:00+01:00"),
+        startPercent: 42,
+        messageInterval: 30000,
+        particleInterval: 900
     };
-}
 
+    /* ==================================================
+       QUEST SCHEDULE
+    ================================================== */
 
-function setCountdown(
-    dayElement,
-    hourElement,
-    minuteElement,
-    secondElement,
-    milliseconds
-) {
+    const QUESTS = [
+        {
+            id: "Q1",
+            title: "THE SILENT ARRIVAL",
+            date: new Date("2026-10-03T14:00:00+02:00")
+        },
+        {
+            id: "Q2",
+            title: "WATCHER'S TOWER",
+            date: new Date("2026-10-03T14:00:00+02:00")
+        },
+        {
+            id: "Q3",
+            title: "BROKEN SEALS",
+            date: new Date("2026-10-04T14:00:00+02:00")
+        },
+        {
+            id: "Q4",
+            title: "ECHOES BENEATH THE VOLCANO",
+            date: new Date("2026-10-06T14:00:00+02:00")
+        },
+        {
+            id: "Q5",
+            title: "THE LAST SEALKEEPER",
+            date: new Date("2026-10-10T14:00:00+02:00")
+        },
+        {
+            id: "Q6",
+            title: "BEYOND THE VEIL",
+            date: new Date("2026-10-14T14:00:00+02:00")
+        },
+        {
+            id: "Q7",
+            title: "THE LOST CREW",
+            date: new Date("2026-10-18T14:00:00+02:00")
+        },
+        {
+            id: "Q8",
+            title: "THE RESCUE",
+            date: new Date("2026-10-22T14:00:00+02:00")
+        },
+        {
+            id: "Q9",
+            title: "THE LAST CHANCE",
+            date: new Date("2026-10-27T14:00:00+01:00")
+        },
+        {
+            id: "Q10",
+            title: "HALLOWED CONVERGENCE",
+            date: new Date("2026-11-01T19:00:00+01:00")
+        }
+    ];
 
-    const time =
-        getTimeParts(milliseconds);
+    /* ==================================================
+       CONVERGENCE STAGES
 
+       The percentage measures the expansion of the
+       Hallow King's dominion. It does NOT measure
+       the condition of the seals or his presence.
+    ================================================== */
 
-    if (dayElement) {
-        dayElement.textContent =
-            pad(time.days);
+    const STAGES = [
+        {
+            max: 24,
+            name: "UNSTABLE SIGNAL",
+            status: "DOMINION DEVELOPING",
+            messages: [
+                "The island is changing.",
+                "His presence grows stronger.",
+                "The Hallowed Realm is spreading.",
+                "Something ancient has awakened.",
+                "The first signs of his dominion are appearing.",
+                "The island's boundaries are becoming unstable.",
+                "An unfamiliar influence spreads across the land."
+            ]
+        },
+        {
+            max: 39,
+            name: "EXPANDING INFLUENCE",
+            status: "DOMINION EXPANDING",
+            messages: [
+                "The Hallow King's influence is growing.",
+                "The boundary between worlds is disappearing.",
+                "His dominion extends beyond its former boundaries.",
+                "The island is no longer what it was.",
+                "The Hallowed Realm is claiming new ground.",
+                "More of the island falls under his influence.",
+                "The Convergence continues to advance."
+            ]
+        },
+        {
+            max: 54,
+            name: "CONVERGENCE ACTIVE",
+            status: "DOMINION SPREADING",
+            messages: [
+                "THE CONVERGENCE CONTINUES.",
+                "His dominion spreads across the island.",
+                "The boundaries of his kingdom are expanding.",
+                "The island is slowly becoming his own.",
+                "The Hallowed Realm extends its reach.",
+                "His influence grows with every passing moment.",
+                "The island is becoming his kingdom.",
+                "The Convergence is changing everything."
+            ]
+        },
+        {
+            max: 69,
+            name: "DOMINION EXPANDING",
+            status: "TERRITORY CLAIMED",
+            messages: [
+                "MORE OF THE ISLAND FALLS UNDER HIS INFLUENCE.",
+                "The Hallowed Realm continues to spread.",
+                "His territory grows beyond its former boundaries.",
+                "The island is losing its connection to the normal world.",
+                "THE KINGDOM EXPANDS.",
+                "His influence reaches further than ever before.",
+                "The Hallowed Realm is claiming everything around it.",
+                "The island's transformation continues."
+            ]
+        },
+        {
+            max: 84,
+            name: "HALLOWED TAKEOVER",
+            status: "DOMINION ADVANCING",
+            messages: [
+                "THE HALLOWED REALM IS CONSUMING OUR WORLD.",
+                "His dominion now reaches almost everywhere.",
+                "The normal world is fading beneath his influence.",
+                "The island is becoming an extension of his realm.",
+                "HIS KINGDOM KNOWS NO BOUNDARIES.",
+                "The Convergence has reached an unprecedented scale.",
+                "His domain continues to replace the familiar world.",
+                "The island is becoming part of something greater."
+            ]
+        },
+        {
+            max: 99,
+            name: "FINAL CONVERGENCE",
+            status: "DOMINION NEAR COMPLETE",
+            messages: [
+                "THE TWO WORLDS ARE NEARLY ONE.",
+                "His dominion is almost complete.",
+                "There is almost nothing left beyond his reach.",
+                "THE FINAL STAGE APPROACHES.",
+                "His victory draws closer with every passing second.",
+                "The boundaries between the worlds are almost gone.",
+                "The Hallowed Realm is close to consuming the island.",
+                "THE KINGDOM IS ALMOST COMPLETE."
+            ]
+        },
+        {
+            max: 100,
+            name: "HALLOWED CONVERGENCE",
+            status: "CONVERGENCE COMPLETE",
+            messages: [
+                "CONVERGENCE COMPLETE.",
+                "THE HALLOW KING HAS WON.",
+                "THE TWO WORLDS ARE ONE.",
+                "THE ISLAND IS HIS.",
+                "HIS DOMINION IS COMPLETE."
+            ]
+        }
+    ];
+
+    /* ==================================================
+       DOM REFERENCES
+    ================================================== */
+
+    const $ = id => document.getElementById(id);
+
+    const elements = {
+        percentage: $("percentage"),
+        meterFill: $("meterFill"),
+        meterTrack: $("meterTrack"),
+        meterStateChip: $("meterStateChip"),
+        meterReadout: $("meterReadout"),
+        convergencePanel: $("convergencePanel"),
+
+        signalStatus: $("signalStatus"),
+        eventMessage: $("eventMessage"),
+        signalOrigin: $("signalOrigin"),
+        signalAuth: $("signalAuth"),
+
+        days: $("days"),
+        hours: $("hours"),
+        minutes: $("minutes"),
+        seconds: $("seconds"),
+        countdownTitle: $("countdownTitle"),
+
+        questGrid: $("questGrid"),
+        anomalyNotice: $("anomalyNotice"),
+
+        particleField: $("particleField"),
+        flashOverlay: $("flashOverlay")
+    };
+
+    /* ==================================================
+       STATE
+    ================================================== */
+
+    let currentStageIndex = -1;
+    let currentMessage = "";
+    let nextMessageAt = 0;
+    let lastMilestone = -1;
+    let previousPercentage = -1;
+
+    /* ==================================================
+       PROGRESSION CALCULATION
+    ================================================== */
+
+    function calculateProgress(now = Date.now()) {
+        const start = CONFIG.startDate.getTime();
+        const finale = CONFIG.finaleDate.getTime();
+
+        if (now >= finale) {
+            return 100;
+        }
+
+        if (now <= start) {
+            return CONFIG.startPercent;
+        }
+
+        const elapsed = now - start;
+        const duration = finale - start;
+        const fraction = elapsed / duration;
+
+        return Math.min(
+            100,
+            Math.max(
+                CONFIG.startPercent,
+                CONFIG.startPercent + fraction * (100 - CONFIG.startPercent)
+            )
+        );
     }
 
-    if (hourElement) {
-        hourElement.textContent =
-            pad(time.hours);
+    function getStageIndex(percentage) {
+        return STAGES.findIndex(stage => percentage <= stage.max);
     }
 
-    if (minuteElement) {
-        minuteElement.textContent =
-            pad(time.minutes);
+    function getStage(percentage) {
+        return STAGES[getStageIndex(percentage)];
     }
 
-    if (secondElement) {
-        secondElement.textContent =
-            pad(time.seconds);
+    /* ==================================================
+       METER DISPLAY
+    ================================================== */
+
+    function updateMeter(percentage) {
+        const rounded = Math.floor(percentage);
+        const stageIndex = getStageIndex(percentage);
+        const stage = STAGES[stageIndex];
+
+        if (elements.percentage) {
+            elements.percentage.textContent = `${rounded}%`;
+        }
+
+        if (elements.meterFill) {
+            elements.meterFill.style.width = `${percentage}%`;
+        }
+
+        if (elements.meterTrack) {
+            elements.meterTrack.setAttribute("aria-valuenow", String(rounded));
+            elements.meterTrack.setAttribute("aria-valuemin", "0");
+            elements.meterTrack.setAttribute("aria-valuemax", "100");
+        }
+
+        if (elements.meterStateChip) {
+            elements.meterStateChip.textContent = stage.name;
+        }
+
+        if (elements.meterReadout) {
+            elements.meterReadout.textContent = stage.status;
+        }
+
+        if (elements.convergencePanel) {
+            elements.convergencePanel.dataset.stage = String(stageIndex);
+            elements.convergencePanel.style.setProperty(
+                "--convergence-progress",
+                `${percentage}%`
+            );
+        }
+
+        if (elements.meterFill) {
+            elements.meterFill.dataset.stage = String(stageIndex);
+        }
+
+        updateSignal(percentage, stageIndex);
+        updateStageEffects(stageIndex, percentage);
+
+        return stageIndex;
     }
-}
 
+    /* ==================================================
+       MESSAGE ROTATION
+    ================================================== */
 
-/* =========================================
-   DATE FORMAT
-========================================= */
+    function chooseMessage(stageIndex) {
+        const messages = STAGES[stageIndex].messages;
 
-function formatDate(date) {
+        if (messages.length === 1) {
+            return messages[0];
+        }
 
-    return date.toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-        timeZone: "Europe/Amsterdam"
-    }).toUpperCase();
-}
+        const choices = messages.filter(message => message !== currentMessage);
 
+        return choices[Math.floor(Math.random() * choices.length)];
+    }
 
-function formatShortDate(date) {
-
-    return date.toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-        timeZone: "Europe/Amsterdam"
-    }).toUpperCase();
-}
-
-
-function formatTime(date) {
-
-    return date.toLocaleTimeString("en-GB", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-        timeZone: "Europe/Amsterdam"
-    });
-}
-
-
-/* =========================================
-   QUEST LOOKUPS
-========================================= */
-
-function getCurrentQuest(now) {
-
-    let current = null;
-
-
-    for (const quest of QUESTS) {
+    function updateSignal(percentage, stageIndex, force = false) {
+        const now = Date.now();
+        const stage = STAGES[stageIndex];
+        const stageChanged = stageIndex !== currentStageIndex;
 
         if (
-            now.getTime() >=
-            quest.date.getTime()
+            force ||
+            stageChanged ||
+            !currentMessage ||
+            now >= nextMessageAt
         ) {
+            currentMessage = chooseMessage(stageIndex);
+            nextMessageAt = now + CONFIG.messageInterval;
+        }
 
-            current = quest;
+        currentStageIndex = stageIndex;
 
-        } else {
+        if (elements.signalStatus) {
+            elements.signalStatus.textContent = stage.status;
+        }
 
-            break;
+        if (elements.eventMessage) {
+            elements.eventMessage.textContent = currentMessage;
+        }
+
+        if (elements.signalOrigin) {
+            elements.signalOrigin.textContent =
+                percentage >= 100
+                    ? "ORIGIN: HALLOWED REALM"
+                    : "ORIGIN: CONVERGENCE";
+        }
+
+        if (elements.signalAuth) {
+            elements.signalAuth.textContent =
+                percentage >= 100
+                    ? "AUTHORITY: HALLOW KING"
+                    : "SIGNAL: DETECTED";
+        }
+
+        if (stageChanged && currentStageIndex > 0) {
+            showAnomaly(currentMessage);
         }
     }
 
+    /* ==================================================
+       MILESTONES AND VISUAL EFFECTS
+    ================================================== */
 
-    return current;
-}
+    function updateStageEffects(stageIndex, percentage) {
+        const milestone = Math.floor(percentage / 10) * 10;
 
+        if (milestone !== lastMilestone) {
+            lastMilestone = milestone;
 
-function getNextQuest(now) {
-
-    for (const quest of QUESTS) {
-
-        if (
-            now.getTime() <
-            quest.date.getTime()
-        ) {
-
-            return quest;
-        }
-    }
-
-
-    return null;
-}
-
-
-/* =========================================
-   CONVERGENCE PERCENTAGE
-========================================= */
-
-function getConvergencePercentage(now) {
-
-    const currentTime =
-        now.getTime();
-
-    const startTime =
-        EVENT_START.getTime();
-
-    const endTime =
-        CONVERGENCE_END.getTime();
-
-
-    if (currentTime <= startTime) {
-        return 0;
-    }
-
-
-    if (currentTime >= endTime) {
-        return 100;
-    }
-
-
-    const progress =
-        (
-            (currentTime - startTime) /
-            (endTime - startTime)
-        ) * 100;
-
-
-    return Math.max(
-        0,
-        Math.min(100, progress)
-    );
-}
-
-
-/* =========================================
-   OPENING STATE
-========================================= */
-
-function updateOpeningState(now) {
-
-    const time =
-        now.getTime();
-
-
-    /*
-        BEFORE OPENING
-    */
-
-    if (time < OPENING_TIME.getTime()) {
-
-        showState(openingState);
-
-
-        setCountdown(
-            days,
-            hours,
-            minutes,
-            seconds,
-            OPENING_TIME.getTime() - time
-        );
-
-
-        if (systemLabel) {
-            systemLabel.textContent =
-                "SYSTEM STANDBY";
-        }
-
-
-        return true;
-    }
-
-
-    /*
-        OPENING CEREMONY
-    */
-
-    if (time < EVENT_START.getTime()) {
-
-        showState(questState);
-
-
-        setCountdown(
-            null,
-            null,
-            questMinutes,
-            questSeconds,
-            EVENT_START.getTime() - time
-        );
-
-
-        if (systemLabel) {
-            systemLabel.textContent =
-                "OPENING CEREMONY";
-        }
-
-
-        return true;
-    }
-
-
-    return false;
-}
-
-
-/* =========================================
-   ACTIVE EVENT STATE
-========================================= */
-
-function updateActiveEvent(now) {
-
-    const time =
-        now.getTime();
-
-
-    if (time < EVENT_START.getTime()) {
-        return;
-    }
-
-
-    if (time >= CONVERGENCE_END.getTime()) {
-        return;
-    }
-
-
-    showState(convergenceState);
-
-
-    if (systemLabel) {
-        systemLabel.textContent =
-            "EVENT ACTIVE";
-    }
-}
-
-
-/* =========================================
-   QUEST DISPLAY
-========================================= */
-
-function updateQuestDisplay(now) {
-
-    const current =
-        getCurrentQuest(now);
-
-    const next =
-        getNextQuest(now);
-
-
-    /*
-        No quest yet
-    */
-
-    if (!current) {
-
-        if (currentQuest) {
-            currentQuest.textContent =
-                "Q1 — THE SILENT ARRIVAL";
-        }
-
-        return;
-    }
-
-
-    /*
-        Q10 is active
-    */
-
-    if (current.id === "Q10") {
-
-        if (currentQuest) {
-            currentQuest.textContent =
-                "Q10 — THE HALLOWED CONVERGENCE";
-        }
-
-        if (nextQuest) {
-            nextQuest.textContent =
-                "FINAL QUEST";
-        }
-
-        if (nextQuestDate) {
-            nextQuestDate.textContent =
-                "THE HALLOWED CONVERGENCE";
-        }
-
-        if (nextCountdownLabel) {
-            nextCountdownLabel.textContent =
-                "FINAL QUEST";
-        }
-
-        setCountdown(
-            nextDays,
-            nextHours,
-            nextMinutes,
-            nextSeconds,
-            0
-        );
-
-        return;
-    }
-
-
-    /*
-        Normal active quest
-    */
-
-    if (currentQuest) {
-
-        currentQuest.textContent =
-            `${current.id} — ${current.title}`;
-    }
-
-
-    /*
-        Next quest
-    */
-
-    if (next) {
-
-        if (nextQuest) {
-
-            nextQuest.textContent =
-                `${next.id} — ${next.title}`;
-        }
-
-
-        if (nextQuestDate) {
-
-            nextQuestDate.textContent =
-                `${formatDate(next.date)} · ${formatTime(next.date)} CEST`;
-        }
-
-
-        if (nextCountdownLabel) {
-
-            nextCountdownLabel.textContent =
-                "NEXT QUEST RELEASE";
-        }
-
-
-        setCountdown(
-            nextDays,
-            nextHours,
-            nextMinutes,
-            nextSeconds,
-            next.date.getTime() -
-            now.getTime()
-        );
-
-        return;
-    }
-
-
-    /*
-        No next quest
-    */
-
-    if (nextQuest) {
-        nextQuest.textContent =
-            "COMPLETE";
-    }
-
-
-    if (nextQuestDate) {
-        nextQuestDate.textContent =
-            "THE HALLOWED CONVERGENCE";
-    }
-
-
-    if (nextCountdownLabel) {
-        nextCountdownLabel.textContent =
-            "EVENT STATUS";
-    }
-
-
-    setCountdown(
-        nextDays,
-        nextHours,
-        nextMinutes,
-        nextSeconds,
-        0
-    );
-}
-
-
-/* =========================================
-   CONVERGENCE TEXT
-========================================= */
-
-function updateConvergenceText(
-    now,
-    progress
-) {
-
-    /*
-        Q10
-    */
-
-    const current =
-        getCurrentQuest(now);
-
-
-    if (
-        current &&
-        current.id === "Q10"
-    ) {
-
-        if (convergenceStatus) {
-            convergenceStatus.textContent =
-                "CONVERGENCE ACTIVE";
-        }
-
-        if (eventMessage) {
-            eventMessage.textContent =
-                "THE HALLOWED CONVERGENCE IS UNDERWAY.";
-        }
-
-        return;
-    }
-
-
-    /*
-        0% - 24%
-    */
-
-    if (progress < 25) {
-
-        if (convergenceStatus) {
-            convergenceStatus.textContent =
-                "IN MOTION";
-        }
-
-        if (eventMessage) {
-            eventMessage.textContent =
-                "THE CONVERGENCE IS IN MOTION.";
-        }
-
-        return;
-    }
-
-
-    /*
-        25% - 49%
-    */
-
-    if (progress < 50) {
-
-        if (convergenceStatus) {
-            convergenceStatus.textContent =
-                "UNSTABLE";
-        }
-
-        if (eventMessage) {
-            eventMessage.textContent =
-                "THE BOUNDARY IS BEGINNING TO SHIFT.";
-        }
-
-        return;
-    }
-
-
-    /*
-        50% - 74%
-    */
-
-    if (progress < 75) {
-
-        if (convergenceStatus) {
-            convergenceStatus.textContent =
-                "DESTABILIZING";
-        }
-
-        if (eventMessage) {
-            eventMessage.textContent =
-                "THE VEIL IS BEGINNING TO BREAK.";
-        }
-
-        return;
-    }
-
-
-    /*
-        75% - 89%
-    */
-
-    if (progress < 90) {
-
-        if (convergenceStatus) {
-            convergenceStatus.textContent =
-                "CRITICAL";
-        }
-
-        if (eventMessage) {
-            eventMessage.textContent =
-                "THE HALLOWED REALM IS DRAWING CLOSER.";
-        }
-
-        return;
-    }
-
-
-    /*
-        90% - 96%
-    */
-
-    if (progress < 97) {
-
-        if (convergenceStatus) {
-            convergenceStatus.textContent =
-                "SEVERE";
-        }
-
-        if (eventMessage) {
-            eventMessage.textContent =
-                "THE BARRIER IS COLLAPSING.";
-        }
-
-        return;
-    }
-
-
-    /*
-        97% - 98.99%
-    */
-
-    if (progress < 99) {
-
-        if (convergenceStatus) {
-            convergenceStatus.textContent =
-                "CRITICAL FAILURE";
-        }
-
-        if (eventMessage) {
-            eventMessage.textContent =
-                "THE CONVERGENCE CANNOT BE STOPPED.";
-        }
-
-        return;
-    }
-
-
-    /*
-        99% - 99.99%
-    */
-
-    if (progress < 100) {
-
-        if (convergenceStatus) {
-            convergenceStatus.textContent =
-                "FINAL PHASE";
-        }
-
-        if (eventMessage) {
-            eventMessage.textContent =
-                "THE HALLOWED REALM IS OPEN.";
-        }
-
-        return;
-    }
-}
-
-
-/* =========================================
-   CONVERGENCE METER
-========================================= */
-
-function updateConvergence(now) {
-
-    const progress =
-        getConvergencePercentage(now);
-
-
-    /*
-        Percentage
-    */
-
-    if (percentage) {
-
-        percentage.textContent =
-            progress.toFixed(2);
-    }
-
-
-    /*
-        Meter
-    */
-
-    if (meterFill) {
-
-        meterFill.style.width =
-            `${progress}%`;
-    }
-
-
-    /*
-        Date
-    */
-
-    if (meterDate) {
-
-        meterDate.textContent =
-            formatShortDate(EVENT_START);
-    }
-
-
-    updateConvergenceText(
-        now,
-        progress
-    );
-}
-
-
-/* =========================================
-   FINALE COUNTDOWN
-========================================= */
-
-function updateFinaleCountdown(now) {
-
-    const remaining =
-        CONVERGENCE_END.getTime() -
-        now.getTime();
-
-
-    if (remaining <= 0) {
-
-        setCountdown(
-            finaleDays,
-            finaleHours,
-            finaleMinutes,
-            finaleSeconds,
-            0
-        );
-
-        return;
-    }
-
-
-    setCountdown(
-        finaleDays,
-        finaleHours,
-        finaleMinutes,
-        finaleSeconds,
-        remaining
-    );
-}
-
-
-/* =========================================
-   FINAL EVENT STATE
-========================================= */
-
-function updateFinaleState(now) {
-
-    const time =
-        now.getTime();
-
-
-    if (
-        time <
-        CONVERGENCE_END.getTime()
-    ) {
-
-        return false;
-    }
-
-
-    showState(finaleState);
-
-
-    if (systemLabel) {
-        systemLabel.textContent =
-            "EVENT CONCLUDED";
-    }
-
-
-    if (percentage) {
-        percentage.textContent =
-            "100.00";
-    }
-
-
-    if (meterFill) {
-        meterFill.style.width =
-            "100%";
-    }
-
-
-    return true;
-}
-
-
-/* =========================================
-   FOOTER CLOCK
-========================================= */
-
-function updateClock(now) {
-
-    if (!clock) {
-        return;
-    }
-
-
-    clock.textContent =
-        now.toLocaleTimeString(
-            "en-GB",
-            {
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-                hour12: false,
-                timeZone: "Europe/Amsterdam"
+            if (milestone >= 50 && milestone < 100) {
+                triggerFlash();
             }
-        );
-}
+        }
 
+        if (elements.convergencePanel) {
+            elements.convergencePanel.classList.toggle(
+                "convergence-critical",
+                percentage >= 85
+            );
 
-/* =========================================
-   MAIN UPDATE
-========================================= */
+            elements.convergencePanel.classList.toggle(
+                "convergence-complete",
+                percentage >= 100
+            );
+        }
 
-function update() {
-
-    const now =
-        new Date();
-
-
-    /*
-        Footer clock always runs
-    */
-
-    updateClock(now);
-
-
-    /*
-        Final state takes priority
-    */
-
-    if (updateFinaleState(now)) {
-
-        updateFinaleCountdown(now);
-
-        return;
+        document.body.dataset.convergenceStage = String(stageIndex);
     }
 
+    function triggerFlash() {
+        if (!elements.flashOverlay) return;
 
-    /*
-        Before event / opening ceremony
-    */
+        elements.flashOverlay.classList.remove("active");
 
-    if (updateOpeningState(now)) {
+        // Restart the CSS animation without requiring a page reload.
+        void elements.flashOverlay.offsetWidth;
 
-        return;
+        elements.flashOverlay.classList.add("active");
+
+        window.setTimeout(() => {
+            elements.flashOverlay?.classList.remove("active");
+        }, 900);
     }
 
+    function showAnomaly(message) {
+        if (!elements.anomalyNotice) return;
 
-    /*
-        Active event
-    */
+        elements.anomalyNotice.textContent = message;
+        elements.anomalyNotice.classList.add("active");
 
-    updateActiveEvent(now);
+        window.setTimeout(() => {
+            elements.anomalyNotice?.classList.remove("active");
+        }, 4500);
+    }
 
-    updateQuestDisplay(now);
+    /* ==================================================
+       FINALE COUNTDOWN
+    ================================================== */
 
-    updateConvergence(now);
+    function updateCountdown() {
+        const now = Date.now();
+        const finale = CONFIG.finaleDate.getTime();
+        const remaining = Math.max(0, finale - now);
 
-    updateFinaleCountdown(now);
-}
+        const totalSeconds = Math.floor(remaining / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
 
+        if (elements.days) {
+            elements.days.textContent = String(days).padStart(2, "0");
+        }
 
-/* =========================================
-   INITIALIZE
-========================================= */
+        if (elements.hours) {
+            elements.hours.textContent = String(hours).padStart(2, "0");
+        }
 
-update();
+        if (elements.minutes) {
+            elements.minutes.textContent = String(minutes).padStart(2, "0");
+        }
 
-setInterval(update, 1000);
+        if (elements.seconds) {
+            elements.seconds.textContent = String(seconds).padStart(2, "0");
+        }
+
+        if (elements.countdownTitle) {
+            elements.countdownTitle.textContent =
+                remaining > 0
+                    ? "TIME UNTIL HALLOWED CONVERGENCE"
+                    : "HALLOWED CONVERGENCE COMPLETE";
+        }
+    }
+
+    /* ==================================================
+       QUEST LOG
+    ================================================== */
+
+    function renderQuests() {
+        if (!elements.questGrid) return;
+
+        const now = Date.now();
+
+        elements.questGrid.innerHTML = QUESTS.map(quest => {
+            const released = now >= quest.date.getTime();
+            const isFinale = quest.id === "Q10";
+
+            let status = "UPCOMING";
+            let className = "quest-upcoming";
+
+            if (released) {
+                status = isFinale ? "FINALE REACHED" : "RELEASED";
+                className = "quest-released";
+            }
+
+            const dateLabel = quest.date.toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short"
+            });
+
+            return `
+                <article class="quest-card ${className}">
+                    <div class="quest-card-header">
+                        <span class="quest-id">${quest.id}</span>
+                        <span class="quest-status">${status}</span>
+                    </div>
+                    <h3 class="quest-title">${quest.title}</h3>
+                    <div class="quest-date">${dateLabel}</div>
+                </article>
+            `;
+        }).join("");
+    }
+
+    /* ==================================================
+       AMBIENT PARTICLES
+    ================================================== */
+
+    function createParticle() {
+        if (!elements.particleField) return;
+
+        // Prevent the effect from becoming unnecessarily expensive.
+        if (elements.particleField.childElementCount >= 45) {
+            return;
+        }
+
+        const particle = document.createElement("span");
+        particle.className = "convergence-particle";
+
+        const size = 2 + Math.random() * 4;
+        const duration = 5 + Math.random() * 8;
+
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.opacity = String(0.2 + Math.random() * 0.6);
+
+        elements.particleField.appendChild(particle);
+
+        window.setTimeout(() => particle.remove(), duration * 1000);
+    }
+
+    /* ==================================================
+       MAIN UPDATE LOOP
+    ================================================== */
+
+    function updateProgression() {
+        const percentage = calculateProgress();
+        const stageIndex = getStageIndex(percentage);
+
+        updateMeter(percentage);
+
+        if (percentage >= 100 && previousPercentage < 100) {
+            currentMessage = "THE HALLOW KING HAS WON.";
+
+            if (elements.eventMessage) {
+                elements.eventMessage.textContent = currentMessage;
+            }
+
+            if (elements.signalStatus) {
+                elements.signalStatus.textContent = "CONVERGENCE COMPLETE";
+            }
+
+            if (elements.signalOrigin) {
+                elements.signalOrigin.textContent = "ORIGIN: HALLOWED REALM";
+            }
+
+            if (elements.signalAuth) {
+                elements.signalAuth.textContent = "AUTHORITY: HALLOW KING";
+            }
+
+            triggerFlash();
+            showAnomaly("CONVERGENCE COMPLETE. THE HALLOW KING HAS WON.");
+        } else if (percentage < 100) {
+            // Normal stage-based message rotation.
+            updateSignal(percentage, stageIndex);
+        }
+
+        previousPercentage = percentage;
+
+        updateCountdown();
+    }
+
+    /* ==================================================
+       OPTIONAL DEBUG CONTROLS
+       Available in the browser console.
+       Normal progression remains time-based.
+    ================================================== */
+
+    window.TheGame2026 = {
+        getConvergence() {
+            return calculateProgress();
+        },
+
+        getStage() {
+            return getStage(calculateProgress());
+        },
+
+        getNextMilestone() {
+            const percentage = calculateProgress();
+            const next = Math.ceil((percentage + 0.001) / 10) * 10;
+
+            return Math.min(100, next);
+        },
+
+        refresh() {
+            updateProgression();
+            renderQuests();
+        }
+    };
+
+    /* ==================================================
+       INITIALIZATION
+    ================================================== */
+
+    function initialize() {
+        renderQuests();
+        updateProgression();
+
+        window.setInterval(updateProgression, 1000);
+        window.setInterval(renderQuests, 60000);
+        window.setInterval(createParticle, CONFIG.particleInterval);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initialize, {
+            once: true
+        });
+    } else {
+        initialize();
+    }
+})();
