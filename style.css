@@ -2070,3 +2070,42 @@ body[data-convergence-percent="80"] .meter-fill {
   filter: brightness(1.6) saturate(1.5);
   box-shadow: 0 0 25px rgba(255, 20, 30, .8);
 }
+
+.progress-estimates {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.estimate-item {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid rgba(255, 45, 55, 0.2);
+  background: rgba(15, 5, 7, 0.72);
+}
+
+.estimate-label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(255, 150, 150, 0.65);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.estimate-item strong {
+  display: block;
+  color: #ff7777;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .progress-estimates {
+    grid-template-columns: 1fr;
+  }
+}

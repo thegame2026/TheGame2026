@@ -138,6 +138,9 @@
 
   const elements = {
     percentage: $("percentage"),
+    progressRate: $("progressRate"),
+nextMilestone: $("nextMilestone"),
+milestoneEta: $("milestoneEta"),
     meterFill: $("meterFill"),
     meterTrack: $("meterTrack"),
     meterStateChip: $("meterStateChip"),
@@ -248,9 +251,9 @@
     const stageIndex = getStageIndex(safePercentage);
     const stage = STAGES[stageIndex];
 
-    if (elements.percentage) {
-      elements.percentage.textContent = String(rounded).padStart(2, "0");
-    }
+   if (elements.percentage) {
+  elements.percentage.textContent = safePercentage.toFixed(2);
+}
 
     if (elements.meterFill) {
       elements.meterFill.style.width = `${safePercentage}%`;
@@ -569,6 +572,71 @@
     );
   }
 
+function formatDuration(milliseconds) {
+  if (milliseconds <= 0) return "REACHED";
+
+  const totalMinutes = Math.ceil(milliseconds / 60000);
+  const days = Math.floor(totalMinutes / 1440);
+  const hours = Math.floor((totalMinutes % 1440) / 60);
+  const minutes = totalMinutes % 60;
+
+  const parts = [];
+
+  if (days > 0) parts.push(`${days}d`);
+  if (hours > 0) parts.push(`${hours}h`);
+  if (minutes > 0 || parts.length === 0) {
+    parts.push(`${minutes}m`);
+  }
+
+  return parts.join(" ");
+}
+
+function updateProgressEstimates(percentage) {
+  const start = CONFIG.startDate.getTime();
+  const finale = CONFIG.finaleDate.getTime();
+  const now = Date.now();
+
+  const totalDuration = finale - start;
+  const percentageRange = 100 - CONFIG.startPercent;
+
+  // The system advances at a fixed rate between the configured dates.
+  const percentPerHour =
+    (percentageRange / totalDuration) * 60 * 60 * 1000;
+
+  if (elements.progressRate) {
+    elements.progressRate.textContent =
+      `+${percentPerHour.toFixed(3)}% / HOUR`;
+  }
+
+  if (elements.nextMilestone && elements.milestoneEta) {
+    const milestones = [75, 80, 90, 100];
+    const next = milestones.find(value => value > percentage);
+
+    if (next === undefined || percentage >= 100) {
+      elements.nextMilestone.textContent = "CONVERGENCE COMPLETE";
+      elements.milestoneEta.textContent = "MILESTONE REACHED";
+      return;
+    }
+
+    const estimatedTime =
+      start +
+      ((next - CONFIG.startPercent) / percentageRange) * totalDuration;
+
+    const remaining = estimatedTime - now;
+
+    elements.nextMilestone.textContent = `${next.toFixed(2)}%`;
+
+    elements.milestoneEta.textContent =
+      `${new Date(estimatedTime).toLocaleString("en-GB", {
+        day: "2-digit",
+        month: "short",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "Europe/Amsterdam"
+      })} · ${formatDuration(remaining)} REMAINING`;
+  }
+}
+
   function updateProgression() {
     if (takeoverStarted) return;
 
@@ -576,6 +644,7 @@
     const percentage = testProgress === null ? actual : testProgress;
 
     updateMeter(percentage);
+    updateProgressEstimates(percentage);
 
     if (percentage >= 100) {
       startConvergenceEvent({ test: testProgress !== null });
