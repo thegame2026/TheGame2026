@@ -1,17 +1,21 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/png" href="./mainlogo.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080505">
   <meta name="description" content="The Game 2026 Halloween Edition. The Convergence is progressing. The Hallow King has returned.">
-  <title>THE GAME 2026 — CONVERGENCE</title>
+  <title>THE GAME 2026 Official Website</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
+
 <body>
   <div class="fx fx-noise" aria-hidden="true"></div>
   <div class="fx fx-scanlines" aria-hidden="true"></div>
@@ -25,80 +29,267 @@
   <header class="topbar">
     <a class="brand" href="#top" aria-label="The Game 2026 home">
       <span class="brand-mark">TG<span>26</span></span>
-      <span class="brand-copy"><strong>THE GAME</strong><small>HALLOWEEN EDITION</small></span>
+      <span class="brand-copy">
+        <strong>THE GAME</strong>
+        <small>HALLOWEEN EDITION</small>
+      </span>
     </a>
-    <div class="top-status"><span class="live-dot"></span><span id="systemLabel">SYSTEM ONLINE</span><span class="top-divider"></span><span class="top-date" id="topDate">--. --. ----</span></div>
+
+    <div class="top-status">
+      <span class="live-dot"></span>
+      <span id="systemLabel">SYSTEM ONLINE</span>
+      <span class="top-divider"></span>
+      <span class="top-date" id="topDate">--. --. ----</span>
+    </div>
   </header>
 
   <main id="top">
     <section class="hero" aria-labelledby="heroTitle">
-      <div class="hero-eyebrow"><span class="eyebrow-line"></span> EVENT CONTROL // 2026 <span class="eyebrow-line"></span></div>
+      <div class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        EVENT CONTROL // 2026
+        <span class="eyebrow-line"></span>
+      </div>
+
       <h1 id="heroTitle">THE <span>CONVERGENCE</span></h1>
       <p class="hero-subtitle" id="heroSubtitle">THE BOUNDARY IS FAILING.</p>
-      <div class="hero-signal" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+      <div class="hero-signal" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
     </section>
 
     <section class="convergence-panel panel" id="convergencePanel" aria-labelledby="meterHeading">
-      <div class="panel-topline"><span class="section-index">01 / ANOMALY MONITOR</span><span class="panel-live"><span class="live-dot"></span> LIVE FEED</span></div>
+      <div class="panel-topline">
+        <span class="section-index">01 / ANOMALY MONITOR</span>
+        <span class="panel-live"><span class="live-dot"></span> LIVE FEED</span>
+      </div>
+
       <div class="meter-heading-row">
         <div>
           <p class="micro-label">WORLD INTEGRITY STATUS</p>
           <h2 id="meterHeading">CONVERGENCE <span>METER</span></h2>
         </div>
+
         <div class="meter-number-wrap" aria-live="polite">
-          <span class="meter-number" id="percentage">00.00</span><span class="meter-unit">%</span>
+          <span class="meter-number" id="percentage">42</span>
+          <span class="meter-unit">%</span>
         </div>
       </div>
-      <div class="meter-state-row"><span class="state-chip" id="meterStateChip">SIGNAL DETECTED</span><span class="meter-readout" id="meterReadout">CALCULATING TEMPORAL DRIFT...</span></div>
-      <div class="meter-track-shell" id="meterTrackShell">
+
+      <div class="meter-state-row">
+        <span class="state-chip" id="meterStateChip">SIGNAL DETECTED</span>
+        <span class="meter-readout" id="meterReadout">CALCULATING TEMPORAL DRIFT...</span>
+      </div>
+
+      <div class="meter-track-shell">
         <div class="meter-track-grid" aria-hidden="true"></div>
-        <div class="meter-track" role="progressbar" aria-label="Convergence progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="meterTrack">
-          <div class="meter-fill" id="meterFill"><div class="meter-core"></div><div class="meter-sweep"></div><div class="meter-sparks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div>
-          <div class="meter-marker marker-25"><span>25</span></div><div class="meter-marker marker-50"><span>50</span></div><div class="meter-marker marker-75"><span>75</span></div><div class="meter-marker marker-100"><span>100</span></div>
+
+        <div
+          class="meter-track"
+          id="meterTrack"
+          role="progressbar"
+          aria-label="Convergence progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="42"
+        >
+          <div class="meter-fill" id="meterFill">
+            <div class="meter-core"></div>
+            <div class="meter-sweep"></div>
+            <div class="meter-sparks" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+
+          <div class="meter-marker marker-25"><span>25</span></div>
+          <div class="meter-marker marker-50"><span>50</span></div>
+          <div class="meter-marker marker-75"><span>75</span></div>
+          <div class="meter-marker marker-100"><span>100</span></div>
         </div>
       </div>
-      <div class="meter-scale"><span>STABLE</span><span>BREACH IMMINENT</span><span>FULL CONVERGENCE</span></div>
-      <div class="meter-footer"><div class="meter-footer-item"><span class="footer-dot"></span><span>SEVERING ANCHORS</span><strong>COMPROMISED</strong></div><div class="meter-footer-item"><span class="footer-dot"></span><span>ENTITY SIGNATURE</span><strong id="entitySignature">CONFIRMED</strong></div><div class="meter-footer-item"><span class="footer-dot"></span><span>LAST SYNC</span><strong id="lastSync">--:--:--</strong></div></div>
+
+      <div class="meter-scale">
+        <span>STABLE</span>
+        <span>BREACH IMMINENT</span>
+        <span>FULL CONVERGENCE</span>
+      </div>
+
+      <div class="meter-footer">
+        <div class="meter-footer-item">
+          <span class="footer-dot"></span>
+          <span>SEVERING ANCHORS</span>
+          <strong>COMPROMISED</strong>
+        </div>
+
+        <div class="meter-footer-item">
+          <span class="footer-dot"></span>
+          <span>ENTITY SIGNATURE</span>
+          <strong id="entitySignature">CONFIRMED</strong>
+        </div>
+
+        <div class="meter-footer-item">
+          <span class="footer-dot"></span>
+          <span>LAST SYNC</span>
+          <strong id="lastSync">--:--:--</strong>
+        </div>
+      </div>
     </section>
 
     <section class="lower-grid">
       <article class="countdown-panel panel" aria-labelledby="countdownTitle">
-        <div class="panel-topline"><span class="section-index">02 / EVENT CLOCK</span><span class="tiny-cross" aria-hidden="true">+</span></div>
+        <div class="panel-topline">
+          <span class="section-index">02 / EVENT CLOCK</span>
+          <span class="tiny-cross" aria-hidden="true">+</span>
+        </div>
+
         <p class="micro-label" id="countdownLabel">NEXT EVENT</p>
         <h2 id="countdownTitle">THE NEXT <span>BREACH</span></h2>
-        <p class="countdown-description" id="countdownDescription">The signal is spreading. Further instability is expected.</p>
+
+        <p class="countdown-description" id="countdownDescription">
+          The signal is spreading. Further instability is expected.
+        </p>
+
         <div class="countdown" id="countdown" aria-live="off">
-          <div class="time-unit"><strong id="days">00</strong><span>DAYS</span></div><b class="time-separator">:</b>
-          <div class="time-unit"><strong id="hours">00</strong><span>HOURS</span></div><b class="time-separator">:</b>
-          <div class="time-unit"><strong id="minutes">00</strong><span>MINUTES</span></div><b class="time-separator">:</b>
+          <div class="time-unit"><strong id="days">00</strong><span>DAYS</span></div>
+          <b class="time-separator">:</b>
+          <div class="time-unit"><strong id="hours">00</strong><span>HOURS</span></div>
+          <b class="time-separator">:</b>
+          <div class="time-unit"><strong id="minutes">00</strong><span>MINUTES</span></div>
+          <b class="time-separator">:</b>
           <div class="time-unit"><strong id="seconds">00</strong><span>SECONDS</span></div>
         </div>
-        <div class="countdown-bottom"><span class="countdown-marker"></span><span id="countdownFooter">TEMPORAL READING ACTIVE</span></div>
+
+        <div class="countdown-bottom">
+          <span class="countdown-marker"></span>
+          <span id="countdownFooter">TEMPORAL READING ACTIVE</span>
+        </div>
       </article>
 
       <article class="signal-panel panel" aria-labelledby="signalTitle">
-        <div class="panel-topline"><span class="section-index">03 / SIGNAL ANALYSIS</span><span class="signal-status" id="signalStatus">UNSTABLE</span></div>
-        <div class="signal-title-row"><div><p class="micro-label">UNIDENTIFIED TRANSMISSION</p><h2 id="signalTitle">INCOMING <span>SIGNAL</span></h2></div><div class="signal-icon" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div></div>
-        <blockquote id="eventMessage">“The boundary is weakening.”</blockquote>
+        <div class="panel-topline">
+          <span class="section-index">03 / SIGNAL ANALYSIS</span>
+          <span class="signal-status" id="signalStatus">UNSTABLE</span>
+        </div>
+
+        <div class="signal-title-row">
+          <div>
+            <p class="micro-label">UNIDENTIFIED TRANSMISSION</p>
+            <h2 id="signalTitle">INCOMING <span>SIGNAL</span></h2>
+          </div>
+
+          <div class="signal-icon" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <blockquote id="eventMessage">"The boundary is weakening."</blockquote>
         <div class="signal-divider"></div>
-        <div class="signal-meta"><span>ORIGIN</span><strong id="signalOrigin">UNKNOWN / HOLLOW</strong></div>
-        <div class="signal-meta"><span>AUTHENTICATION</span><strong class="danger-text" id="signalAuth">NOT REQUIRED</strong></div>
+
+        <div class="signal-meta">
+          <span>ORIGIN</span>
+          <strong id="signalOrigin">UNKNOWN / HOLLOW</strong>
+        </div>
+
+        <div class="signal-meta">
+          <span>AUTHENTICATION</span>
+          <strong class="danger-text" id="signalAuth">NOT REQUIRED</strong>
+        </div>
       </article>
     </section>
 
     <section class="quest-section" aria-labelledby="questHeading">
-      <div class="section-heading"><div><p class="micro-label">EVENT TRANSMISSIONS</p><h2 id="questHeading">THE <span>QUEST LOG</span></h2></div><p class="section-side-note">TRACKING KNOWN ACTIVITY<br>DO NOT TRUST UNVERIFIED SIGNALS</p></div>
+      <div class="section-heading">
+        <div>
+          <p class="micro-label">EVENT TRANSMISSIONS</p>
+          <h2 id="questHeading">THE <span>QUEST LOG</span></h2>
+        </div>
+
+        <p class="section-side-note">
+          TRACKING KNOWN ACTIVITY<br>
+          DO NOT TRUST UNVERIFIED SIGNALS
+        </p>
+      </div>
+
       <div class="quest-grid" id="questGrid"></div>
     </section>
   </main>
 
-  <footer class="footer"><span>THE GAME 2026</span><span class="footer-center"><i></i> THE SYSTEM IS STILL WATCHING</span><span>HALLOWEEN // 2026</span></footer>
+  <footer class="footer">
+    <span>THE GAME 2026</span>
+    <span class="footer-center"><i></i> THE SYSTEM IS STILL WATCHING</span>
+    <span>HALLOWEEN // 2026</span>
+  </footer>
 
   <aside class="anomaly-notice" id="anomalyNotice" aria-live="polite" aria-atomic="true">
-    <div class="notice-side"><span class="notice-pulse"></span><span class="notice-index" id="noticeIndex">A-01</span></div>
-    <div class="notice-main"><div class="notice-header"><span id="anomalyLabel">SYSTEM ANOMALY</span><span id="anomalyTimestamp">--:--:--</span></div><p id="anomalyText">Unusual activity detected.</p></div>
+    <div class="notice-side">
+      <span class="notice-pulse"></span>
+      <span class="notice-index" id="noticeIndex">A-01</span>
+    </div>
+
+    <div class="notice-main">
+      <div class="notice-header">
+        <span id="anomalyLabel">SYSTEM ANOMALY</span>
+        <span id="anomalyTimestamp">--:--:--</span>
+      </div>
+      <p id="anomalyText">Unusual activity detected.</p>
+    </div>
+
     <div class="notice-edge" aria-hidden="true">!</div>
   </aside>
-  <div class="system-caption" id="systemCaption">MONITORING REALITY INTEGRITY <span>///</span> 0x00</div>
+
+  <div class="system-caption" id="systemCaption">
+    MONITORING REALITY INTEGRITY <span>///</span> 0x00
+  </div>
+
+  <!-- TEST CONTROLS: hide these before the production launch. -->
+  <div class="test-controls" id="testControls" hidden aria-label="Convergence test controls">
+    <span class="test-label">TEST MODE</span>
+    <button type="button" id="testApproachButton">Test 92% Approach</button>
+    <button type="button" id="testTriggerButton">Trigger 100% Event</button>
+    <button type="button" id="testResetButton">Reset Test</button>
+  </div>
+
+  <!-- FULL-SCREEN CONVERGENCE EVENT -->
+  <section
+    class="convergence-takeover"
+    id="convergenceTakeover"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="takeoverTitle"
+    aria-describedby="takeoverSubtitle"
+    hidden
+  >
+    <div class="takeover-content">
+      <div class="takeover-crosshair" aria-hidden="true"></div>
+
+      <p class="takeover-kicker" id="takeoverKicker">
+        THE GAME 2026 // REALITY INTEGRITY: 0%
+      </p>
+
+      <h2 class="takeover-title" id="takeoverTitle">
+        THE MERGE <span>IS HERE.</span>
+      </h2>
+
+      <p class="takeover-subtitle" id="takeoverSubtitle">
+        THE BOUNDARIES BETWEEN WORLDS HAVE COLLAPSED.
+      </p>
+
+      <div class="takeover-status" id="takeoverStatus">
+        TWO REALITIES // ONE WORLD
+      </div>
+
+      <div class="takeover-coordinates">
+        SIGNAL LOST <span>///</span> WORLD STATE: IRREVERSIBLE
+      </div>
+
+      <button type="button" class="takeover-reset" id="takeoverResetButton">
+        RESET TEST TRANSMISSION
+      </button>
+    </div>
+  </section>
 </body>
 </html>
