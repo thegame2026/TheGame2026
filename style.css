@@ -2109,3 +2109,275 @@ body[data-convergence-percent="80"] .meter-fill {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================
+   CONVERGENCE: FINAL 10%
+   GLOBAL CORRUPTION ATMOSPHERE
+========================================= */
+
+body {
+    position: relative;
+    isolation: isolate;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9000;
+    opacity: 0.13;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 2px,
+            rgba(255, 40, 0, 0.12) 3px,
+            transparent 4px
+        );
+    animation: scanInterference 0.18s steps(2) infinite;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    pointer-events: none;
+    z-index: 8999;
+    background:
+        radial-gradient(ellipse at 50% 50%,
+            transparent 35%,
+            rgba(120, 0, 0, 0.13) 75%,
+            rgba(255, 30, 0, 0.08) 100%);
+    animation: atmospherePulse 5s ease-in-out infinite;
+}
+
+@keyframes scanInterference {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(2px); }
+    100% { transform: translateY(-1px); }
+}
+
+@keyframes atmospherePulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.04); }
+}
+
+/* =========================================
+   RGB GLITCH TEXT
+========================================= */
+
+h1, h2, .glitch-text {
+    animation: textGlitch 4s infinite;
+}
+
+@keyframes textGlitch {
+    0%, 88%, 100% {
+        text-shadow: none;
+        transform: translateX(0);
+    }
+
+    89% {
+        text-shadow:
+            -3px 0 #ff2400,
+            3px 0 #ff8a00;
+        transform: translateX(-2px);
+    }
+
+    90% {
+        text-shadow:
+            3px 0 #ff2400,
+            -3px 0 #ff8a00;
+        transform: translateX(2px);
+    }
+
+    91% {
+        text-shadow:
+            -1px 0 #ff2400,
+            1px 0 #ff8a00;
+        transform: translateX(0);
+    }
+}
+
+/* =========================================
+   CORRUPTION PARTICLE FIELD
+========================================= */
+
+body {
+    background-image:
+        radial-gradient(2px 2px at 10% 20%, rgba(255,70,20,.65) 50%, transparent 100%),
+        radial-gradient(2px 2px at 30% 80%, rgba(255,120,30,.5) 50%, transparent 100%),
+        radial-gradient(3px 3px at 70% 30%, rgba(255,30,0,.45) 50%, transparent 100%),
+        radial-gradient(2px 2px at 85% 65%, rgba(255,90,0,.6) 50%, transparent 100%),
+        radial-gradient(2px 2px at 50% 50%, rgba(255,50,10,.4) 50%, transparent 100%);
+    background-size:
+        240px 300px,
+        320px 400px,
+        280px 350px,
+        350px 420px,
+        200px 260px;
+    animation: particleDrift 18s linear infinite;
+}
+
+@keyframes particleDrift {
+    from { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; }
+    to {
+        background-position:
+            0 -600px,
+            100px -800px,
+            -80px -700px,
+            120px -900px,
+            -100px -500px;
+    }
+}
+
+/* =========================================
+   UNSTABLE ENERGY BORDERS
+========================================= */
+
+.card, .panel, .quest-card, .container {
+    position: relative;
+    border-color: rgba(255, 65, 20, 0.35);
+    box-shadow:
+        0 0 10px rgba(255, 40, 0, 0.08),
+        inset 0 0 15px rgba(255, 40, 0, 0.035);
+    animation: unstableBorder 3s ease-in-out infinite;
+}
+
+@keyframes unstableBorder {
+    0%, 100% {
+        border-color: rgba(255, 65, 20, 0.25);
+        box-shadow: 0 0 8px rgba(255, 30, 0, 0.08);
+    }
+
+    50% {
+        border-color: rgba(255, 100, 20, 0.75);
+        box-shadow:
+            0 0 18px rgba(255, 40, 0, 0.2),
+            inset 0 0 12px rgba(255, 40, 0, 0.08);
+    }
+}
+
+/* =========================================
+   SCREEN DISTORTION
+========================================= */
+
+@keyframes screenGlitch {
+    0%, 94%, 100% {
+        transform: translate(0);
+        filter: none;
+    }
+
+    95% {
+        transform: translate(-3px, 1px);
+        filter: saturate(1.8);
+    }
+
+    96% {
+        transform: translate(3px, -1px);
+        filter: hue-rotate(-12deg);
+    }
+
+    97% {
+        transform: translate(-1px, 2px);
+        filter: contrast(1.2);
+    }
+}
+
+main {
+    animation: screenGlitch 8s infinite;
+}
+
+/* =========================================
+   CORRUPTED INTERFACE FLICKER
+========================================= */
+
+.navbar, header, .status, .countdown {
+    animation: interfaceFlicker 6s infinite;
+}
+
+@keyframes interfaceFlicker {
+    0%, 92%, 94%, 96%, 100% { opacity: 1; }
+    93% { opacity: .75; }
+    95% { opacity: .88; }
+    97% { opacity: .65; }
+}
+
+/* =========================================
+   DIMENSIONAL FRACTURE
+========================================= */
+
+h1 {
+    position: relative;
+    animation: fractureShake 6s infinite;
+}
+
+h1::after {
+    content: " ";
+    position: absolute;
+    left: -5%;
+    top: 45%;
+    width: 110%;
+    height: 3px;
+    pointer-events: none;
+    background: #ff3b00;
+    box-shadow:
+        0 0 8px #ff2400,
+        0 0 20px #ff6a00;
+    opacity: 0;
+    animation: fractureFlash 6s infinite;
+}
+
+@keyframes fractureShake {
+    0%, 91%, 100% {
+        transform: translateX(0);
+        filter: none;
+    }
+    92% {
+        transform: translateX(-3px);
+        filter: drop-shadow(3px 0 #ff2600);
+    }
+    93% {
+        transform: translateX(4px);
+        filter: drop-shadow(-3px 0 #ff8a00);
+    }
+    94% {
+        transform: translateX(-2px);
+    }
+    95% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fractureFlash {
+    0%, 91%, 100% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    92% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+    93% {
+        opacity: .8;
+        transform: scaleX(.3);
+    }
+    94% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+}
+
+/* =========================================
+   ACCESSIBILITY + PERFORMANCE
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
